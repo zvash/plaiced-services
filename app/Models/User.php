@@ -11,39 +11,16 @@ class User extends Authenticatable
     use SoftDeletes, HasUuid;
 
     /**
-     * Pending verification status.
+     * User statuses.
      *
      * @var int
      */
-    public const STATUS_PENDING_VERIFICATION = 1;
-
-    /**
-     * Pending first line item status.
-     *
-     * @var int
-     */
-    public const STATUS_PENDING_FIRST_LINE_ITEM = 2;
-
-    /**
-     * Pending approval status.
-     *
-     * @var int
-     */
-    public const STATUS_PENDING_APPROVAL = 3;
-
-    /**
-     * Active status.
-     *
-     * @var int
-     */
-    public const STATUS_ACTIVE = 4;
-
-    /**
-     * Inactive status.
-     *
-     * @var int
-     */
-    public const STATUS_INACTIVE = 5;
+    public const
+        STATUS_PENDING_VERIFICATION = 1,
+        STATUS_PENDING_FIRST_LINE_ITEM = 2,
+        STATUS_PENDING_APPROVAL = 3,
+        STATUS_ACTIVE = 4,
+        STATUS_INACTIVE = 5;
 
     /**
      * The attributes that are mass assignable.
@@ -69,55 +46,15 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'status' => 'integer',
     ];
 
     /**
-     * Check status is pending verification.
+     * The model's attributes.
      *
-     * @return bool
+     * @var array
      */
-    public function isPendingVerification()
-    {
-        return $this->status === self::STATUS_PENDING_VERIFICATION;
-    }
-
-    /**
-     * Check status is pending first line item.
-     *
-     * @return bool
-     */
-    public function isPendingFirstLineItem()
-    {
-        return $this->status === self::STATUS_PENDING_FIRST_LINE_ITEM;
-    }
-
-    /**
-     * Check status is pending approval.
-     *
-     * @return bool
-     */
-    public function isPendingApproval()
-    {
-        return $this->status === self::STATUS_PENDING_APPROVAL;
-    }
-
-    /**
-     * Check status is active.
-     *
-     * @return bool
-     */
-    public function isActive()
-    {
-        return $this->status === self::STATUS_ACTIVE;
-    }
-
-    /**
-     * Check status is inactive.
-     *
-     * @return bool
-     */
-    public function isInactive()
-    {
-        return $this->status === self::STATUS_INACTIVE;
-    }
+    protected $attributes = [
+        'status' => self::STATUS_PENDING_VERIFICATION,
+    ];
 }

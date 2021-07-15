@@ -21,7 +21,7 @@ class CreateBlogsTable extends Migration
             $table->text('small_description');
             $table->text('description');
             $table->text('image');
-            $table->boolean('featured')->default(0)->index();
+            $table->boolean('featured')->default(false)->index();
             $table->json('tags')->nullable();
             $table->string('seo_title')->nullable();
             $table->text('seo_description')->nullable();

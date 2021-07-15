@@ -17,7 +17,7 @@ class CreateDropdownsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('value');
-            $table->boolean('custom')->default(0)->index();
+            $table->boolean('custom')->default(false)->index();
 
             $table->foreignId('group_id')
                 ->constrained('dropdown_groups')

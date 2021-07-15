@@ -90,7 +90,7 @@ class CreateDealsTable extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->foreignId('ownership_type')
+            $table->unsignedTinyInteger('ownership_type')
                 ->nullable()
                 ->index()
                 ->comment('
