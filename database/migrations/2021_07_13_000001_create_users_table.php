@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->text('avatar')->nullable();
             $table->string('find_us')->nullable();
             $table->string('company_position');
-            $table->unsignedTinyInteger('class')->index();
+            $table->unsignedTinyInteger('class')->index(); // TODO: what are the values ?
 
             $table->unsignedTinyInteger('status')
                 ->default(1)
