@@ -176,4 +176,14 @@ class Deal extends Model
     {
         return $this->hasMany(History::class);
     }
+
+    /**
+     *  Get the posts for the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

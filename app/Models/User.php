@@ -119,4 +119,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(AdvertiserSurvey::class);
     }
+
+    /**
+     *  Get the posts for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

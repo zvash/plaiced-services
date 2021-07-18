@@ -23,4 +23,24 @@ class Post extends Model
      * @var string[]|bool
      */
     protected $guarded = [];
+
+    /**
+     * Get the user that owns the post.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the deal that owns the post.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function deal()
+    {
+        return $this->belongsTo(Deal::class);
+    }
 }
