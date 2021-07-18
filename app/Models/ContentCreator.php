@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasDropdown;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ContentCreator extends Model
 {
-    use SoftDeletes, HasUuid;
+    use SoftDeletes, HasUuid, HasDropdown;
 
     /**
      * The attributes that aren't mass assignable.
@@ -59,12 +60,12 @@ class ContentCreator extends Model
     }
 
     /**
-     * Get the type dropdown that owns the content creator.
+     * Get the contents for the content creator.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function type()
+    public function contents()
     {
-        return $this->belongsTo(Dropdown::class, ' type');
+        return $this->hasMany(Content::class);
     }
 }

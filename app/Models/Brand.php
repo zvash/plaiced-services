@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasDropdown;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Brand extends Model
 {
-    use SoftDeletes, HasUuid;
+    use SoftDeletes, HasUuid, HasDropdown;
 
     /**
      * The attributes that aren't mass assignable.
@@ -45,25 +46,5 @@ class Brand extends Model
     public function advertiser()
     {
         return $this->belongsTo(Advertiser::class);
-    }
-
-    /**
-     * Get the category that owns the brand.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function category()
-    {
-        return $this->belongsTo(Dropdown::class, 'category');
-    }
-
-    /**
-     * Get the subcategory that owns the brand.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function subcategory()
-    {
-        return $this->belongsTo(Dropdown::class, 'subcategory');
     }
 }

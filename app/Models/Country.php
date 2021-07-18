@@ -44,4 +44,14 @@ class Country extends Model
     {
         return $this->hasMany(ContentCreator::class);
     }
+
+    /**
+     * Get the contents for the country.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contents()
+    {
+        return $this->hasMany(Content::class);
+    }
 }

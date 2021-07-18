@@ -53,7 +53,7 @@ class CreateContentsTable extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-            $table->foreignId('sub_subcategory')
+            $table->foreignId('child_subcategory')
                 ->constrained('dropdowns')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasDropdown;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Advertiser extends Model
 {
-    use SoftDeletes, HasUuid;
+    use SoftDeletes, HasUuid, HasDropdown;
 
     /**
      * The attributes that aren't mass assignable.
@@ -64,15 +65,5 @@ class Advertiser extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get the type dropdown that owns the advertiser.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function type()
-    {
-        return $this->belongsTo(Dropdown::class, ' type');
     }
 }

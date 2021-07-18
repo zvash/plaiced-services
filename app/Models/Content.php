@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasDropdown;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Content extends Model
 {
-    use SoftDeletes, HasUuid;
+    use SoftDeletes, HasUuid, HasDropdown;
 
     /**
      * The attributes that aren't mass assignable.
@@ -28,4 +29,24 @@ class Content extends Model
         'demographic_gender' => 'collection',
         'demographic_geography_id' => 'collection',
     ];
+
+    /**
+     * Get the country that owns the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Get the content creator that owns the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contentCreator()
+    {
+        return $this->belongsTo(ContentCreator::class);
+    }
 }
