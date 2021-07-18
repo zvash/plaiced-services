@@ -69,4 +69,14 @@ class User extends Authenticatable
     {
         return $this->roles->contains->isSuperAdmin();
     }
+
+    /**
+     * Get the advertisers for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function advertisers()
+    {
+        return $this->hasMany(Advertiser::class);
+    }
 }

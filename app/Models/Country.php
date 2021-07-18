@@ -24,4 +24,14 @@ class Country extends Model
     protected $casts = [
         'numeric_code' => 'integer',
     ];
+
+    /**
+     * Get the advertisers for the country.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function advertisers()
+    {
+        return $this->hasMany(Advertiser::class);
+    }
 }
