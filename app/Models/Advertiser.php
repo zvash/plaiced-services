@@ -37,6 +37,16 @@ class Advertiser extends Model
     ];
 
     /**
+     * Get the brands for the advertiser.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function brands()
+    {
+        return $this->hasMany(Brand::class);
+    }
+
+    /**
      * Get the country that owns the advertiser.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

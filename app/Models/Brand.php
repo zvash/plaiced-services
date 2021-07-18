@@ -36,4 +36,34 @@ class Brand extends Model
         'demographic_geography' => 'collection',
         'demographic_psychographic' => 'collection',
     ];
+
+    /**
+     * Get the advertiser that owns the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function advertiser()
+    {
+        return $this->belongsTo(Advertiser::class);
+    }
+
+    /**
+     * Get the category that owns the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(Dropdown::class, 'category');
+    }
+
+    /**
+     * Get the subcategory that owns the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subcategory()
+    {
+        return $this->belongsTo(Dropdown::class, 'subcategory');
+    }
 }
