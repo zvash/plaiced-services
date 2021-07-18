@@ -99,4 +99,24 @@ class User extends Authenticatable
     {
         return $this->hasMany(CommunityNews::class, 'author_id');
     }
+
+    /**
+     *  Get the advertiser surveys for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function advertiserSurveys()
+    {
+        return $this->hasMany(AdvertiserSurvey::class);
+    }
+
+    /**
+     *  Get the content creator surveys for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contentCreatorSurveys()
+    {
+        return $this->hasMany(AdvertiserSurvey::class);
+    }
 }

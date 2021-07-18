@@ -146,4 +146,24 @@ class Deal extends Model
     {
         return $this->belongsTo(Content::class);
     }
+
+    /**
+     *  Get the advertiser surveys for the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function advertiserSurveys()
+    {
+        return $this->hasMany(AdvertiserSurvey::class);
+    }
+
+    /**
+     *  Get the content creator surveys for the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contentCreatorSurveys()
+    {
+        return $this->hasMany(AdvertiserSurvey::class);
+    }
 }
