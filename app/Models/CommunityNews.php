@@ -15,4 +15,14 @@ class CommunityNews extends Model
      * @var string[]|bool
      */
     protected $guarded = [];
+
+    /**
+     * Get the author that owns the community news.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
 }

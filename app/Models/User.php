@@ -79,4 +79,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Advertiser::class);
     }
+
+    /**
+     * Get the community news for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function communityNews()
+    {
+        return $this->hasMany(CommunityNews::class, 'author_id');
+    }
 }
