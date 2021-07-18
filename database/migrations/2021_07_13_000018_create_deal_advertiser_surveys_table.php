@@ -27,7 +27,7 @@ class CreateDealAdvertiserSurveysTable extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->integer('user_id')
+            $table->foreignId('user_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
