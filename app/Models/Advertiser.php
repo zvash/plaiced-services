@@ -66,4 +66,14 @@ class Advertiser extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the deals for the advertiser.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function deals()
+    {
+        return $this->morphMany(Deal::class, 'owner');
+    }
 }

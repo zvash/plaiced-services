@@ -47,4 +47,14 @@ class Brand extends Model
     {
         return $this->belongsTo(Advertiser::class);
     }
+
+    /**
+     * Get the deals for the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function deals()
+    {
+        return $this->hasMany(Deal::class);
+    }
 }

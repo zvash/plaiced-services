@@ -106,4 +106,44 @@ class Deal extends Model
         'status' => self::STATUS_PENDING,
         'exposure_expectations' => self::EXPOSURE_EXPECTATIONS_MANDATORY,
     ];
+
+    /**
+     * Get the country that owns the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Get the parent owner model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function owner()
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * Get the brand that owns the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+    /**
+     * Get the content that owns the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function content()
+    {
+        return $this->belongsTo(Content::class);
+    }
 }

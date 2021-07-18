@@ -68,4 +68,14 @@ class ContentCreator extends Model
     {
         return $this->hasMany(Content::class);
     }
+
+    /**
+     * Get the deals for the content creator.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function deals()
+    {
+        return $this->morphMany(Deal::class, 'owner');
+    }
 }

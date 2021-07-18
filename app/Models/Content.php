@@ -49,4 +49,14 @@ class Content extends Model
     {
         return $this->belongsTo(ContentCreator::class);
     }
+
+    /**
+     * Get the deals for the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function deals()
+    {
+        return $this->hasMany(Deal::class);
+    }
 }
