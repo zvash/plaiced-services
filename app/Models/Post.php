@@ -43,4 +43,14 @@ class Post extends Model
     {
         return $this->belongsTo(Deal::class);
     }
+
+    /**
+     * Get the post assets for the post.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function asset()
+    {
+        return $this->hasMany(PostAsset::class, 'post_id');
+    }
 }

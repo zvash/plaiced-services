@@ -12,4 +12,14 @@ class PostAsset extends Model
      * @var string
      */
     protected $table = 'deal_post_assets';
+
+    /**
+     * Get the post that owns the post asset.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function post()
+    {
+        return $this->belongsTo(Post::class, 'post_id');
+    }
 }
