@@ -15,4 +15,24 @@ class DropdownGroup extends Model
      * @var string[]|bool
      */
     protected $guarded = [];
+
+    /**
+     * Get the dropdowns for the dropdown group.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function dropdowns()
+    {
+        return $this->hasMany(Dropdown::class, 'group_id');
+    }
+
+    /**
+     * Get the trailing dropdowns for the dropdown group.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trailingDropDowns()
+    {
+        return $this->hasMany(Dropdown::class, 'group_trailing_id');
+    }
 }

@@ -33,4 +33,24 @@ class Dropdown extends Model
     protected $attributes = [
         'custom' => false,
     ];
+
+    /**
+     * Get the group dropdown that owns the dropdown.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function group()
+    {
+        return $this->belongsTo(DropdownGroup::class, 'group_id');
+    }
+
+    /**
+     * Get the trailing group dropdown that owns the dropdown.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function trailingGroup()
+    {
+        return $this->belongsTo(DropdownGroup::class, 'group_trailing_id');
+    }
 }
