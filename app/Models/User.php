@@ -81,6 +81,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the content creators for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contentCreators()
+    {
+        return $this->hasMany(ContentCreator::class);
+    }
+
+    /**
      * Get the community news for the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

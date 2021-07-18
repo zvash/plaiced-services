@@ -37,4 +37,34 @@ class ContentCreator extends Model
         'private' => false,
         'rating_count' => 0,
     ];
+
+    /**
+     * Get the country that owns the content creator.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Get the user that owns the content creator.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the type dropdown that owns the content creator.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->belongsTo(Dropdown::class, ' type');
+    }
 }

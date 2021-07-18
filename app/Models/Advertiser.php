@@ -2,15 +2,13 @@
 
 namespace App\Models;
 
-use App\Models\Traits\HasCountry;
-use App\Models\Traits\HasUser;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Advertiser extends Model
 {
-    use SoftDeletes, HasUuid, HasUser, HasCountry;
+    use SoftDeletes, HasUuid;
 
     /**
      * The attributes that aren't mass assignable.
@@ -46,6 +44,26 @@ class Advertiser extends Model
     public function brands()
     {
         return $this->hasMany(Brand::class);
+    }
+
+    /**
+     * Get the country that owns the advertiser.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    /**
+     * Get the user that owns the advertiser.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     /**

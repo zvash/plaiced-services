@@ -34,4 +34,14 @@ class Country extends Model
     {
         return $this->hasMany(Advertiser::class);
     }
+
+    /**
+     * Get the content creators for the country.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contentCreators()
+    {
+        return $this->hasMany(ContentCreator::class);
+    }
 }
