@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDealAdvertiserSurveyTable extends Migration
+class CreateDealAdvertiserSurveysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateDealAdvertiserSurveyTable extends Migration
      */
     public function up()
     {
-        Schema::create('deal_advertiser_survey', function (Blueprint $table) {
+        Schema::create('deal_advertiser_surveys', function (Blueprint $table) {
             $table->id();
             $table->unsignedTinyInteger('plaiced_rating');
             $table->text('plaiced_what_i_like')->nullable();
@@ -43,6 +43,6 @@ class CreateDealAdvertiserSurveyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deal_advertiser_survey');
+        Schema::dropIfExists('deal_advertiser_surveys');
     }
 }
