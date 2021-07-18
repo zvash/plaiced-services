@@ -6,10 +6,11 @@ use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use SoftDeletes, HasUuid, Notifiable;
+    use SoftDeletes, HasUuid, Notifiable, HasRoles;
 
     /**
      * User statuses.
@@ -58,4 +59,14 @@ class User extends Authenticatable
     protected $attributes = [
         'status' => self::STATUS_PENDING_VERIFICATION,
     ];
+
+    /**
+     * Check user is superadmin or not.
+     *
+     * @return bool
+     */
+    public function isSuperAdmin()
+    {
+        return $this->roles->contains->isSuperAdmin();
+    }
 }
