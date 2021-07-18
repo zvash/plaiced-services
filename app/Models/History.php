@@ -46,4 +46,14 @@ class History extends Model
 
         return $this->fill(compact('original', 'changes'));
     }
+
+    /**
+     * Get the deal that owns the history.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function deal()
+    {
+        return $this->belongsTo(Deal::class);
+    }
 }

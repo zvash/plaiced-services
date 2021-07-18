@@ -166,4 +166,14 @@ class Deal extends Model
     {
         return $this->hasMany(AdvertiserSurvey::class);
     }
+
+    /**
+     *  Get the histories for the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function histories()
+    {
+        return $this->hasMany(History::class);
+    }
 }
