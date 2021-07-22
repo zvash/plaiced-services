@@ -78,4 +78,14 @@ class ContentCreator extends Model
     {
         return $this->morphMany(Deal::class, 'owner');
     }
+
+    /**
+     * Get the followers for the content creator.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function followers()
+    {
+        return $this->morphMany(Follow::class, 'followable');
+    }
 }

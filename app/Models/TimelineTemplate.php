@@ -19,4 +19,14 @@ class TimelineTemplate extends Model
      * @var string[]|bool
      */
     protected $guarded = [];
+
+    /**
+     * Get the timelines for the timeline template.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function timelines()
+    {
+        return $this->morphMany(Timeline::class, 'model');
+    }
 }

@@ -12,4 +12,24 @@ class Like extends Model
      * @var string[]|bool
      */
     protected $guarded = [];
+
+    /**
+     * Get the user that owns the like.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the parent likable model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function likable()
+    {
+        return $this->morphTo();
+    }
 }

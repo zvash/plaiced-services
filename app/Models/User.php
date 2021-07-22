@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Pivots\UserWishlist;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -101,7 +102,7 @@ class User extends Authenticatable
     }
 
     /**
-     *  Get the advertiser surveys for the user.
+     * Get the advertiser surveys for the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -111,7 +112,7 @@ class User extends Authenticatable
     }
 
     /**
-     *  Get the content creator surveys for the user.
+     * Get the content creator surveys for the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -121,12 +122,54 @@ class User extends Authenticatable
     }
 
     /**
-     *  Get the posts for the user.
+     * Get the posts for the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    /**
+     * Get the payments for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
+
+    /**
+     * Get the follows for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function follows()
+    {
+        return $this->hasMany(Follow::class);
+    }
+
+    /**
+     * Get the likes for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    /**
+     * Get the wishlists for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function wishlists()
+    {
+        return $this->belongsToMany(Wishlist::class)
+            ->using(UserWishlist::class)
+            ->withTimestamps();
     }
 }

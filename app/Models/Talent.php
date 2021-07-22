@@ -2,14 +2,35 @@
 
 namespace App\Models;
 
+use App\Models\Pivots\ContentTalent;
 use Illuminate\Database\Eloquent\Model;
 
 class Talent extends Model
 {
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'talents';
+
     /**
      * The attributes that aren't mass assignable.
      *
      * @var string[]|bool
      */
     protected $guarded = [];
+
+    /**
+     * Get the contents for the talent.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class)
+            ->using(ContentTalent::class)
+            ->withTimestamps()
+            ->withPivot(['type']);
+    }
 }

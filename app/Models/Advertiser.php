@@ -76,4 +76,14 @@ class Advertiser extends Model
     {
         return $this->morphMany(Deal::class, 'owner');
     }
+
+    /**
+     * Get the followers for the advertiser.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function followers()
+    {
+        return $this->morphMany(Follow::class, 'followable');
+    }
 }

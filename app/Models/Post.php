@@ -53,4 +53,14 @@ class Post extends Model
     {
         return $this->hasMany(PostAsset::class, 'post_id');
     }
+
+    /**
+     * Get the timeline for the post.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
+     */
+    public function timeline()
+    {
+        return $this->morphOne(Timeline::class, 'model');
+    }
 }

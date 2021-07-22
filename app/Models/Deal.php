@@ -186,4 +186,34 @@ class Deal extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     *  Get the products for the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    /**
+     *  Get the timelines for the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function timelines()
+    {
+        return $this->hasMany(Timeline::class);
+    }
+
+    /**
+     * Get the payment for the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
 }

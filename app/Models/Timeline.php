@@ -28,4 +28,24 @@ class Timeline extends Model
     protected $casts = [
         'parameters' => 'collection',
     ];
+
+    /**
+     * Get the deal that owns the timeline.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function deal()
+    {
+        return $this->belongsTo(Deal::class);
+    }
+
+    /**
+     * Get the parent model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function model()
+    {
+        return $this->morphTo();
+    }
 }

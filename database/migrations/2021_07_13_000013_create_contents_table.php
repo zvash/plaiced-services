@@ -17,6 +17,7 @@ class CreateContentsTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
+            $table->boolean('featured')->default(false)->index();
             $table->text('synopsis')->nullable();
             $table->text('viewership_metrics')->nullable();
             $table->text('general_comment')->nullable();

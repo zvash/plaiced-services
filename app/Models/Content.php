@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Pivots\ContentTalent;
 use App\Models\Traits\HasDropdown;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
@@ -24,10 +25,20 @@ class Content extends Model
      * @var array
      */
     protected $casts = [
+        'featured' => 'boolean',
         'locations' => 'collection',
         'demographic_age' => 'collection',
         'demographic_gender' => 'collection',
         'demographic_geography_id' => 'collection',
+    ];
+
+    /**
+     * The model's attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'featured' => false,
     ];
 
     /**
@@ -58,5 +69,28 @@ class Content extends Model
     public function deals()
     {
         return $this->hasMany(Deal::class);
+    }
+
+    /**
+     * Get the likes for the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likable');
+    }
+
+    /**
+     * Get the talents for the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function talents()
+    {
+        return $this->belongsToMany(Talent::class)
+            ->using(ContentTalent::class)
+            ->withTimestamps()
+            ->withPivot(['type']);
     }
 }

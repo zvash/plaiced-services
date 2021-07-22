@@ -17,6 +17,7 @@ class CreateBrandsTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
+            $table->boolean('featured')->default(false)->index();
             $table->text('general_comment')->nullable();
             $table->text('avatar')->nullable();
             $table->unsignedTinyInteger('placement')->nullable(); // Todo: What is this ?

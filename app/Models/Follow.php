@@ -12,4 +12,24 @@ class Follow extends Model
      * @var string[]|bool
      */
     protected $guarded = [];
+
+    /**
+     * Get the user that owns the follow.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the parent followable model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function followable()
+    {
+        return $this->morphTo();
+    }
 }

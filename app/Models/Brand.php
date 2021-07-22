@@ -24,6 +24,7 @@ class Brand extends Model
      * @var array
      */
     protected $casts = [
+        'featured' => 'boolean',
         'placement' => 'integer',
         'locations' => 'collection',
         'demographic_age' => 'collection',
@@ -36,6 +37,15 @@ class Brand extends Model
         'demographic_education' => 'collection',
         'demographic_geography' => 'collection',
         'demographic_psychographic' => 'collection',
+    ];
+
+    /**
+     * The model's attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'featured' => false,
     ];
 
     /**
@@ -56,5 +66,15 @@ class Brand extends Model
     public function deals()
     {
         return $this->hasMany(Deal::class);
+    }
+
+    /**
+     * Get the likes for the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likable');
     }
 }

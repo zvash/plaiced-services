@@ -28,4 +28,14 @@ class Product extends Model
     protected $casts = [
         'quantity' => 'integer',
     ];
+
+    /**
+     * Get the deal that owns the product.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function deal()
+    {
+        return $this->belongsTo(Deal::class);
+    }
 }

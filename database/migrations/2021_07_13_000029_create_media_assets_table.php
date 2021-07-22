@@ -22,7 +22,6 @@ class CreateMediaAssetsTable extends Migration
             $table->string('extension');
             $table->integer('size');
             $table->string('url');
-            $table->morphs('assetable');
             $table->timestamps();
         });
     }

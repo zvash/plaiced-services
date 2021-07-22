@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWishlistUserTable extends Migration
+class CreateUserWishlistTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWishlistUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('wishlist_user', function (Blueprint $table) {
+        Schema::create('user_wishlist', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('wishlist_id')
@@ -37,6 +37,6 @@ class CreateWishlistUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wishlist_user');
+        Schema::dropIfExists('user_wishlist');
     }
 }
