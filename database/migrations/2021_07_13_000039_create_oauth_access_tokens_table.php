@@ -24,6 +24,16 @@ class CreateOauthAccessTokensTable extends Migration
     }
 
     /**
+     * Get the migration connection name.
+     *
+     * @return string|null
+     */
+    public function getConnection()
+    {
+        return config('passport.storage.database.connection');
+    }
+
+    /**
      * Run the migrations.
      *
      * @return void
@@ -32,13 +42,23 @@ class CreateOauthAccessTokensTable extends Migration
     {
         $this->schema->create('oauth_access_tokens', function (Blueprint $table) {
             $table->string('id', 100)->primary();
-            $table->unsignedBigInteger('user_id')->nullable()->index();
-            $table->uuid('client_id');
+
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
+            $table->foreignUuid('client_id')
+                ->constrained('oauth_clients')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
             $table->string('name')->nullable();
             $table->text('scopes')->nullable();
             $table->boolean('revoked');
-            $table->timestamps();
             $table->dateTime('expires_at')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -50,15 +70,5 @@ class CreateOauthAccessTokensTable extends Migration
     public function down()
     {
         $this->schema->dropIfExists('oauth_access_tokens');
-    }
-
-    /**
-     * Get the migration connection name.
-     *
-     * @return string|null
-     */
-    public function getConnection()
-    {
-        return config('passport.storage.database.connection');
     }
 }

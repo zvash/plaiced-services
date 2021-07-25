@@ -41,7 +41,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             'throttle:api',
-            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            'bindings',
         ],
     ];
 
@@ -62,5 +62,18 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        /*
+         * Custom middlewares
+         */
+        'bindings' => \Illuminate\Routing\Middleware\SubstituteBindings::class,
+
+        /*
+         * Laravel passport middlewares
+         */
+        'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
+        'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,
+        'clients' => \Laravel\Passport\Http\Middleware\CheckClientCredentials::class,
+        'client' => \Laravel\Passport\Http\Middleware\CheckClientCredentialsForAnyScope::class,
     ];
 }
