@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\BlogController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -10,3 +13,5 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::apiResource('blogs', BlogController::class)->only('index', 'show');
