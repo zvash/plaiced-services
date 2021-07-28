@@ -15,6 +15,7 @@ class CreateDealHistoriesTable extends Migration
     {
         Schema::create('deal_histories', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->json('changes');
             $table->json('original');
 

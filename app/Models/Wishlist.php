@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Models\Pivots\UserWishlist;
+use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Wishlist extends Model
 {
+    use HasUuid;
+
     /**
      * The attributes that aren't mass assignable.
      *

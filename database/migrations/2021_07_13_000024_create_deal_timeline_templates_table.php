@@ -15,6 +15,7 @@ class CreateDealTimelineTemplatesTable extends Migration
     {
         Schema::create('deal_timeline_templates', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->text('template');
             $table->timestamps();
         });

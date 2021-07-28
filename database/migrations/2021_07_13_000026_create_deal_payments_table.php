@@ -15,6 +15,7 @@ class CreateDealPaymentsTable extends Migration
     {
         Schema::create('deal_payments', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->float('amount');
             $table->string('transaction_id');
 

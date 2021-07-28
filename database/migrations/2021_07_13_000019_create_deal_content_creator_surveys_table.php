@@ -15,6 +15,7 @@ class CreateDealContentCreatorSurveysTable extends Migration
     {
         Schema::create('deal_content_creator_surveys', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->unsignedTinyInteger('plaiced_rating');
             $table->text('plaiced_what_i_like')->nullable();
             $table->text('plaiced_what_can_get_better')->nullable();
