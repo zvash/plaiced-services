@@ -53,14 +53,15 @@ trait HasJsonResource
      * Check relationship loaded and get its value.
      *
      * @param  string  $relation
+     * @param  string|null  $resource
      * @return \Illuminate\Http\Resources\MissingValue|mixed
      */
-    protected function whenLoadedAndNotEmpty(string $relation)
+    protected function whenLoadedAndNotEmpty(string $relation, ?string $resource = null)
     {
         return $this->when(
             $this->{Str::of($relation)->snake()->append('_id')},
-            function () use ($relation) {
-                $resource = $this->resourceClass($relation);
+            function () use ($relation, $resource) {
+                $resource = $resource ?? $this->resourceClass($relation);
 
                 return new $resource(
                     $this->whenLoaded($relation) ?? new MissingValue
@@ -214,6 +215,7 @@ trait HasJsonResource
         return (string) Str::of($relation)
             ->singular()
             ->studly()
+            ->append('Resource')
             ->prepend('\\App\\Http\\Resources\\');
     }
 }

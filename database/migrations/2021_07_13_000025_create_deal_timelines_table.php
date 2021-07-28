@@ -19,7 +19,7 @@ class CreateDealTimelinesTable extends Migration
             $table->json('parameters')->nullable();
             $table->morphs('model');
 
-            $table->integer('deal_id')
+            $table->foreignId('deal_id')
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
