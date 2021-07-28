@@ -25,7 +25,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return BlogResource::collection(Blog::latest('featured')->latest()->paginate(15));
+        return BlogResource::collection(
+            Blog::latest('featured')->latest()->paginate(15)
+        );
     }
 
     /**

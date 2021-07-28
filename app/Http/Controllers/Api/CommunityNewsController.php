@@ -25,7 +25,9 @@ class CommunityNewsController extends Controller
      */
     public function index()
     {
-        return CommunityNewsResource::collection(CommunityNews::latest()->paginate(15));
+        return CommunityNewsResource::collection(
+            CommunityNews::latest()->paginate(15)
+        );
     }
 
     /**
