@@ -15,6 +15,7 @@ class CreateDealProductsTable extends Migration
     {
         Schema::create('deal_products', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->string('title');
             $table->integer('quantity');
             $table->string('sku')->nullable()->index();

@@ -15,6 +15,7 @@ class CreateDealTimelinesTable extends Migration
     {
         Schema::create('deal_timelines', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->json('parameters')->nullable();
             $table->morphs('model');
 

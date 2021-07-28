@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Models\Pivots\ContentTalent;
+use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Talent extends Model
 {
+    use HasUuid;
+
     /**
      * The table associated with the model.
      *

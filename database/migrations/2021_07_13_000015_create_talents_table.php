@@ -15,6 +15,7 @@ class CreateTalentsTable extends Migration
     {
         Schema::create('talents', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid')->unique();
             $table->string('title')->index();
             $table->timestamps();
         });
