@@ -17,6 +17,8 @@ class CreateResourcesTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
+            $table->text('small_description');
+            $table->text('description');
             $table->string('file_name');
             $table->string('mime_type');
             $table->string('extension');

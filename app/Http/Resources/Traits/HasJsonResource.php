@@ -157,6 +157,17 @@ trait HasJsonResource
     }
 
     /**
+     * Get value from the field if it has a value.
+     *
+     * @param  string $field
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    protected function whenHasValue(string $field)
+    {
+        return $this->when($this->{$field}, $this->{$field});
+    }
+
+    /**
      * Get morph resource if it is loaded and has a value.
      *
      * @param  string  $morph

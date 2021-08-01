@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use App\Http\Resources\Traits\HasJsonResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SectionResource extends JsonResource
+class AssetResource extends JsonResource
 {
     use HasJsonResource;
 
@@ -20,9 +20,13 @@ class SectionResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'title' => $this->title,
-            'small_description' => $this->whenHasValue('small_description'),
             'description' => $this->whenHasValue('description'),
-            'image' => $this->whenHasFile('image'),
+            'small_description' => $this->whenHasValue('small_description'),
+            'file_name' => $this->file_name,
+            'mime_type' => $this->mime_type,
+            'extension' => $this->extension,
+            'size' => $this->size,
+            'url' => $this->whenHasFile('url'),
         ];
     }
 }
