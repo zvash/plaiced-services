@@ -9,7 +9,7 @@ use App\Models\Page;
 class PageController extends Controller
 {
     /**
-     * PageController constructor.
+     * Page controller constructor.
      *
      * @return void
      */

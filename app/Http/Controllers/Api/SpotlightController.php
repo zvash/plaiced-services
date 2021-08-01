@@ -9,7 +9,7 @@ use App\Models\Spotlight;
 class SpotlightController extends Controller
 {
     /**
-     * SpotlightController constructor.
+     * Spotlight controller constructor.
      *
      * @return void
      */

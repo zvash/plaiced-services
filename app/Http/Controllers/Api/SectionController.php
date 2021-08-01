@@ -9,7 +9,7 @@ use App\Models\Section;
 class SectionController extends Controller
 {
     /**
-     * SectionController constructor.
+     * Section controller constructor.
      *
      * @return void
      */

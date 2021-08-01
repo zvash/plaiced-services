@@ -9,7 +9,7 @@ use App\Models\CommunityNews;
 class CommunityNewsController extends Controller
 {
     /**
-     * CommunityNewsController constructor.
+     * CommunityNews controller constructor.
      *
      * @return void
      */

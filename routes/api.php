@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\ResourceController;
 use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\SpotlightController;
+use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::prefix('notifications')->name('notifications.')->group(function () {
     Route::post('read', [NotificationController::class, 'read'])->name('read');
 });
 
+Route::apiResource('wishlists', WishlistController::class)->only('store');
 Route::apiResource('blogs', BlogController::class)->only('index', 'show');
 Route::apiResource('pages', PageController::class)->only('index', 'show');
 Route::apiResource('spotlights', SpotlightController::class)->only('index');

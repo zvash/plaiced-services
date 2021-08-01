@@ -9,7 +9,7 @@ use App\Models\Blog;
 class BlogController extends Controller
 {
     /**
-     * BlogController constructor.
+     * Blog controller constructor.
      *
      * @return void
      */

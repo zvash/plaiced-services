@@ -9,7 +9,7 @@ use App\Models\Resource;
 class ResourceController extends Controller
 {
     /**
-     * PageController constructor.
+     * Resource controller constructor.
      *
      * @return void
      */

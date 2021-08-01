@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class NotificationController extends Controller
 {
     /**
-     * NotificationController constructor.
+     * Notification controller constructor.
      *
      * @return void
      */
