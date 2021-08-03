@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\CommunityNewsController;
+use App\Http\Controllers\Api\DealProductController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\ResourceController;
@@ -33,3 +34,5 @@ Route::apiResource('spotlights', SpotlightController::class)->only('index');
 Route::apiResource('sections', SectionController::class)->only('index', 'show');
 Route::apiResource('resources', ResourceController::class)->only('index', 'show');
 Route::apiResource('community-news', CommunityNewsController::class)->only('index', 'show');
+
+Route::apiResource('deals.products', DealProductController::class)->shallow();
