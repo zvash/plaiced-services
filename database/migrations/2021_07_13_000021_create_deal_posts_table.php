@@ -29,7 +29,6 @@ class CreateDealPostsTable extends Migration
                 ->cascadeOnUpdate();
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

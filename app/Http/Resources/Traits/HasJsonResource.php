@@ -116,7 +116,7 @@ trait HasJsonResource
      * @param  string  $disk
      * @return \Illuminate\Http\Resources\MissingValue|mixed
      */
-    protected function whenHasFile(string $field, string $disk = 'public')
+    protected function whenHasFile(string $field, string $disk = 's3')
     {
         return $this->when(
             Storage::disk($disk)->exists($this->{$field}),
