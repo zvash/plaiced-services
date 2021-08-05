@@ -22,7 +22,7 @@ class DealProductControllerPolicy
      */
     public function viewAny(User $user, Controller $controller, Deal $deal)
     {
-        return $deal->owner->user->is($user);
+        return $deal->authorize($user);
     }
 
     /**
@@ -35,7 +35,7 @@ class DealProductControllerPolicy
      */
     public function view(User $user, Controller $controller, Deal $deal)
     {
-        return $deal->owner->user->is($user);
+        return $deal->authorize($user);
     }
 
     /**
@@ -48,7 +48,7 @@ class DealProductControllerPolicy
      */
     public function create(User $user, Controller $controller, Deal $deal)
     {
-        return $deal->owner->user->is($user);
+        return $deal->authorize($user);
     }
 
     /**
@@ -61,7 +61,7 @@ class DealProductControllerPolicy
      */
     public function update(User $user, Controller $controller, Deal $deal)
     {
-        return $deal->owner instanceof Advertiser && $deal->owner->user->is($user);
+        return $deal->owner instanceof Advertiser && $deal->authorize($user);
     }
 
     /**
@@ -74,6 +74,6 @@ class DealProductControllerPolicy
      */
     public function delete(User $user, Controller $controller, Deal $deal)
     {
-        return $deal->owner instanceof Advertiser && $deal->owner->user->is($user);
+        return $deal->owner instanceof Advertiser && $deal->authorize($user);
     }
 }

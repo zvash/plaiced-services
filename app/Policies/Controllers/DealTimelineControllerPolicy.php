@@ -21,7 +21,7 @@ class DealTimelineControllerPolicy
      */
     public function viewAny(User $user, Controller $controller, Deal $deal)
     {
-        return $deal->owner->user->is($user);
+        return $deal->authorize($user);
     }
 
     /**
@@ -34,6 +34,6 @@ class DealTimelineControllerPolicy
      */
     public function view(User $user, Controller $controller, Deal $deal)
     {
-        return $deal->owner->user->is($user);
+        return $deal->authorize($user);
     }
 }

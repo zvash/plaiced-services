@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasUuid;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -215,5 +216,22 @@ class Deal extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    /**
+     * Check authorization specific user for a deal.
+     *
+     * @param  \App\Models\User  $user
+     * @return bool
+     */
+    public function authorize(User $user)
+    {
+        $authorized = new Collection([
+            $this->owner->user,
+            $this->brand->advertiser->user,
+            $this->content->contentCreator->user,
+        ]);
+
+        return $authorized->unique()->contains($user);
     }
 }
