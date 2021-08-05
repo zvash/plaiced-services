@@ -51,6 +51,13 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'visibility' => 'public',
+
+            'cache' => [
+                'store' => 'redis',
+                'expire' => 1440,
+                'prefix' => 's3-storage',
+            ],
         ],
 
     ],
