@@ -61,7 +61,7 @@ trait HasJsonResource
         return $this->when(
             $this->{Str::of($relation)->snake()->append('_id')},
             function () use ($relation, $resource) {
-                $resource = $resource ?? $this->resourceClass($relation);
+                $resource ??= $this->resourceClass($relation);
 
                 return new $resource(
                     $this->whenLoaded($relation) ?? new MissingValue
@@ -80,7 +80,7 @@ trait HasJsonResource
     protected function whenLoadedGetFirst(string $relation, ?string $resource = null)
     {
         return $this->whenLoaded($relation, function () use ($relation, $resource) {
-            $resource = $resource ?? $this->resourceClass($relation);
+            $resource ??= $this->resourceClass($relation);
 
             return new $resource(
                 $this->when(
@@ -101,7 +101,7 @@ trait HasJsonResource
     protected function whenLoadedGetAll(string $relation, ?string $resource = null)
     {
         return $this->whenLoaded($relation, function () use ($relation, $resource) {
-            $resource = $resource ?? $this->resourceClass($relation);
+            $resource ??= $this->resourceClass($relation);
 
             return $resource::collection(
                 $this->when($this->{$relation}->isNotEmpty(), $this->{$relation})
@@ -116,7 +116,7 @@ trait HasJsonResource
      * @param  string  $disk
      * @return \Illuminate\Http\Resources\MissingValue|mixed
      */
-    protected function whenHasFile(string $field, string $disk = 's3')
+    protected function whenHasFile(string $field, string $disk = 'public')
     {
         return $this->when(
             Storage::disk($disk)->exists($this->{$field}),
@@ -171,9 +171,10 @@ trait HasJsonResource
      * Get morph resource if it is loaded and has a value.
      *
      * @param  string  $morph
+     * @param  string|null  $resource
      * @return \Illuminate\Http\Resources\MissingValue|\Illuminate\Http\Resources\Json\JsonResource
      */
-    protected function getMorphResource(string $morph)
+    protected function getMorphResource(string $morph, ?string $resource = null)
     {
         $class = $this->getMorphType($morph);
 
@@ -181,7 +182,7 @@ trait HasJsonResource
             return $class;
         }
 
-        $resource = $this->resourceClass($class);
+        $resource ??= $this->resourceClass($class);
 
         if (! class_exists($resource)) {
             return new MissingValue;

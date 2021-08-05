@@ -49,7 +49,7 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function asset()
+    public function assets()
     {
         return $this->hasMany(PostAsset::class, 'post_id');
     }

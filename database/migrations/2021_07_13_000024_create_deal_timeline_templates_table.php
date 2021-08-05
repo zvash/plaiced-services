@@ -17,6 +17,7 @@ class CreateDealTimelineTemplatesTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->text('template');
+            $table->string('icon')->nullable();
             $table->timestamps();
         });
     }

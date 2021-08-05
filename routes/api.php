@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\CommunityNewsController;
 use App\Http\Controllers\Api\DealProductController;
+use App\Http\Controllers\Api\DealTimelineController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\ResourceController;
@@ -36,3 +37,4 @@ Route::apiResource('resources', ResourceController::class)->only('index', 'show'
 Route::apiResource('community-news', CommunityNewsController::class)->only('index', 'show');
 
 Route::apiResource('deals.products', DealProductController::class)->shallow();
+Route::apiResource('deals.timelines', DealTimelineController::class)->shallow()->only('index', 'show');
