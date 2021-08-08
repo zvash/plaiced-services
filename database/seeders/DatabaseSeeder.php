@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->purge()->call([
+            TimelineTemplateSeeder::class,
+            ClientSeeder::class,
+            UserSeeder::class,
+        ]);
+    }
+
+    /**
+     * Purge all directories.
+     *
+     * @return $this
+     */
+    protected function purge()
+    {
+        Storage::disk('s3')->flushCache();
+
+        foreach (Storage::disk('s3')->directories() as $directory) {
+            Storage::disk('s3')->deleteDirectory($directory);
+        }
+
+        return $this;
     }
 }

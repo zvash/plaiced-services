@@ -6,6 +6,7 @@ use App\Http\Repositories\Abstraction\Repository;
 use App\Models\Deal;
 use App\Models\Post;
 use App\Models\PostAsset;
+use App\Models\Timeline;
 use Illuminate\Database\DatabaseManager as Database;
 use Illuminate\Filesystem\FilesystemManager as Storage;
 use Illuminate\Http\Request;
@@ -45,11 +46,11 @@ class PostRepository extends Repository
     public function create(Request $request, Deal $deal)
     {
         $callback = function (Request $request, Deal $deal) {
-            $post = $request->user()->posts()->make($request->validated());
-            $post->deal()->associate($deal);
-            $post->save();
+            $this->assets($request, $post = $this->post($request, $deal));
 
-            return $post;
+            $timeline = $this->timeline($post, $deal);
+
+            return [$post, $timeline];
         };
 
         return $this->transaction($callback, ...func_get_args());
@@ -79,5 +80,64 @@ class PostRepository extends Repository
         };
 
         return $this->transaction($callback, $post);
+    }
+
+    /**
+     * Create post for the deal.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Deal  $deal
+     * @return \Illuminate\Database\Eloquent\Model|\App\Models\Post
+     */
+    private function post(Request $request, Deal $deal)
+    {
+        $post = new Post(['description' => $request->description]);
+        $post->deal()->associate($deal);
+
+        return $request->user()->posts()->save($post);
+    }
+
+    /**
+     * Create post assets for created post.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post  $post
+     * @return void
+     */
+    private function assets(Request $request, Post $post)
+    {
+        if (! $request->hasFile('assets.*.file')) {
+            return;
+        }
+
+        foreach ($request->assets as $asset) {
+            if (! $asset['file']->isValid()) {
+                continue;
+            }
+
+            $post->assets()->create([
+                'title' => $asset['title'],
+                'size' => $asset['file']->getSize(),
+                'extension' => $asset['file']->extension(),
+                'mime_type' => $asset['file']->getClientMimeType(),
+                'url' => $asset['file']->store('post-assets', 's3'),
+                'file_name' => $asset['file']->getClientOriginalName(),
+            ]);
+        }
+    }
+
+    /**
+     * Create timeline for the deal with created post.
+     *
+     * @param  \App\Models\Post  $post
+     * @param  \App\Models\Deal  $deal
+     * @return \Illuminate\Database\Eloquent\Model|\App\Models\Post
+     */
+    private function timeline(Post $post, Deal $deal)
+    {
+        $timeline = new Timeline(['parameters' => []]);
+        $timeline->model()->associate($post);
+
+        return $deal->timelines()->save($timeline);
     }
 }

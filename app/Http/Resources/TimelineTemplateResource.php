@@ -19,6 +19,7 @@ class TimelineTemplateResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
+            'event' => $this->event_name,
             'template' => $this->template,
             'icon' => $this->whenHasValue('icon'),
         ];

@@ -16,6 +16,7 @@ class CreateDealTimelineTemplatesTable extends Migration
         Schema::create('deal_timeline_templates', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
+            $table->string('event_name');
             $table->text('template');
             $table->string('icon')->nullable();
             $table->timestamps();

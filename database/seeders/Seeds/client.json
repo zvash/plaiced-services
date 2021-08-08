@@ -1,0 +1,24 @@
+[
+    {
+        "id": "941a4e6d-c223-4965-8be5-9a7583f52fd3",
+        "user_id": null,
+        "name": "Plaiced client-credentials grant client",
+        "secret": "mbh6igR6rVk2TVIYkPVZ40AwqAFVMmIboRFO0I6m",
+        "provider": null,
+        "redirect": null,
+        "personal_access_client": false,
+        "password_client": false,
+        "revoked": false
+    },
+    {
+        "id": "941a4f6d-8505-4e9a-86bc-eab0a4f21e6b",
+        "user_id": null,
+        "name": "Plaiced password grant client",
+        "secret": "kQxdc865JifdGBS9ermVpIfaGpctL3SpZtAFy1zG",
+        "provider": "users",
+        "redirect": "app.url",
+        "personal_access_client": false,
+        "password_client": true,
+        "revoked": false
+    }
+]

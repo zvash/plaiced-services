@@ -1,0 +1,42 @@
+[
+    {
+        "event_name": "Deal:Create",
+        "template": "Deal was requested by :title.",
+        "icon": null
+    },
+    {
+        "event_name": "DealHistory:Create",
+        "template": "A change was made in the deal from :original to :changes.",
+        "icon": null
+    },
+    {
+        "event_name": "DealPayment:Update",
+        "template": "A payment was recorded on :date, and the deal is now active.",
+        "icon": null
+    },
+    {
+        "event_name": "DealShipping:Update",
+        "template": "A change in the shipping was made.",
+        "icon": null
+    },
+    {
+        "event_name": "DealProduct:Create/Update",
+        "template": "A change was made in the products to be shipped.",
+        "icon": null
+    },
+    {
+        "event_name": "Deal:MediaAccountability",
+        "template": "A request for media accountability was made.",
+        "icon": null
+    },
+    {
+        "event_name": "Deal:ContentCoordination",
+        "template": "A request for content coordination was made.",
+        "icon": null
+    },
+    {
+        "event_name": "DealSurvey:Create",
+        "template": ":title has filled out the survey.",
+        "icon": null
+    }
+]

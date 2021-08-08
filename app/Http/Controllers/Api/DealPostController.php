@@ -42,11 +42,11 @@ class DealPostController extends Controller
     {
         $this->authorize('create', [$this, $deal]);
 
-        $post = $this->repository->create($request, $deal);
+        [$post, $timeline] = $this->repository->create($request, $deal);
 
         $resource = new PostResource($post);
 
-        return $resource->response()->setStatusCode(201);
+        return $resource->withLocation('timelines.show', [$timeline]);
     }
 
     /**
