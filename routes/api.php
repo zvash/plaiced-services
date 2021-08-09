@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\BrandPaymentController;
 use App\Http\Controllers\Api\CommunityNewsController;
 use App\Http\Controllers\Api\DealPaymentController;
 use App\Http\Controllers\Api\DealPostController;
@@ -44,3 +45,4 @@ Route::apiResource('deals.products', DealProductController::class)->shallow();
 Route::apiResource('deals.payments', DealPaymentController::class)->only('index', 'store');
 Route::apiResource('deals.posts', DealPostController::class)->shallow()->only('store', 'destroy');
 Route::apiResource('deals.timelines', DealTimelineController::class)->shallow()->only('index', 'show');
+Route::apiResource('brands.payments', BrandPaymentController::class)->only('index');

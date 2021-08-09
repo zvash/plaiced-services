@@ -77,4 +77,14 @@ class Brand extends Model
     {
         return $this->morphMany(Like::class, 'likable');
     }
+
+    /**
+     * Get the payments for the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function payments()
+    {
+        return $this->hasManyThrough(Payment::class, Deal::class);
+    }
 }
