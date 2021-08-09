@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Http\Controllers\Api\BrandPaymentController;
+use App\Http\Controllers\Api\ContentPaymentController;
 use App\Http\Controllers\Api\DealPaymentController;
 use App\Http\Controllers\Api\DealPostController;
 use App\Http\Controllers\Api\DealProductController;
 use App\Http\Controllers\Api\DealTimelineController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Policies\Controllers\BrandPaymentControllerPolicy;
+use App\Policies\Controllers\ContentPaymentControllerPolicy;
 use App\Policies\Controllers\DealPaymentControllerPolicy;
 use App\Policies\Controllers\DealPostControllerPolicy;
 use App\Policies\Controllers\DealProductControllerPolicy;
@@ -30,6 +32,7 @@ class AuthServiceProvider extends ServiceProvider
         DealPaymentController::class => DealPaymentControllerPolicy::class,
         DealTimelineController::class => DealTimelineControllerPolicy::class,
         BrandPaymentController::class => BrandPaymentControllerPolicy::class,
+        ContentPaymentController::class => ContentPaymentControllerPolicy::class,
     ];
 
     /**

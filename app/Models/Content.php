@@ -93,4 +93,14 @@ class Content extends Model
             ->withTimestamps()
             ->withPivot(['type']);
     }
+
+    /**
+     * Get the payments for the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function payments()
+    {
+        return $this->hasManyThrough(Payment::class, Deal::class);
+    }
 }

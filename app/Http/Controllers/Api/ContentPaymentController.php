@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PaymentResource;
-use App\Models\Brand;
+use App\Models\Content;
 use Illuminate\Http\Request;
 
-class BrandPaymentController extends Controller
+class ContentPaymentController extends Controller
 {
     /**
-     * Brand payment controller constructor.
+     * Content payment controller constructor.
      *
      * @return void
      */
@@ -23,15 +23,15 @@ class BrandPaymentController extends Controller
      * Display a listing of the resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(Request $request, Brand $brand)
+    public function index(Request $request, Content $content)
     {
-        $this->authorize('viewAny', [$this, $brand]);
+        $this->authorize('viewAny', [$this, $content]);
 
         return PaymentResource::collection(
-            $brand->payments()
+            $content->payments()
                 ->whereUserId($request->user()->id)
                 ->latest()
                 ->paginate(15)

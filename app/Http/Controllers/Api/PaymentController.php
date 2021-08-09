@@ -28,7 +28,7 @@ class PaymentController extends Controller
     public function index(Request $request)
     {
         return PaymentResource::collection(
-            $request->user()->payments()->paginate(15)
+            $request->user()->payments()->latest()->paginate(15)
         );
     }
 
