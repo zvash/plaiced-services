@@ -18,7 +18,7 @@ class DealProductControllerPolicy
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller
      * @param  \App\Models\Deal  $deal
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function viewAny(User $user, Controller $controller, Deal $deal)
     {
@@ -31,7 +31,7 @@ class DealProductControllerPolicy
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller
      * @param  \App\Models\Deal  $deal
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function view(User $user, Controller $controller, Deal $deal)
     {
@@ -44,7 +44,7 @@ class DealProductControllerPolicy
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller
      * @param  \App\Models\Deal  $deal
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function create(User $user, Controller $controller, Deal $deal)
     {
@@ -57,7 +57,7 @@ class DealProductControllerPolicy
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller
      * @param  \App\Models\Deal  $deal
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user, Controller $controller, Deal $deal)
     {
@@ -70,7 +70,7 @@ class DealProductControllerPolicy
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller
      * @param  \App\Models\Deal  $deal
-     * @return mixed
+     * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, Controller $controller, Deal $deal)
     {

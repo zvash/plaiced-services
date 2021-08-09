@@ -2,11 +2,12 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Summaries\DealSummaryResource;
 use App\Http\Resources\Summaries\UserSummaryResource;
 use App\Http\Resources\Traits\HasJsonResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class PaymentResource extends JsonResource
 {
     use HasJsonResource;
 
@@ -20,9 +21,10 @@ class PostResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'description' => $this->description,
+            'amount' => $this->amount,
+            'transaction_id' => $this->transaction_id,
             'user' => new UserSummaryResource($this->user),
-            'assets' => AssetResource::collection($this->whenHasCollection('assets')),
+            'deal' => new DealSummaryResource($this->deal),
         ];
     }
 }

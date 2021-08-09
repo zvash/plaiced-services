@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Summaries;
 
-use App\Http\Resources\Summaries\UserSummaryResource;
 use App\Http\Resources\Traits\HasJsonResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class UserSummaryResource extends JsonResource
 {
     use HasJsonResource;
 
@@ -20,9 +19,9 @@ class PostResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'description' => $this->description,
-            'user' => new UserSummaryResource($this->user),
-            'assets' => AssetResource::collection($this->whenHasCollection('assets')),
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'avatar' => $this->whenHasFile('avatar'),
         ];
     }
 }

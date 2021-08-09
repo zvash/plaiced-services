@@ -4,16 +4,28 @@ namespace App\Policies\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Deal;
-use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DealPostControllerPolicy
+class DealPaymentControllerPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can create a model.
+     * Determine whether the user can view any models.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Http\Controllers\Controller  $controller
+     * @param  \App\Models\Deal  $deal
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function viewAny(User $user, Controller $controller, Deal $deal)
+    {
+        return $deal->authorize($user);
+    }
+
+    /**
+     * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller
@@ -22,19 +34,6 @@ class DealPostControllerPolicy
      */
     public function create(User $user, Controller $controller, Deal $deal)
     {
-        return $deal->authorize($user);
-    }
-
-    /**
-     * Determine whether the user can delete a model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Http\Controllers\Controller  $controller
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function delete(User $user, Controller $controller, Post $post)
-    {
-        return $post->user->is($user) && $post->deal->authorize($user);
+        return $deal->authorize($user) && $deal->owner->user->is($user);
     }
 }

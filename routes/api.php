@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\CommunityNewsController;
+use App\Http\Controllers\Api\DealPaymentController;
 use App\Http\Controllers\Api\DealPostController;
 use App\Http\Controllers\Api\DealProductController;
 use App\Http\Controllers\Api\DealTimelineController;
@@ -38,5 +39,6 @@ Route::apiResource('resources', ResourceController::class)->only('index', 'show'
 Route::apiResource('community-news', CommunityNewsController::class)->only('index', 'show');
 
 Route::apiResource('deals.products', DealProductController::class)->shallow();
+Route::apiResource('deals.payments', DealPaymentController::class)->only('index', 'store');
 Route::apiResource('deals.posts', DealPostController::class)->shallow()->only('store', 'destroy');
 Route::apiResource('deals.timelines', DealTimelineController::class)->shallow()->only('index', 'show');

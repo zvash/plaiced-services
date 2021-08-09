@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Summaries;
 
 use App\Http\Resources\Traits\HasJsonResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserAvatarResource extends JsonResource
+class DealSummaryResource extends JsonResource
 {
     use HasJsonResource;
 
@@ -19,9 +19,8 @@ class UserAvatarResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'avatar' => $this->whenHasFile('avatar'),
+            'content' => new ContentSummaryResource($this->content),
+            'brand' => new BrandSummaryResource($this->brand),
         ];
     }
 }

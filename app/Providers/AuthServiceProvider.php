@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Api\DealPaymentController;
 use App\Http\Controllers\Api\DealPostController;
 use App\Http\Controllers\Api\DealProductController;
 use App\Http\Controllers\Api\DealTimelineController;
+use App\Policies\Controllers\DealPaymentControllerPolicy;
 use App\Policies\Controllers\DealPostControllerPolicy;
 use App\Policies\Controllers\DealProductControllerPolicy;
 use App\Policies\Controllers\DealTimelineControllerPolicy;
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         DealPostController::class => DealPostControllerPolicy::class,
         DealProductController::class => DealProductControllerPolicy::class,
+        DealPaymentController::class => DealPaymentControllerPolicy::class,
         DealTimelineController::class => DealTimelineControllerPolicy::class,
     ];
 
