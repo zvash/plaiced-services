@@ -27,6 +27,6 @@ class WishlistController extends Controller
     {
         $request->user()->wishlists()->create($request->validated());
 
-        return response()->noContent();
+        return response()->noContent(201);
     }
 }
