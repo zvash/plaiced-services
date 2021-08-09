@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasUuid;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class TimelineTemplate extends Model
@@ -31,5 +32,17 @@ class TimelineTemplate extends Model
     public function timelines()
     {
         return $this->morphMany(Timeline::class, 'model');
+    }
+
+    /**
+     * Find timeline template base on event name.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
+     * @param  string  $name
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeEvent(Builder $builder, string $name)
+    {
+        return $builder->whereEventName($name);
     }
 }

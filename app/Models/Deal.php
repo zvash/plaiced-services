@@ -234,4 +234,40 @@ class Deal extends Model
 
         return $authorized->unique()->contains($user);
     }
+
+    /**
+     * Create template timeline for the deal.
+     *
+     * @param  string  $event
+     * @param  array  $parameters
+     * @return \Illuminate\Database\Eloquent\Model|\App\Models\Timeline|false
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     */
+    public function addTimeline($event, array $parameters = [])
+    {
+        $timeline = new Timeline(compact('parameters'));
+
+        $timeline->model()->associate(
+            TimelineTemplate::event($event)->firstOrFail()
+        );
+
+        return $this->timelines()->save($timeline);
+    }
+
+    /**
+     * Create post timeline for the deal.
+     *
+     * @param  \App\Models\Post  $post
+     * @param  array  $parameters
+     * @return \Illuminate\Database\Eloquent\Model|\App\Models\Timeline|false
+     */
+    public function addPostTimeline(Post $post, array $parameters = [])
+    {
+        $timeline = new Timeline(compact('parameters'));
+
+        $timeline->model()->associate($post);
+
+        return $this->timelines()->save($timeline);
+    }
 }

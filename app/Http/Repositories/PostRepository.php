@@ -6,7 +6,6 @@ use App\Http\Repositories\Abstraction\Repository;
 use App\Models\Deal;
 use App\Models\Post;
 use App\Models\PostAsset;
-use App\Models\Timeline;
 use Illuminate\Database\DatabaseManager as Database;
 use Illuminate\Filesystem\FilesystemManager as Storage;
 use Illuminate\Http\Request;
@@ -48,9 +47,7 @@ class PostRepository extends Repository
         $callback = function (Request $request, Deal $deal) {
             $this->assets($request, $post = $this->post($request, $deal));
 
-            $timeline = $this->timeline($post, $deal);
-
-            return [$post, $timeline];
+            return [$post, $deal->addPostTimeline($post)];
         };
 
         return $this->transaction($callback, ...func_get_args());
@@ -124,20 +121,5 @@ class PostRepository extends Repository
                 'file_name' => $asset['file']->getClientOriginalName(),
             ]);
         }
-    }
-
-    /**
-     * Create timeline for the deal with created post.
-     *
-     * @param  \App\Models\Post  $post
-     * @param  \App\Models\Deal  $deal
-     * @return \Illuminate\Database\Eloquent\Model|\App\Models\Post
-     */
-    private function timeline(Post $post, Deal $deal)
-    {
-        $timeline = new Timeline(['parameters' => []]);
-        $timeline->model()->associate($post);
-
-        return $deal->timelines()->save($timeline);
     }
 }

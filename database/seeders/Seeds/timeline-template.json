@@ -20,8 +20,18 @@
         "icon": null
     },
     {
-        "event_name": "DealProduct:Create/Update",
+        "event_name": "DealProduct:Create",
+        "template": "New item was added in the products to be shipped.",
+        "icon": null
+    },
+    {
+        "event_name": "DealProduct:Update",
         "template": "A change was made in the products to be shipped.",
+        "icon": null
+    },
+    {
+        "event_name": "DealProduct:Delete",
+        "template": "An item was removed from the products to be shipped.",
         "icon": null
     },
     {

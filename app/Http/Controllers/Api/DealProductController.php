@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\ProductRepository as Repository;
 use App\Http\Requests\StoreDealProductRequest;
 use App\Http\Requests\UpdateDealProductRequest;
 use App\Http\Resources\ProductResource;
@@ -12,13 +13,23 @@ use App\Models\Product;
 class DealProductController extends Controller
 {
     /**
+     * Product repository.
+     *
+     * @var \App\Http\Repositories\ProductRepository
+     */
+    protected $repository;
+
+    /**
      * Deal product controller constructor.
      *
+     * @param  \App\Http\Repositories\ProductRepository  $repository
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('auth:api');
+
+        $this->repository = $repository;
     }
 
     /**
@@ -41,15 +52,17 @@ class DealProductController extends Controller
      *
      * @param  \App\Http\Requests\StoreDealProductRequest  $request
      * @param  \App\Models\Deal  $deal
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(StoreDealProductRequest $request, Deal $deal)
     {
         $this->authorize('create', [$this, $deal]);
 
-        $product = $deal->products()->create($request->validated());
+        $resource = new ProductResource(
+            $product = $this->repository->create($request, $deal)
+        );
 
-        return new ProductResource($product);
+        return $resource->withLocation('products.show', [$product]);
     }
 
     /**
@@ -76,7 +89,7 @@ class DealProductController extends Controller
     {
         $this->authorize('update', [$this, $product->deal]);
 
-        $product->fill($request->validated())->save();
+        $product = $this->repository->update($request, $product);
 
         return new ProductResource($product);
     }
@@ -91,7 +104,7 @@ class DealProductController extends Controller
     {
         $this->authorize('delete', [$this, $product->deal]);
 
-        $product->delete();
+        $this->repository->delete($product);
 
         return response()->noContent();
     }
