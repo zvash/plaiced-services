@@ -24,6 +24,7 @@ class Advertiser extends Model
      * @var array
      */
     protected $casts = [
+        'private' => 'boolean',
         'rating' => 'float',
         'rating_count' => 'integer',
     ];
@@ -34,6 +35,7 @@ class Advertiser extends Model
      * @var array
      */
     protected $attributes = [
+        'private' => false,
         'rating_count' => 0,
     ];
 

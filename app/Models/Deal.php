@@ -149,23 +149,23 @@ class Deal extends Model
     }
 
     /**
-     *  Get the advertiser surveys for the deal.
+     *  Get the advertiser survey for the deal.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
-    public function advertiserSurveys()
+    public function advertiserSurvey()
     {
-        return $this->hasMany(AdvertiserSurvey::class);
+        return $this->hasOne(AdvertiserSurvey::class);
     }
 
     /**
-     *  Get the content creator surveys for the deal.
+     *  Get the content creator survey for the deal.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function contentCreatorSurveys()
+    public function contentCreatorSurvey()
     {
-        return $this->hasMany(AdvertiserSurvey::class);
+        return $this->hasOne(ContentCreatorSurvey::class);
     }
 
     /**

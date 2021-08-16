@@ -19,7 +19,8 @@ class CreateAdvertisersTable extends Migration
             $table->string('title');
             $table->text('small_description');
             $table->text('description');
-            $table->unsignedFloat('rating', 2)->nullable()->index();
+            $table->boolean('private')->default(false)->index();
+            $table->unsignedFloat('rating')->nullable()->index();
             $table->unsignedInteger('rating_count')->default(0)->index();
             $table->text('avatar')->nullable();
             $table->string('website')->nullable();

@@ -20,7 +20,7 @@ class CreateContentCreatorsTable extends Migration
             $table->text('small_description');
             $table->text('description');
             $table->boolean('private')->default(false)->index();
-            $table->unsignedFloat('rating', 2)->nullable()->index();
+            $table->unsignedFloat('rating')->nullable()->index();
             $table->unsignedInteger('rating_count')->default(0)->index();
             $table->text('avatar')->nullable();
             $table->string('website')->nullable();

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Exceptions\UserException;
 use App\Models\Pivots\UserWishlist;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 use Laravel\Passport\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -73,23 +74,23 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the advertisers for the user.
+     * Get the advertiser for the user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
-    public function advertisers()
+    public function advertiser()
     {
-        return $this->hasMany(Advertiser::class);
+        return $this->hasOne(Advertiser::class);
     }
 
     /**
-     * Get the content creators for the user.
+     * Get the content creator for the user.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
      */
-    public function contentCreators()
+    public function contentCreator()
     {
-        return $this->hasMany(ContentCreator::class);
+        return $this->hasOne(ContentCreator::class);
     }
 
     /**
@@ -119,7 +120,7 @@ class User extends Authenticatable
      */
     public function contentCreatorSurveys()
     {
-        return $this->hasMany(AdvertiserSurvey::class);
+        return $this->hasMany(ContentCreatorSurvey::class);
     }
 
     /**
@@ -172,5 +173,31 @@ class User extends Authenticatable
         return $this->belongsToMany(Wishlist::class)
             ->using(UserWishlist::class)
             ->withTimestamps();
+    }
+
+    /**
+     * Create a query builder to fetch a survey for specific deal.
+     *
+     * @param  \App\Models\Deal  $deal
+     * @return \Illuminate\Database\Eloquent\Builder
+     *
+     * @throws \App\Exceptions\UserException
+     */
+    public function hasSurvey(Deal $deal)
+    {
+        switch ($this->class) {
+            case Advertiser::class:
+                $builder = $this->contentCreatorSurveys();
+                break;
+
+            case ContentCreator::class:
+                $builder = $this->advertiserSurveys();
+                break;
+
+            default:
+                throw new UserException('Invalid user class.');
+        }
+
+        return $builder->whereDealId($deal->id);
     }
 }
