@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SurveyResource;
-use App\Models\Advertiser;
 use App\Models\AdvertiserSurvey;
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Builder;
 
-class AdvertiserSurveyController extends Controller
+class BrandSurveyController extends Controller
 {
     /**
-     * Advertiser surveys controller constructor.
+     * Brand surveys controller constructor.
      *
      * @return void
      */
@@ -23,15 +23,15 @@ class AdvertiserSurveyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Models\Advertiser  $advertiser
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(Advertiser $advertiser)
+    public function index(Brand $brand)
     {
-        $callback = fn (Builder $query) => $query->whereKey($advertiser->id);
+        $callback = fn (Builder $query) => $query->whereKey($brand->id);
 
         return SurveyResource::collection(
-            AdvertiserSurvey::whereHas('deal.brand.advertiser', $callback)
+            AdvertiserSurvey::whereHas('deal.brand', $callback)
                 ->latest()
                 ->paginate(15)
         );

@@ -31,7 +31,9 @@ class ContentCreatorSurveyController extends Controller
         $callback = fn (Builder $query) => $query->whereKey($contentCreator->id);
 
         return SurveyResource::collection(
-            ContentCreatorSurvey::whereHas('deal.content.contentCreator', $callback)->paginate(15)
+            ContentCreatorSurvey::whereHas('deal.content.contentCreator', $callback)
+                ->latest()
+                ->paginate(15)
         );
     }
 }

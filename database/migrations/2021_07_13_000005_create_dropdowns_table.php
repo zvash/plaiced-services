@@ -25,6 +25,7 @@ class CreateDropdownsTable extends Migration
                 ->cascadeOnUpdate();
 
             $table->foreignId('group_trailing_id')
+                ->nullable()
                 ->constrained('dropdown_groups')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "title": "Genre"
+    },
+    {
+        "id": 2,
+        "title": "Type"
+    },
+    {
+        "id": 3,
+        "title": "Distribution"
+    },
+    {
+        "id": 4,
+        "title": "TV Networks"
+    },
+    {
+        "id": 5,
+        "title": "OTT Networks"
+    },
+    {
+        "id": 6,
+        "title": "Digital Platforms"
+    },
+    {
+        "id": 7,
+        "title": "social media"
+    },
+    {
+        "id": 8,
+        "title": "Film Type"
+    }
+]

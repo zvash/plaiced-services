@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->purge()->call([
+            DropdownGroupSeeder::class,
+            DropdownSeeder::class,
             TimelineTemplateSeeder::class,
             ClientSeeder::class,
             UserSeeder::class,

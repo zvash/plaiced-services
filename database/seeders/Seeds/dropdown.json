@@ -1,0 +1,992 @@
+[
+    {
+        "title": "Sports",
+        "value": 1,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Action",
+        "value": 2,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "History",
+        "value": 3,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Anthology",
+        "value": 4,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Adventure",
+        "value": 5,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Science",
+        "value": 6,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Art",
+        "value": 7,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Children",
+        "value": 8,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Cooking",
+        "value": 9,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "News",
+        "value": 10,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Political",
+        "value": 11,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Religious",
+        "value": 12,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Talk Show",
+        "value": 13,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Game Show",
+        "value": 14,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Variety Show",
+        "value": 15,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Comedy",
+        "value": 16,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Sketch Comedy",
+        "value": 17,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Sitcom",
+        "value": 18,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Romantic Comedy",
+        "value": 19,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Teen Drama",
+        "value": 20,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Docudrama",
+        "value": 21,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Police Procedural",
+        "value": 22,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Sci-fi and Fantasy",
+        "value": 23,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Drama",
+        "value": 24,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Animated",
+        "value": 25,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Soap Opera",
+        "value": 26,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Reality",
+        "value": 27,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Lifestyle",
+        "value": 28,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Music",
+        "value": 29,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Medical",
+        "value": 30,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Educational",
+        "value": 31,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Public Affairs",
+        "value": 32,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Horror",
+        "value": 33,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Thriller",
+        "value": 34,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Western",
+        "value": 35,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Instructional",
+        "value": 36,
+        "group_id": 1,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Series",
+        "value": 37,
+        "group_id": 2,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Miniseries",
+        "value": 38,
+        "group_id": 2,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Film",
+        "value": 39,
+        "group_id": 2,
+        "group_trailing_id": 8
+    },
+    {
+        "title": "Pilot - Confirmed to Air",
+        "value": 40,
+        "group_id": 2,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Pilot - Not Confirmed to Air",
+        "value": 41,
+        "group_id": 2,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Music Video",
+        "value": 42,
+        "group_id": 2,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Documentary",
+        "value": 43,
+        "group_id": 2,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Video Games",
+        "value": 44,
+        "group_id": 2,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Special",
+        "value": 45,
+        "group_id": 2,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Event",
+        "value": 46,
+        "group_id": 2,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Television",
+        "value": 47,
+        "group_id": 3,
+        "group_trailing_id": 4
+    },
+    {
+        "title": "OTT/Streamers",
+        "value": 48,
+        "group_id": 3,
+        "group_trailing_id": 5
+    },
+    {
+        "title": "Theatrical Release",
+        "value": 49,
+        "group_id": 3,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Digital Platform",
+        "value": 50,
+        "group_id": 3,
+        "group_trailing_id": 6
+    },
+    {
+        "title": "Social Media",
+        "value": 51,
+        "group_id": 3,
+        "group_trailing_id": 7
+    },
+    {
+        "title": "Feature Film",
+        "value": 52,
+        "group_id": 8,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "Short Film",
+        "value": 53,
+        "group_id": 8,
+        "group_trailing_id": 3
+    },
+    {
+        "title": "NBC",
+        "value": 54,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "ABC",
+        "value": 55,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "FOX",
+        "value": 56,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "CBS",
+        "value": 57,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "HGTV",
+        "value": 58,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "FOOD NETWORK",
+        "value": 59,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Discovery",
+        "value": 60,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "USA Network",
+        "value": 61,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Disney Channel",
+        "value": 62,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "ESPN",
+        "value": 63,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TLC",
+        "value": 64,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "A&E",
+        "value": 65,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Lifetime",
+        "value": 66,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "PBS",
+        "value": 67,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "BET",
+        "value": 68,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Aspire",
+        "value": 69,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "OWN",
+        "value": 70,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Bravo",
+        "value": 71,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "FYI",
+        "value": 72,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Hallmark channel",
+        "value": 73,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "HISTORY",
+        "value": 74,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "We TV",
+        "value": 75,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Travel Channel",
+        "value": 76,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Dog TV",
+        "value": 77,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "MOTORTREND",
+        "value": 78,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "CW",
+        "value": 79,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "ION",
+        "value": 80,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "NFL Network",
+        "value": 81,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "MLB Network",
+        "value": 82,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "NBC Sports",
+        "value": 83,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TNT",
+        "value": 84,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "CNN",
+        "value": 85,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "VH1",
+        "value": 86,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "E!",
+        "value": 87,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "CMT",
+        "value": 88,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Oxygen",
+        "value": 89,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TRU TV",
+        "value": 90,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "FX",
+        "value": 91,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Investigative Discovery",
+        "value": 92,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Discovery Family",
+        "value": 93,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Nick Jr.",
+        "value": 94,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Nicktoon",
+        "value": 95,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Disney Junior",
+        "value": 96,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Nickelodeon",
+        "value": 97,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Bloomberg TV",
+        "value": 98,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Magnolia Network",
+        "value": 99,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Univision",
+        "value": 100,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Estrella TV",
+        "value": 101,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Telemundo",
+        "value": 102,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "UniMas",
+        "value": 103,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Azteca",
+        "value": 104,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "AMI-TV",
+        "value": 105,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Cooking Channel",
+        "value": 106,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Animal Planet",
+        "value": 107,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Fox News Channel",
+        "value": 108,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "World Fishing Network",
+        "value": 109,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "STARZ",
+        "value": 110,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "HBO Comedy",
+        "value": 111,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "HBO",
+        "value": 112,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "HBO Family",
+        "value": 113,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "HBO 2",
+        "value": 114,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Showtime",
+        "value": 115,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "CNBC",
+        "value": 116,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TBS",
+        "value": 117,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Family Channel",
+        "value": 118,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "YTV",
+        "value": 119,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TVO",
+        "value": 120,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "SHOWCASE",
+        "value": 121,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "W Network",
+        "value": 122,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "CBC",
+        "value": 123,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "CTV",
+        "value": 124,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Global TV",
+        "value": 125,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "CP24",
+        "value": 126,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "AMC",
+        "value": 127,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "SLICE",
+        "value": 128,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "MTV",
+        "value": 129,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TSN",
+        "value": 130,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Sportsnet",
+        "value": 131,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Treehouse",
+        "value": 132,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Teletoon",
+        "value": 133,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "VisionTV",
+        "value": 134,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "OMNI TV",
+        "value": 135,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "APTN",
+        "value": 136,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "MUCH",
+        "value": 137,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "BNN Bloomberg",
+        "value": 138,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "DTour",
+        "value": 139,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TLN",
+        "value": 140,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Fairchild TV",
+        "value": 141,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "ATN Channel",
+        "value": 142,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Odyssey",
+        "value": 143,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Talentvision",
+        "value": 144,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "National Geographic",
+        "value": 145,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TVA",
+        "value": 146,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "RDS",
+        "value": 147,
+        "group_id": 4,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Netflix",
+        "value": 148,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Amazon Prime Video",
+        "value": 149,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Hulu",
+        "value": 150,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "HBO MAX",
+        "value": 151,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Disney +",
+        "value": 152,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Discovery +",
+        "value": 153,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "PREMO",
+        "value": 154,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "YouTube TV",
+        "value": 155,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "ESPN +",
+        "value": 156,
+        "group_id": 5,
+        "group_trailing_id": null
+    },
+    {
+        "title": "YouTube Originals",
+        "value": 157,
+        "group_id": 6,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Facebook Watch",
+        "value": 158,
+        "group_id": 6,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TWITCH",
+        "value": 159,
+        "group_id": 6,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Facebook",
+        "value": 160,
+        "group_id": 7,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Instagram",
+        "value": 161,
+        "group_id": 7,
+        "group_trailing_id": null
+    },
+    {
+        "title": "TikTok",
+        "value": 162,
+        "group_id": 7,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Twitter",
+        "value": 163,
+        "group_id": 7,
+        "group_trailing_id": null
+    },
+    {
+        "title": "YouTube",
+        "value": 164,
+        "group_id": 7,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Snapchat",
+        "value": 165,
+        "group_id": 7,
+        "group_trailing_id": null
+    }
+]
