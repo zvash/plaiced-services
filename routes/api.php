@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AdvertiserSurveyController;
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\BrandPaymentController;
 use App\Http\Controllers\Api\CommunityNewsController;
@@ -52,3 +53,4 @@ Route::apiResource('deals.surveys', DealSurveyController::class)->only('index', 
 Route::apiResource('brands.payments', BrandPaymentController::class)->only('index');
 Route::apiResource('contents.payments', ContentPaymentController::class)->only('index');
 Route::apiResource('content-creators.surveys', ContentCreatorSurveyController::class)->only('index');
+Route::apiResource('advertisers.surveys', AdvertiserSurveyController::class)->only('index');
