@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\BrandPaymentController;
 use App\Http\Controllers\Api\CommunityNewsController;
+use App\Http\Controllers\Api\ContentCreatorSurveyController;
 use App\Http\Controllers\Api\ContentPaymentController;
 use App\Http\Controllers\Api\DealPaymentController;
 use App\Http\Controllers\Api\DealPostController;
@@ -50,3 +51,4 @@ Route::apiResource('deals.timelines', DealTimelineController::class)->shallow()-
 Route::apiResource('deals.surveys', DealSurveyController::class)->only('index', 'store');
 Route::apiResource('brands.payments', BrandPaymentController::class)->only('index');
 Route::apiResource('contents.payments', ContentPaymentController::class)->only('index');
+Route::apiResource('content-creators.surveys', ContentCreatorSurveyController::class)->only('index');
