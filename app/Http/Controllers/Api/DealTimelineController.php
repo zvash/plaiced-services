@@ -24,6 +24,8 @@ class DealTimelineController extends Controller
      *
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Deal $deal)
     {
@@ -39,6 +41,8 @@ class DealTimelineController extends Controller
      *
      * @param  \App\Models\Timeline  $timeline
      * @return \Illuminate\Http\Resources\Json\JsonResource
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Timeline $timeline)
     {

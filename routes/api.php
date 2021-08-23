@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\BrandPaymentController;
 use App\Http\Controllers\Api\BrandSurveyController;
 use App\Http\Controllers\Api\CommunityNewsController;
 use App\Http\Controllers\Api\ContentCreatorSurveyController;
+use App\Http\Controllers\Api\ContentLikeController;
 use App\Http\Controllers\Api\ContentPaymentController;
 use App\Http\Controllers\Api\ContentSurveyController;
 use App\Http\Controllers\Api\DealPaymentController;
@@ -63,9 +64,13 @@ Route::apiResource('brands.payments', BrandPaymentController::class)->only('inde
 Route::apiResource('contents.payments', ContentPaymentController::class)->only('index');
 Route::apiResource('deals.payments', DealPaymentController::class)->only('index', 'store');
 
-// Surveys routes
+// Survey routes
 Route::apiResource('deals.surveys', DealSurveyController::class)->only('index', 'store');
 Route::apiResource('brands.surveys', BrandSurveyController::class)->only('index');
 Route::apiResource('contents.surveys', ContentSurveyController::class)->only('index');
 Route::apiResource('advertisers.surveys', AdvertiserSurveyController::class)->only('index');
 Route::apiResource('content-creators.surveys', ContentCreatorSurveyController::class)->only('index');
+
+// Like routes
+Route::delete('contents/{content}/likes', [ContentLikeController::class, 'destroy']);
+Route::apiResource('contents.likes', ContentLikeController::class)->only('index', 'store');

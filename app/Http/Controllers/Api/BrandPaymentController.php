@@ -25,6 +25,8 @@ class BrandPaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request, Brand $brand)
     {

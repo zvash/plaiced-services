@@ -25,6 +25,8 @@ class ContentPaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Request $request, Content $content)
     {

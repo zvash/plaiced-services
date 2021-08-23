@@ -37,6 +37,8 @@ class PaymentController extends Controller
      *
      * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Resources\Json\JsonResource
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Payment $payment)
     {

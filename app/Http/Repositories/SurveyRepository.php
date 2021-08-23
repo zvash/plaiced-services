@@ -24,6 +24,7 @@ class SurveyRepository extends Repository
      * @return \App\Models\Abstraction\SurveyProvider
      *
      * @throws \App\Exceptions\UserException
+     * @throws \Throwable
      */
     public function create(Request $request, Deal $deal)
     {

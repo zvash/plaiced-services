@@ -55,6 +55,8 @@ class DealSurveyController extends Controller
      * @return \Illuminate\Http\Resources\Json\JsonResource
      *
      * @throws \App\Exceptions\UserException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
     public function store(StoreDealSurveyRequest $request, Deal $deal)
     {

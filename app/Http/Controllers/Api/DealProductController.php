@@ -37,6 +37,8 @@ class DealProductController extends Controller
      *
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Deal $deal)
     {
@@ -53,6 +55,9 @@ class DealProductController extends Controller
      * @param  \App\Http\Requests\StoreDealProductRequest  $request
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
     public function store(StoreDealProductRequest $request, Deal $deal)
     {
@@ -70,6 +75,8 @@ class DealProductController extends Controller
      *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Resources\Json\JsonResource
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function show(Product $product)
     {
@@ -84,6 +91,9 @@ class DealProductController extends Controller
      * @param  \App\Http\Requests\UpdateDealProductRequest  $request
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Resources\Json\JsonResource
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
     public function update(UpdateDealProductRequest $request, Product $product)
     {
@@ -99,6 +109,9 @@ class DealProductController extends Controller
      *
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
     public function destroy(Product $product)
     {

@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Exceptions\UserException;
 use App\Models\Pivots\UserWishlist;
 use App\Models\Traits\HasUuid;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -199,5 +201,22 @@ class User extends Authenticatable
         }
 
         return $builder->whereDealId($deal->id);
+    }
+
+    /**
+     * Check user liked specific model (content or brand).
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return bool
+     */
+    public function liked(Model $model)
+    {
+        return $this->likes()
+            ->whereHasMorph(
+                'likable',
+                [Content::class, Brand::class],
+                fn (Builder $query) => $query->whereKey($model->id)
+            )
+            ->exists();
     }
 }

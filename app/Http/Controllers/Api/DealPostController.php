@@ -37,6 +37,9 @@ class DealPostController extends Controller
      * @param  \App\Http\Requests\StoreDealPostRequest  $request
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
     public function store(StoreDealPostRequest $request, Deal $deal)
     {
@@ -54,6 +57,9 @@ class DealPostController extends Controller
      *
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
     public function destroy(Post $post)
     {

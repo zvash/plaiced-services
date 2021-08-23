@@ -25,6 +25,8 @@ class DealPaymentController extends Controller
      *
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function index(Deal $deal)
     {
@@ -39,6 +41,8 @@ class DealPaymentController extends Controller
      * @param  \App\Http\Requests\StoreDealPaymentRequest  $request
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Http\JsonResponse
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function store(Request $request, Deal $deal)
     {
