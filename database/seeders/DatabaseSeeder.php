@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             AdvertiserSeeder::class,
             ContentCreatorSeeder::class,
+            BrandSeeder::class,
             ContentSeeder::class,
         ]);
     }

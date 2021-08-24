@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Google",
+        "category":  177,
+        "subcategory":  189,
+        "advertiser_id":  1
+    },
+    {
+        "id": 2,
+        "title": "Coca-Cola",
+        "category":  177,
+        "subcategory":  181,
+        "advertiser_id":  2
+    },
+    {
+        "id": 3,
+        "title": "Tesla",
+        "category":  177,
+        "subcategory":  183,
+        "advertiser_id":  3
+    },
+    {
+        "id": 4,
+        "title": "Amazon",
+        "category":  177,
+        "subcategory":  186,
+        "advertiser_id":  4
+    }
+]
