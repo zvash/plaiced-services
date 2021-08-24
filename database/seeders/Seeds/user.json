@@ -6,6 +6,51 @@
         "password": "password",
         "ip": "127.0.0.1",
         "company_position": "Developer",
-        "class": 0
+        "class": "App\\Models\\Advertiser",
+        "status": 4
+    },
+    {
+        "id": 2,
+        "first_name": "Hossein",
+        "last_name": "Jalali",
+        "email": "hossein@edoramedia.com",
+        "password": "password",
+        "ip": "127.0.0.1",
+        "company_position": "Developer",
+        "class": "App\\Models\\ContentCreator",
+        "status": 4
+    },
+    {
+        "id": 3,
+        "first_name": "Ashkan",
+        "last_name": "Abedin",
+        "email": "ashkan@edoramedia.com",
+        "password": "password",
+        "ip": "127.0.0.1",
+        "company_position": "Developer",
+        "class": "App\\Models\\Advertiser",
+        "status": 4
+    },
+    {
+        "id": 4,
+        "first_name": "Ilyad",
+        "last_name": "Esfandiari",
+        "email": "ilyad@edoramedia.com",
+        "password": "password",
+        "ip": "127.0.0.1",
+        "company_position": "Developer",
+        "class": "App\\Models\\ContentCreator",
+        "status": 4
+    },
+    {
+        "id": 5,
+        "first_name": "Farbod",
+        "last_name": "Ghasemi",
+        "email": "farbod@plaiced.com",
+        "password": "password",
+        "ip": "127.0.0.1",
+        "company_position": "Developer",
+        "class": "App\\Models\\Advertiser",
+        "status": 4
     }
 ]
