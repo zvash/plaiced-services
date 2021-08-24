@@ -988,5 +988,149 @@
         "value": 165,
         "group_id": 7,
         "group_trailing_id": null
+    },
+    {
+        "title": "National Brand",
+        "value": 166,
+        "group_id": 9,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Multi-National Brand",
+        "value": 167,
+        "group_id": 9,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Regional Brand",
+        "value": 168,
+        "group_id": 9,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Local Brand",
+        "value": 169,
+        "group_id": 9,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Advertising / Media Agency",
+        "value": 170,
+        "group_id": 9,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Public Relations Agency",
+        "value": 171,
+        "group_id": 9,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Auto & Transportation",
+        "value": 172,
+        "group_id": 10,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Travel",
+        "value": 173,
+        "group_id": 10,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Beauty & Fashion",
+        "value": 174,
+        "group_id": 10,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Food & Beverage",
+        "value": 175,
+        "group_id": 10,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Sports & Outdoors",
+        "value": 176,
+        "group_id": 10,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Home & Garden",
+        "value": 177,
+        "group_id": 10,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Building Materials",
+        "value": 178,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Tools",
+        "value": 179,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Storage & Organization",
+        "value": 180,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Cabinetry",
+        "value": 181,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Paints & Stains",
+        "value": 182,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Countertops",
+        "value": 183,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Window & Doors",
+        "value": 184,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Plumbing Fixtures",
+        "value": 185,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Furniture & Decor",
+        "value": 186,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Appliances",
+        "value": 187,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Outdoor & Landscape",
+        "value": 188,
+        "group_id": 16,
+        "group_trailing_id": null
+    },
+    {
+        "title": "Lighting & Electrical",
+        "value": 189,
+        "group_id": 16,
+        "group_trailing_id": null
     }
 ]
