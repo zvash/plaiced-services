@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TimelineTemplateSeeder::class,
             ClientSeeder::class,
             UserSeeder::class,
+            AdvertiserSeeder::class,
         ]);
     }
 

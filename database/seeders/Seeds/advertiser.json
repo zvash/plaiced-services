@@ -1,0 +1,30 @@
+[
+	{
+        "title": "Edoramedia",
+        "website": "https://edoramedia.com",
+		"user_id": 1,
+		"country_id": 236,
+		"type": 170
+    },
+    {
+        "title": "Nike",
+        "website": "https://nike.com",
+		"user_id": 3,
+        "country_id": 236,
+		"type": 167
+    },
+    {
+        "title": "Adidas",
+        "website": "https://adidas.com",
+		"user_id": 5,
+        "country_id": 236,
+		"type": 167
+    },
+    {
+        "title": "Red Bull",
+        "website": "https://redbull.com",
+		"user_id": 1,
+        "country_id": 236,
+		"type": 167
+    }
+]
