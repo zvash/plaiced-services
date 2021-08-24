@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "title": "Special Show",
+        "genre":  5,
+        "category":  37,
+        "subcategory":  47,
+        "child_subcategory":  70,
+        "content_creator_id":  1,
+        "country_id": 236
+    },
+    {
+        "id": 2,
+        "title": "Basketball Event",
+        "genre":  3,
+        "category":  37,
+        "subcategory":  47,
+        "child_subcategory":  84,
+        "content_creator_id":  2,
+        "country_id": 236
+    },
+    {
+        "id": 3,
+        "title": "You Never Know",
+        "genre":  4,
+        "category":  37,
+        "subcategory":  47,
+        "child_subcategory":  91,
+        "content_creator_id":  3,
+        "country_id": 236
+    },
+    {
+        "id": 4,
+        "title": "Christmas Getaway",
+        "genre":  4,
+        "category":  38,
+        "subcategory":  47,
+        "child_subcategory":  98,
+        "content_creator_id":  4,
+        "country_id": 236
+    }
+]
