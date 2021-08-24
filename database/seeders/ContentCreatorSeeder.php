@@ -3,13 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\ContentCreator;
+use Database\Seeders\Traits\HasImage;
 use Database\Seeders\Traits\HasSeeder;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class ContentCreatorSeeder extends Seeder
 {
-    use HasSeeder;
+    use HasSeeder, HasImage;
 
     /**
      * Run the database seeds.
@@ -42,6 +43,7 @@ class ContentCreatorSeeder extends Seeder
             'city' => $faker->city(),
             'state' => $faker->state(),
             'postal_code' => $faker->postcode(),
+            'avatar' => $this->image('content-creators', $faker),
         ]);
     }
 }

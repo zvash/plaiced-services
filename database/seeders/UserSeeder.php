@@ -3,12 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Database\Seeders\Traits\HasImage;
 use Database\Seeders\Traits\HasSeeder;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
 {
-    use HasSeeder;
+    use HasSeeder, HasImage;
 
     /**
      * Run the database seeds.
@@ -34,6 +35,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'status' => User::STATUS_ACTIVE,
             'password' => bcrypt($user['password']),
+            'avatar' => $this->image('users'),
         ]);
     }
 }

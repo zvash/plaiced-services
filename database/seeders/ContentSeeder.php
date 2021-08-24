@@ -3,13 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\Content;
+use Database\Seeders\Traits\HasImage;
 use Database\Seeders\Traits\HasSeeder;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class ContentSeeder extends Seeder
 {
-    use HasSeeder;
+    use HasSeeder, HasImage;
 
     /**
      * Run the database seeds.
@@ -48,6 +49,7 @@ class ContentSeeder extends Seeder
             'demographic_age' => $faker->words(3),
             'demographic_gender' => $faker->words(3),
             'demographic_geography_id' => $faker->words(3),
+            'avatar' => $this->image('contents', $faker),
         ]);
     }
 }

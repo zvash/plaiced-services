@@ -3,13 +3,14 @@
 namespace Database\Seeders;
 
 use App\Models\Brand;
+use Database\Seeders\Traits\HasImage;
 use Database\Seeders\Traits\HasSeeder;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class BrandSeeder extends Seeder
 {
-    use HasSeeder;
+    use HasSeeder, HasImage;
 
     /**
      * Run the database seeds.
@@ -47,6 +48,7 @@ class BrandSeeder extends Seeder
             'demographic_education' => $faker->words(3),
             'demographic_geography' => $faker->words(3),
             'demographic_psychographic' => $faker->words(3),
+            'avatar' => $this->image('brands', $faker),
         ]);
     }
 }
