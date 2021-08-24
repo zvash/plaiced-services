@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             ClientSeeder::class,
             UserSeeder::class,
             AdvertiserSeeder::class,
+            ContentCreatorSeeder::class,
         ]);
     }
 

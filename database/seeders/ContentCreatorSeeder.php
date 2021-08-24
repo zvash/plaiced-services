@@ -2,12 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\Advertiser;
+use App\Models\ContentCreator;
 use Database\Seeders\Traits\HasSeeder;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
-class AdvertiserSeeder extends Seeder
+class ContentCreatorSeeder extends Seeder
 {
     use HasSeeder;
 
@@ -18,22 +18,22 @@ class AdvertiserSeeder extends Seeder
      */
     public function run()
     {
-        foreach ($this->seeds() as $advertiser) {
-            Advertiser::create($this->resolveAttributes($advertiser));
+        foreach ($this->seeds() as $contentCreator) {
+            ContentCreator::create($this->resolveAttributes($contentCreator));
         }
     }
 
     /**
      * Resolve array attributes.
      *
-     * @param  array  $advertiser
+     * @param  array  $contentCreator
      * @return array
      */
-    private function resolveAttributes(array $advertiser)
+    private function resolveAttributes(array $contentCreator)
     {
         $faker = Factory::create();
 
-        return array_merge($advertiser, [
+        return array_merge($contentCreator, [
             'small_description' => $faker->text(),
             'description' => $faker->paragraph(),
             'telephone' => $faker->e164PhoneNumber(),
