@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Blogs;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\SectionResource;
-use App\Models\Section;
+use App\Http\Resources\BlogResource;
+use App\Models\Blog;
 
-class SectionController extends Controller
+class BlogController extends Controller
 {
     /**
-     * Section controller constructor.
+     * Blog controller constructor.
      *
      * @return void
      */
@@ -25,17 +25,19 @@ class SectionController extends Controller
      */
     public function index()
     {
-        return SectionResource::collection(Section::all());
+        return BlogResource::collection(
+            Blog::latest('featured')->latest()->paginate(15)
+        );
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Section  $section
+     * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function show(Section $section)
+    public function show(Blog $blog)
     {
-        return new SectionResource($section);
+        return new BlogResource($blog);
     }
 }

@@ -1,29 +1,29 @@
 <?php
 
-use App\Http\Controllers\Api\BlogController;
-use App\Http\Controllers\Api\CommunityNewsController;
-use App\Http\Controllers\Api\DealPostController;
-use App\Http\Controllers\Api\DealProductController;
-use App\Http\Controllers\Api\DealTimelineController;
+use App\Http\Controllers\Api\Blogs\BlogController;
+use App\Http\Controllers\Api\CommunityNews\CommunityNewsController;
 use App\Http\Controllers\Api\Likes\BrandLikeController;
 use App\Http\Controllers\Api\Likes\ContentLikeController;
 use App\Http\Controllers\Api\Likes\LikeController;
 use App\Http\Controllers\Api\Likes\UserLikeController;
-use App\Http\Controllers\Api\NotificationController;
-use App\Http\Controllers\Api\PageController;
+use App\Http\Controllers\Api\Notifications\NotificationController;
+use App\Http\Controllers\Api\Pages\PageController;
 use App\Http\Controllers\Api\Payments\BrandPaymentController;
 use App\Http\Controllers\Api\Payments\ContentPaymentController;
 use App\Http\Controllers\Api\Payments\DealPaymentController;
 use App\Http\Controllers\Api\Payments\PaymentController;
-use App\Http\Controllers\Api\ResourceController;
-use App\Http\Controllers\Api\SectionController;
-use App\Http\Controllers\Api\SpotlightController;
+use App\Http\Controllers\Api\Posts\DealPostController;
+use App\Http\Controllers\Api\Products\DealProductController;
+use App\Http\Controllers\Api\Resources\ResourceController;
+use App\Http\Controllers\Api\Sections\SectionController;
+use App\Http\Controllers\Api\Spotlights\SpotlightController;
 use App\Http\Controllers\Api\Surveys\AdvertiserSurveyController;
 use App\Http\Controllers\Api\Surveys\BrandSurveyController;
 use App\Http\Controllers\Api\Surveys\ContentCreatorSurveyController;
 use App\Http\Controllers\Api\Surveys\ContentSurveyController;
 use App\Http\Controllers\Api\Surveys\DealSurveyController;
-use App\Http\Controllers\Api\WishlistController;
+use App\Http\Controllers\Api\Timelines\DealTimelineController;
+use App\Http\Controllers\Api\Wishlists\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*

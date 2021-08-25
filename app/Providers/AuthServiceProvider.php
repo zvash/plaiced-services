@@ -2,16 +2,16 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Api\DealPostController;
-use App\Http\Controllers\Api\DealProductController;
-use App\Http\Controllers\Api\DealTimelineController;
 use App\Http\Controllers\Api\Likes\BrandLikeController;
 use App\Http\Controllers\Api\Likes\ContentLikeController;
 use App\Http\Controllers\Api\Payments\BrandPaymentController;
 use App\Http\Controllers\Api\Payments\ContentPaymentController;
 use App\Http\Controllers\Api\Payments\DealPaymentController;
 use App\Http\Controllers\Api\Payments\PaymentController;
+use App\Http\Controllers\Api\Posts\DealPostController;
+use App\Http\Controllers\Api\Products\DealProductController;
 use App\Http\Controllers\Api\Surveys\DealSurveyController;
+use App\Http\Controllers\Api\Timelines\DealTimelineController;
 use App\Policies\Controllers\BrandLikeControllerPolicy;
 use App\Policies\Controllers\BrandPaymentControllerPolicy;
 use App\Policies\Controllers\ContentLikeControllerPolicy;
