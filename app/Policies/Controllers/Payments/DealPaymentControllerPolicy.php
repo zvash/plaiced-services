@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies\Controllers;
+namespace App\Policies\Controllers\Payments;
 
 use App\Http\Controllers\Controller;
 use App\Models\Deal;

@@ -12,16 +12,16 @@ use App\Http\Controllers\Api\Posts\DealPostController;
 use App\Http\Controllers\Api\Products\DealProductController;
 use App\Http\Controllers\Api\Surveys\DealSurveyController;
 use App\Http\Controllers\Api\Timelines\DealTimelineController;
-use App\Policies\Controllers\BrandLikeControllerPolicy;
-use App\Policies\Controllers\BrandPaymentControllerPolicy;
-use App\Policies\Controllers\ContentLikeControllerPolicy;
-use App\Policies\Controllers\ContentPaymentControllerPolicy;
-use App\Policies\Controllers\DealPaymentControllerPolicy;
-use App\Policies\Controllers\DealPostControllerPolicy;
-use App\Policies\Controllers\DealProductControllerPolicy;
-use App\Policies\Controllers\DealSurveyControllerPolicy;
-use App\Policies\Controllers\DealTimelineControllerPolicy;
-use App\Policies\Controllers\PaymentControllerPolicy;
+use App\Policies\Controllers\Likes\BrandLikeControllerPolicy;
+use App\Policies\Controllers\Likes\ContentLikeControllerPolicy;
+use App\Policies\Controllers\Payments\BrandPaymentControllerPolicy;
+use App\Policies\Controllers\Payments\ContentPaymentControllerPolicy;
+use App\Policies\Controllers\Payments\DealPaymentControllerPolicy;
+use App\Policies\Controllers\Payments\PaymentControllerPolicy;
+use App\Policies\Controllers\Posts\DealPostControllerPolicy;
+use App\Policies\Controllers\Products\DealProductControllerPolicy;
+use App\Policies\Controllers\Surveys\DealSurveyControllerPolicy;
+use App\Policies\Controllers\Timelines\DealTimelineControllerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies\Controllers;
+namespace App\Policies\Controllers\Likes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertiser;
