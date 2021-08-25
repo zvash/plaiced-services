@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AdvertiserSurveyController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\BrandLikeController;
 use App\Http\Controllers\Api\BrandPaymentController;
 use App\Http\Controllers\Api\BrandSurveyController;
 use App\Http\Controllers\Api\CommunityNewsController;
@@ -73,4 +74,6 @@ Route::apiResource('content-creators.surveys', ContentCreatorSurveyController::c
 
 // Like routes
 Route::delete('contents/{content}/likes', [ContentLikeController::class, 'destroy']);
+Route::delete('brands/{brand}/likes', [BrandLikeController::class, 'destroy']);
 Route::apiResource('contents.likes', ContentLikeController::class)->only('index', 'store');
+Route::apiResource('brands.likes', BrandLikeController::class)->only('index', 'store');

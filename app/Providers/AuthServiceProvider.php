@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Api\BrandLikeController;
 use App\Http\Controllers\Api\BrandPaymentController;
 use App\Http\Controllers\Api\ContentLikeController;
 use App\Http\Controllers\Api\ContentPaymentController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Api\DealProductController;
 use App\Http\Controllers\Api\DealSurveyController;
 use App\Http\Controllers\Api\DealTimelineController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Policies\Controllers\BrandLikeControllerPolicy;
 use App\Policies\Controllers\BrandPaymentControllerPolicy;
 use App\Policies\Controllers\ContentLikeControllerPolicy;
 use App\Policies\Controllers\ContentPaymentControllerPolicy;
@@ -39,6 +41,7 @@ class AuthServiceProvider extends ServiceProvider
         BrandPaymentController::class => BrandPaymentControllerPolicy::class,
         ContentPaymentController::class => ContentPaymentControllerPolicy::class,
         ContentLikeController::class => ContentLikeControllerPolicy::class,
+        BrandLikeController::class => BrandLikeControllerPolicy::class,
     ];
 
     /**
