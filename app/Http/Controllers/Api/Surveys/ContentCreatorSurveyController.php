@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Surveys;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\SurveyResource;
-use App\Models\Content;
+use App\Models\ContentCreator;
 use App\Models\ContentCreatorSurvey;
 use Illuminate\Database\Eloquent\Builder;
 
-class ContentSurveyController extends Controller
+class ContentCreatorSurveyController extends Controller
 {
     /**
-     * Content surveys controller constructor.
+     * Content creator surveys controller constructor.
      *
      * @return void
      */
@@ -23,15 +23,15 @@ class ContentSurveyController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\ContentCreator  $contentCreator
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(Content $content)
+    public function index(ContentCreator $contentCreator)
     {
-        $callback = fn (Builder $query) => $query->whereKey($content->id);
+        $callback = fn (Builder $query) => $query->whereKey($contentCreator->id);
 
         return SurveyResource::collection(
-            ContentCreatorSurvey::whereHas('deal.content', $callback)
+            ContentCreatorSurvey::whereHas('deal.content.contentCreator', $callback)
                 ->latest()
                 ->paginate(15)
         );

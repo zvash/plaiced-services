@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Likes;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LikeResource;
-use App\Models\Brand;
+use App\Models\Content;
 use App\Models\Like;
 use Illuminate\Http\Request;
 
-class BrandLikeController extends Controller
+class ContentLikeController extends Controller
 {
     /**
-     * Brand like controller constructor.
+     * Content like controller constructor.
      *
      * @return void
      */
@@ -23,35 +23,35 @@ class BrandLikeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Brand $brand)
+    public function index(Content $content)
     {
-        $this->authorize('viewAny', [$this, $brand]);
+        $this->authorize('viewAny', [$this, $content]);
 
         return LikeResource::collection(
-            $brand->likes()->latest()->with('likable')->paginate(15)
+            $content->likes()->latest()->with('likable')->paginate(15)
         );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, Brand $brand)
+    public function store(Request $request, Content $content)
     {
-        $this->authorize('create', [$this, $brand]);
+        $this->authorize('create', [$this, $content]);
 
         $like = new Like;
 
-        $like->likable()->associate($brand);
+        $like->likable()->associate($content);
 
         $request->user()->likes()->save($like);
 
@@ -61,16 +61,16 @@ class BrandLikeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Brand  $brand
+     * @param  \App\Models\Content  $content
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Brand $brand)
+    public function destroy(Request $request, Content $content)
     {
-        $this->authorize('delete', [$this, $brand]);
+        $this->authorize('delete', [$this, $content]);
 
-        $brand->likes()->whereUserId($request->user()->id)->delete();
+        $content->likes()->whereUserId($request->user()->id)->delete();
 
         return response()->noContent();
     }

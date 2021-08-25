@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Likes;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LikeResource;
-use App\Models\Content;
+use App\Models\Brand;
 use App\Models\Like;
 use Illuminate\Http\Request;
 
-class ContentLikeController extends Controller
+class BrandLikeController extends Controller
 {
     /**
-     * Content like controller constructor.
+     * Brand like controller constructor.
      *
      * @return void
      */
@@ -23,35 +23,35 @@ class ContentLikeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function index(Content $content)
+    public function index(Brand $brand)
     {
-        $this->authorize('viewAny', [$this, $content]);
+        $this->authorize('viewAny', [$this, $brand]);
 
         return LikeResource::collection(
-            $content->likes()->latest()->with('likable')->paginate(15)
+            $brand->likes()->latest()->with('likable')->paginate(15)
         );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, Content $content)
+    public function store(Request $request, Brand $brand)
     {
-        $this->authorize('create', [$this, $content]);
+        $this->authorize('create', [$this, $brand]);
 
         $like = new Like;
 
-        $like->likable()->associate($content);
+        $like->likable()->associate($brand);
 
         $request->user()->likes()->save($like);
 
@@ -61,16 +61,16 @@ class ContentLikeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Content  $content
+     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function destroy(Request $request, Content $content)
+    public function destroy(Request $request, Brand $brand)
     {
-        $this->authorize('delete', [$this, $content]);
+        $this->authorize('delete', [$this, $brand]);
 
-        $content->likes()->whereUserId($request->user()->id)->delete();
+        $brand->likes()->whereUserId($request->user()->id)->delete();
 
         return response()->noContent();
     }

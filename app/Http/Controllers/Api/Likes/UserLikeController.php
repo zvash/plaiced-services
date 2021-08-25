@@ -1,34 +1,25 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Likes;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\LikeResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class LikeController extends Controller
+class UserLikeController extends Controller
 {
-    /**
-     * Like controller constructor.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth:api');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
         return LikeResource::collection(
-            $request->user()
-                ->likes()
+            $user->likes()
                 ->with('likable')
                 ->latest()
                 ->paginate(15)

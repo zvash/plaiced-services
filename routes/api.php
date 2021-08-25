@@ -1,28 +1,28 @@
 <?php
 
-use App\Http\Controllers\Api\AdvertiserSurveyController;
 use App\Http\Controllers\Api\BlogController;
-use App\Http\Controllers\Api\BrandLikeController;
 use App\Http\Controllers\Api\BrandPaymentController;
-use App\Http\Controllers\Api\BrandSurveyController;
 use App\Http\Controllers\Api\CommunityNewsController;
-use App\Http\Controllers\Api\ContentCreatorSurveyController;
-use App\Http\Controllers\Api\ContentLikeController;
 use App\Http\Controllers\Api\ContentPaymentController;
-use App\Http\Controllers\Api\ContentSurveyController;
 use App\Http\Controllers\Api\DealPaymentController;
 use App\Http\Controllers\Api\DealPostController;
 use App\Http\Controllers\Api\DealProductController;
-use App\Http\Controllers\Api\DealSurveyController;
 use App\Http\Controllers\Api\DealTimelineController;
-use App\Http\Controllers\Api\LikeController;
+use App\Http\Controllers\Api\Likes\BrandLikeController;
+use App\Http\Controllers\Api\Likes\ContentLikeController;
+use App\Http\Controllers\Api\Likes\LikeController;
+use App\Http\Controllers\Api\Likes\UserLikeController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ResourceController;
 use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\SpotlightController;
-use App\Http\Controllers\Api\UserLikeController;
+use App\Http\Controllers\Api\Surveys\AdvertiserSurveyController;
+use App\Http\Controllers\Api\Surveys\BrandSurveyController;
+use App\Http\Controllers\Api\Surveys\ContentCreatorSurveyController;
+use App\Http\Controllers\Api\Surveys\ContentSurveyController;
+use App\Http\Controllers\Api\Surveys\DealSurveyController;
 use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Support\Facades\Route;
 
