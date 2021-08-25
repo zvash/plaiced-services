@@ -1,10 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\BlogController;
-use App\Http\Controllers\Api\BrandPaymentController;
 use App\Http\Controllers\Api\CommunityNewsController;
-use App\Http\Controllers\Api\ContentPaymentController;
-use App\Http\Controllers\Api\DealPaymentController;
 use App\Http\Controllers\Api\DealPostController;
 use App\Http\Controllers\Api\DealProductController;
 use App\Http\Controllers\Api\DealTimelineController;
@@ -14,7 +11,10 @@ use App\Http\Controllers\Api\Likes\LikeController;
 use App\Http\Controllers\Api\Likes\UserLikeController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PageController;
-use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\Payments\BrandPaymentController;
+use App\Http\Controllers\Api\Payments\ContentPaymentController;
+use App\Http\Controllers\Api\Payments\DealPaymentController;
+use App\Http\Controllers\Api\Payments\PaymentController;
 use App\Http\Controllers\Api\ResourceController;
 use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\SpotlightController;
