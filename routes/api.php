@@ -15,12 +15,14 @@ use App\Http\Controllers\Api\DealPostController;
 use App\Http\Controllers\Api\DealProductController;
 use App\Http\Controllers\Api\DealSurveyController;
 use App\Http\Controllers\Api\DealTimelineController;
+use App\Http\Controllers\Api\LikeController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PageController;
 use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ResourceController;
 use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\SpotlightController;
+use App\Http\Controllers\Api\UserLikeController;
 use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -77,3 +79,5 @@ Route::delete('contents/{content}/likes', [ContentLikeController::class, 'destro
 Route::delete('brands/{brand}/likes', [BrandLikeController::class, 'destroy']);
 Route::apiResource('contents.likes', ContentLikeController::class)->only('index', 'store');
 Route::apiResource('brands.likes', BrandLikeController::class)->only('index', 'store');
+Route::apiResource('users.likes', UserLikeController::class)->only('index');
+Route::apiResource('likes', LikeController::class)->only('index');
