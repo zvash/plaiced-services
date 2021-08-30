@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Api\Likes;
+namespace App\Http\Controllers\Api\Follows;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\LikeResource;
+use App\Http\Resources\FollowResource;
 use App\Models\User;
 
-class UserLikeController extends Controller
+class UserFollowController extends Controller
 {
     /**
-     * User like controller constructor.
+     * User follow controller constructor.
      *
      * @return void
      */
@@ -26,9 +26,9 @@ class UserLikeController extends Controller
      */
     public function index(User $user)
     {
-        return LikeResource::collection(
-            $user->likes()
-                ->with('likable')
+        return FollowResource::collection(
+            $user->follows()
+                ->with('followable')
                 ->latest()
                 ->paginate(15)
         );

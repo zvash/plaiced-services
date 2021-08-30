@@ -78,7 +78,7 @@ class LikeResource extends JsonResource
     }
 
     /**
-     * Check the like object and get type of it (content or advertiser).
+     * Check the like object and get type of it (content or brand).
      *
      * @return bool
      */

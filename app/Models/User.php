@@ -219,4 +219,21 @@ class User extends Authenticatable
             )
             ->exists();
     }
+
+    /**
+     * Check user followed specific model (content creator or advertiser).
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @return bool
+     */
+    public function followed(Model $model)
+    {
+        return $this->follows()
+            ->whereHasMorph(
+                'followable',
+                [ContentCreator::class, Advertiser::class],
+                fn (Builder $query) => $query->whereKey($model->id)
+            )
+            ->exists();
+    }
 }

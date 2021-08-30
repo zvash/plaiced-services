@@ -33,7 +33,10 @@ class BrandLikeController extends Controller
         $this->authorize('viewAny', [$this, $brand]);
 
         return LikeResource::collection(
-            $brand->likes()->latest()->with('likable')->paginate(15)
+            $brand->likes()
+                ->latest()
+                ->with('likable')
+                ->paginate(15)
         );
     }
 

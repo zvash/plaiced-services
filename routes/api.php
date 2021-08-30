@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\Api\Blogs\BlogController;
 use App\Http\Controllers\Api\CommunityNews\CommunityNewsController;
+use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
+use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
+use App\Http\Controllers\Api\Follows\FollowController;
+use App\Http\Controllers\Api\Follows\UserFollowController;
 use App\Http\Controllers\Api\Likes\BrandLikeController;
 use App\Http\Controllers\Api\Likes\ContentLikeController;
 use App\Http\Controllers\Api\Likes\LikeController;
@@ -81,3 +85,11 @@ Route::apiResource('contents.likes', ContentLikeController::class)->only('index'
 Route::apiResource('brands.likes', BrandLikeController::class)->only('index', 'store');
 Route::apiResource('users.likes', UserLikeController::class)->only('index');
 Route::apiResource('likes', LikeController::class)->only('index');
+
+// Follow routes
+Route::delete('content-creators/{content_creator}/follows', [ContentCreatorFollowController::class, 'destroy']);
+Route::delete('advertisers/{advertiser}/follows', [AdvertiserFollowController::class, 'destroy']);
+Route::apiResource('content-creators.follows', ContentCreatorFollowController::class)->only('index', 'store');
+Route::apiResource('advertisers.follows', AdvertiserFollowController::class)->only('index', 'store');
+Route::apiResource('users.follows', UserFollowController::class)->only('index');
+Route::apiResource('follows', FollowController::class)->only('index');

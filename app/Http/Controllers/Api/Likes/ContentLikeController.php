@@ -33,7 +33,10 @@ class ContentLikeController extends Controller
         $this->authorize('viewAny', [$this, $content]);
 
         return LikeResource::collection(
-            $content->likes()->latest()->with('likable')->paginate(15)
+            $content->likes()
+                ->latest()
+                ->with('likable')
+                ->paginate(15)
         );
     }
 
