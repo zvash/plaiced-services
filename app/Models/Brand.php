@@ -87,4 +87,24 @@ class Brand extends Model
     {
         return $this->hasManyThrough(Payment::class, Deal::class);
     }
+
+    /**
+     * Get the category that owns the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->dropdown('category');
+    }
+
+    /**
+     * Get the subcategory that owns the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subcategory()
+    {
+        return $this->dropdown('subcategory');
+    }
 }

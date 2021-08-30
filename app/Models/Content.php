@@ -103,4 +103,44 @@ class Content extends Model
     {
         return $this->hasManyThrough(Payment::class, Deal::class);
     }
+
+    /**
+     * Get the category that owns the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function genre()
+    {
+        return $this->dropdown('genre');
+    }
+
+    /**
+     * Get the category that owns the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->dropdown('category');
+    }
+
+    /**
+     * Get the subcategory that owns the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subcategory()
+    {
+        return $this->dropdown('subcategory');
+    }
+
+    /**
+     * Get the child subcategory that owns the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function childSubcategory()
+    {
+        return $this->dropdown('child_subcategory');
+    }
 }

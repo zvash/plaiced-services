@@ -88,4 +88,14 @@ class ContentCreator extends Model
     {
         return $this->morphMany(Follow::class, 'followable');
     }
+
+    /**
+     * Get the type that owns the content creator.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->dropdown('type');
+    }
 }

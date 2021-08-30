@@ -15,4 +15,14 @@ class ContentTalent extends Pivot
      * @var bool
      */
     public $incrementing = true;
+
+    /**
+     * Get the type that owns the content talent.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->dropdown('type');
+    }
 }

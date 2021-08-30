@@ -31,7 +31,7 @@ class DropdownGroup extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function trailingDropDowns()
+    public function dropdownTrailings()
     {
         return $this->hasMany(Dropdown::class, 'group_trailing_id');
     }

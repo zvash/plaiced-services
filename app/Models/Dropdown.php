@@ -49,7 +49,7 @@ class Dropdown extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function trailingGroup()
+    public function groupTrailing()
     {
         return $this->belongsTo(DropdownGroup::class, 'group_trailing_id');
     }

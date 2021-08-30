@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Blogs\BlogController;
 use App\Http\Controllers\Api\CommunityNews\CommunityNewsController;
+use App\Http\Controllers\Api\Contents\ContentCategoryController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
 use App\Http\Controllers\Api\Follows\FollowController;
@@ -93,3 +94,6 @@ Route::apiResource('content-creators.follows', ContentCreatorFollowController::c
 Route::apiResource('advertisers.follows', AdvertiserFollowController::class)->only('index', 'store');
 Route::apiResource('users.follows', UserFollowController::class)->only('index');
 Route::apiResource('follows', FollowController::class)->only('index');
+
+// Content routes
+Route::get('contents/categories', ContentCategoryController::class)->name('contents.categories.index');
