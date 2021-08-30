@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Api\Contents;
+namespace App\Http\Controllers\Api\Brands;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DropdownResource;
-use App\Models\Content;
+use App\Models\Brand;
 use App\Models\Dropdown;
 use Illuminate\Database\Eloquent\Builder;
 
-class ContentCategoryController extends Controller
+class BrandCategoryController extends Controller
 {
     /**
-     * Content category controller constructor.
+     * Brand category controller constructor.
      *
      * @return void
      */
@@ -27,7 +27,7 @@ class ContentCategoryController extends Controller
      */
     public function __invoke()
     {
-        $categories = Content::select('category')
+        $categories = Brand::select('category')
             ->whereHas('category', fn (Builder $builder) => $builder->whereCustom(false))
             ->distinct()
             ->pluck('category');

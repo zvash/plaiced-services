@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Blogs\BlogController;
+use App\Http\Controllers\Api\Brands\BrandCategoryController;
 use App\Http\Controllers\Api\CommunityNews\CommunityNewsController;
 use App\Http\Controllers\Api\Contents\ContentCategoryController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
@@ -97,3 +98,6 @@ Route::apiResource('follows', FollowController::class)->only('index');
 
 // Content routes
 Route::get('contents/categories', ContentCategoryController::class)->name('contents.categories.index');
+
+// Brand routes
+Route::get('brands/categories', BrandCategoryController::class)->name('brands.categories.index');
