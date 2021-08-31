@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\Blogs\BlogController;
 use App\Http\Controllers\Api\Brands\BrandCategoryController;
 use App\Http\Controllers\Api\CommunityNews\CommunityNewsController;
 use App\Http\Controllers\Api\Contents\ContentCategoryController;
+use App\Http\Controllers\Api\DropdownGroups\DropdownGroupController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
 use App\Http\Controllers\Api\Follows\FollowController;
@@ -49,13 +50,19 @@ Route::prefix('notifications')->name('notifications.')->group(function () {
     Route::post('read', [NotificationController::class, 'read'])->name('read');
 });
 
-// Others
-Route::apiResource('wishlists', WishlistController::class)->only('store');
+// Website routes
 Route::apiResource('blogs', BlogController::class)->only('index', 'show');
 Route::apiResource('pages', PageController::class)->only('index', 'show');
 Route::apiResource('spotlights', SpotlightController::class)->only('index');
 Route::apiResource('sections', SectionController::class)->only('index', 'show');
+
+// Resource routes
 Route::apiResource('resources', ResourceController::class)->only('index', 'show');
+
+// Wishlist routes
+Route::apiResource('wishlists', WishlistController::class)->only('store');
+
+// Community news routes
 Route::apiResource('community-news', CommunityNewsController::class)->only('index', 'show');
 
 // Product routes
@@ -101,3 +108,6 @@ Route::get('contents/categories', ContentCategoryController::class)->name('conte
 
 // Brand routes
 Route::get('brands/categories', BrandCategoryController::class)->name('brands.categories.index');
+
+// Dropdown group routes
+Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)->only('index', 'store');
