@@ -29,7 +29,10 @@ class DropdownGroupController extends Controller
     public function index(DropdownGroup $dropdownGroup)
     {
         return DropdownResource::collection(
-            $dropdownGroup->dropdowns()->orderBy('title')->get()
+            $dropdownGroup->dropdowns()
+                ->with('groupTrailing')
+                ->orderBy('title')
+                ->get()
         );
     }
 
