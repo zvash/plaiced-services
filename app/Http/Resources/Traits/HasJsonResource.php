@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Traits;
 
+use App\Http\Resources\DropdownResource;
 use Carbon\CarbonInterface;
 use Closure;
 use Illuminate\Http\Resources\MissingValue;
@@ -107,6 +108,19 @@ trait HasJsonResource
                 $this->when($this->{$relation}->isNotEmpty(), $this->{$relation})
             );
         });
+    }
+
+    /**
+     * Check dropdown relationships and return it.
+     *
+     * @param  string  $relation
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    protected function whenLoadedDropDown(string $relation)
+    {
+        return $this->whenLoaded(
+            $relation, fn () => new DropdownResource($this->getRelation($relation))
+        );
     }
 
     /**

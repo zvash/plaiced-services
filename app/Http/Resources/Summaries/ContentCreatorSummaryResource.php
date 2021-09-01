@@ -23,6 +23,7 @@ class ContentCreatorSummaryResource extends JsonResource
             'avatar' => $this->whenHasFile('avatar'),
             'rating' => $this->whenHasValue('rating'),
             'rating_count' => $this->rating_count,
+            'user' => new UserSummaryResource($this->user),
         ];
     }
 }

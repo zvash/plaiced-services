@@ -2,9 +2,9 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Summaries\AdvertiserSummaryResource as AdvertiserResource;
-use App\Http\Resources\Summaries\ContentCreatorSummaryResource as ContentCreatorResource;
-use App\Http\Resources\Summaries\UserSummaryResource as UserResource;
+use App\Http\Resources\Summaries\AdvertiserSummaryResource;
+use App\Http\Resources\Summaries\ContentCreatorSummaryResource;
+use App\Http\Resources\Summaries\UserSummaryResource;
 use App\Http\Resources\Traits\HasJsonResource;
 use App\Models\ContentCreator;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -24,7 +24,7 @@ class FollowResource extends JsonResource
         return [
             'type' => $this->getMorphType('followable'),
             'object' => $this->getObject(),
-            'user' => new UserResource($this->user),
+            'user' => new UserSummaryResource($this->user),
         ];
     }
 
@@ -36,8 +36,8 @@ class FollowResource extends JsonResource
     private function getObject()
     {
         $resource = $this->likable instanceof ContentCreator
-            ? ContentCreatorResource::class
-            : AdvertiserResource::class;
+            ? ContentCreatorSummaryResource::class
+            : AdvertiserSummaryResource::class;
 
         return $this->getMorphResource('followable', $resource);
     }

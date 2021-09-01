@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Summaries\DealSummaryResource as DealResource;
-use App\Http\Resources\Summaries\UserSummaryResource as UserResource;
+use App\Http\Resources\Summaries\DealSummaryResource;
+use App\Http\Resources\Summaries\UserSummaryResource;
 use App\Http\Resources\Traits\HasJsonResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -28,8 +28,8 @@ class SurveyResource extends JsonResource
             'other_party_rating' => $this->whenHasValue('other_party_rating'),
             'other_party_what_i_like' => $this->whenHasValue('other_party_what_i_like'),
             'other_party_comment' => $this->whenHasValue('other_party_comment'),
-            'user' => new UserResource($this->user),
-            'deal' => new DealResource($this->deal),
+            'user' => new UserSummaryResource($this->user),
+            'deal' => new DealSummaryResource($this->deal),
         ];
     }
 }

@@ -21,6 +21,7 @@ class BrandSummaryResource extends JsonResource
             'uuid' => $this->uuid,
             'title' => $this->title,
             'avatar' => $this->whenHasFile('avatar'),
+            'advertiser' => new AdvertiserSummaryResource($this->advertiser),
         ];
     }
 }

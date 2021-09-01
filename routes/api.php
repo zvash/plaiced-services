@@ -104,7 +104,10 @@ Route::apiResource('users.follows', UserFollowController::class)->only('index');
 Route::apiResource('follows', FollowController::class)->only('index');
 
 // Content routes
-Route::get('contents/categories', ContentCategoryController::class)->name('contents.categories.index');
+Route::prefix('contents/categories')->name('contents.categories.')->group(function () {
+    Route::get('/', [ContentCategoryController::class, 'index'])->name('index');
+    Route::get('{dropdown}', [ContentCategoryController::class, 'show'])->name('show');
+});
 
 // Brand routes
 Route::get('brands/categories', BrandCategoryController::class)->name('brands.categories.index');

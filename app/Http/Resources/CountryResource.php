@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Summaries;
+namespace App\Http\Resources;
 
 use App\Http\Resources\Traits\HasJsonResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AdvertiserSummaryResource extends JsonResource
+class CountryResource extends JsonResource
 {
     use HasJsonResource;
 
@@ -20,10 +20,8 @@ class AdvertiserSummaryResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'title' => $this->title,
-            'avatar' => $this->whenHasFile('avatar'),
-            'rating' => $this->whenHasValue('rating'),
-            'rating_count' => $this->rating_count,
-            'user' => new UserSummaryResource($this->user),
+            'iso_code' => $this->whenHasValue('iso_code'),
+            'numeric_code' => $this->whenHasValue('numeric_code'),
         ];
     }
 }

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api\Contents;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\DropdownResource;
+use App\Http\Resources\Summaries\ContentSummaryResource;
 use App\Models\Content;
 use App\Models\Dropdown;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class ContentCategoryController extends Controller
 {
@@ -21,11 +23,11 @@ class ContentCategoryController extends Controller
     }
 
     /**
-     * Handle the incoming request.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function __invoke()
+    public function index()
     {
         $categories = Content::select('category')
             ->whereHas('category', fn (Builder $builder) => $builder->whereCustom(false))
@@ -35,6 +37,21 @@ class ContentCategoryController extends Controller
         return DropdownResource::collection(
             Dropdown::with('groupTrailing')
                 ->WhereIn('id', $categories)
+                ->get()
+        );
+    }
+
+    /**
+     * Display the specified resource listing.
+     */
+    public function show(Request $request, Dropdown $dropdown)
+    {
+        $limit = (int) $request->get('limit') ?: 5;
+
+        return ContentSummaryResource::collection(
+            Content::whereCategory($dropdown->id)
+                ->with(['category'])
+                ->take($limit <= 30 ? $limit : 5)
                 ->get()
         );
     }

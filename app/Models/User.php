@@ -214,7 +214,7 @@ class User extends Authenticatable
         return $this->likes()
             ->whereHasMorph(
                 'likable',
-                [Content::class, Brand::class],
+                get_class($model),
                 fn (Builder $query) => $query->whereKey($model->id)
             )
             ->exists();
@@ -231,7 +231,7 @@ class User extends Authenticatable
         return $this->follows()
             ->whereHasMorph(
                 'followable',
-                [ContentCreator::class, Advertiser::class],
+                get_class($model),
                 fn (Builder $query) => $query->whereKey($model->id)
             )
             ->exists();

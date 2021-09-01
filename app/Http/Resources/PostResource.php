@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Resources\Summaries\UserSummaryResource as UserResource;
+use App\Http\Resources\Summaries\UserSummaryResource;
 use App\Http\Resources\Traits\HasJsonResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +21,7 @@ class PostResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'description' => $this->description,
-            'user' => new UserResource($this->user),
+            'user' => new UserSummaryResource($this->user),
             'assets' => AssetResource::collection($this->whenHasCollection('assets')),
         ];
     }
