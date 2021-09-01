@@ -43,6 +43,10 @@ class ContentCategoryController extends Controller
 
     /**
      * Display the specified resource listing.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Dropdown  $dropdown
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function show(Request $request, Dropdown $dropdown)
     {
@@ -50,7 +54,6 @@ class ContentCategoryController extends Controller
 
         return ContentSummaryResource::collection(
             Content::whereCategory($dropdown->id)
-                ->with(['category'])
                 ->take($limit <= 30 ? $limit : 5)
                 ->get()
         );
