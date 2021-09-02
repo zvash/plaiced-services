@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\Brands\BrandCategoryController;
 use App\Http\Controllers\Api\Brands\BrandController;
 use App\Http\Controllers\Api\CommunityNews\CommunityNewsController;
 use App\Http\Controllers\Api\Contents\ContentCategoryController;
+use App\Http\Controllers\Api\Contents\ContentController;
+use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
 use App\Http\Controllers\Api\DropdownGroups\DropdownGroupController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
@@ -110,6 +112,8 @@ Route::prefix('contents/categories')->name('contents.categories.')->group(functi
     Route::get('/', [ContentCategoryController::class, 'index'])->name('index');
     Route::get('{dropdown}', [ContentCategoryController::class, 'show'])->name('show');
 });
+Route::apiResource('contents', ContentController::class)->only('index', 'show');
+Route::apiResource('content-creators.contents', ContentCreatorContentController::class)->only('index');
 
 // Brand routes
 Route::prefix('brands/categories')->name('brands.categories.')->group(function () {

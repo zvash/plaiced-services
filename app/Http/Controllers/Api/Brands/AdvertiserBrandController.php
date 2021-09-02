@@ -9,7 +9,7 @@ use App\Models\Advertiser;
 class AdvertiserBrandController extends Controller
 {
     /**
-     * Brand controller constructor.
+     * Advertiser brand controller constructor.
      *
      * @return void
      */
