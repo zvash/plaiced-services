@@ -30,7 +30,7 @@ class BrandController extends Controller
     {
         $brands = Brand::when($request->has('feature'),
             fn (Builder $query, bool $feature) => $query->whereFeatured($feature)
-        )->latest()->get();
+        )->latest()->paginate(15);
 
         return BrandSummaryResource::collection($brands);
     }

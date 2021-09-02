@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Blogs\BlogController;
+use App\Http\Controllers\Api\Brands\AdvertiserBrandController;
 use App\Http\Controllers\Api\Brands\BrandCategoryController;
 use App\Http\Controllers\Api\Brands\BrandController;
 use App\Http\Controllers\Api\CommunityNews\CommunityNewsController;
@@ -116,6 +117,7 @@ Route::prefix('brands/categories')->name('brands.categories.')->group(function (
     Route::get('{dropdown}', [BrandCategoryController::class, 'show'])->name('show');
 });
 Route::apiResource('brands', BrandController::class)->only('index', 'show');
+Route::apiResource('advertisers.brands', AdvertiserBrandController::class)->only('index');
 
 // Dropdown group routes
 Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)->only('index', 'store');
