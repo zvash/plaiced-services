@@ -115,6 +115,16 @@ class Content extends Model
     }
 
     /**
+     * Get the socials for the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function socials()
+    {
+        return $this->morphMany(Social::class, 'sociable');
+    }
+
+    /**
      * Get the category that owns the content.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

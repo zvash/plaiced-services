@@ -90,6 +90,16 @@ class ContentCreator extends Model
     }
 
     /**
+     * Get the socials for the content creator.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function socials()
+    {
+        return $this->morphMany(Social::class, 'sociable');
+    }
+
+    /**
      * Get the type that owns the content creator.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
