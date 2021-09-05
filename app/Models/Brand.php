@@ -89,6 +89,16 @@ class Brand extends Model
     }
 
     /**
+     * Get the assets for the brand.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function assets()
+    {
+        return $this->morphMany(MediaAsset::class, 'assetable');
+    }
+
+    /**
      * Get the category that owns the brand.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

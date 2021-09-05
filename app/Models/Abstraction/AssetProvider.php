@@ -24,4 +24,13 @@ class AssetProvider extends Model
     protected $casts = [
         'size' => 'integer',
     ];
+
+    /**
+     * The model's attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'size' => 0,
+    ];
 }

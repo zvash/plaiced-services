@@ -17,10 +17,10 @@ class CreateDealPostAssetsTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
-            $table->string('file_name');
-            $table->string('mime_type');
-            $table->string('extension');
-            $table->integer('size');
+            $table->string('file_name')->nullable();
+            $table->string('mime_type')->nullable();
+            $table->string('extension')->nullable();
+            $table->integer('size')->default(0);
             $table->string('url');
 
             $table->foreignId('post_id')

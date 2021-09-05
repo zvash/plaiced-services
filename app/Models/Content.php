@@ -105,6 +105,16 @@ class Content extends Model
     }
 
     /**
+     * Get the assets for the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function assets()
+    {
+        return $this->morphMany(MediaAsset::class, 'assetable');
+    }
+
+    /**
      * Get the category that owns the content.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
