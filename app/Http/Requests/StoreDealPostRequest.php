@@ -18,6 +18,9 @@ class StoreDealPostRequest extends FormRequest
             'assets' => 'sometimes|required|array|max:10',
             'assets.*.file' => 'required|file|mimes:jpg,jpeg,png,pdf,zip|max:1024',
             'assets.*.title' => 'required|string|max:255',
+            'videos' => 'sometimes|required|array|max:5',
+            'videos.*.url' => 'required|active_url',
+            'videos.*.title' => 'required|string|max:255',
         ];
     }
 }

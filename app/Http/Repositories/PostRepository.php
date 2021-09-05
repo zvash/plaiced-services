@@ -47,6 +47,8 @@ class PostRepository extends Repository
         $callback = function (Request $request, Deal $deal) {
             $this->assets($request, $post = $this->post($request, $deal));
 
+            $this->videos($request, $post);
+
             return [$post, $deal->addPostTimeline($post)];
         };
 
@@ -89,6 +91,7 @@ class PostRepository extends Repository
     private function post(Request $request, Deal $deal)
     {
         $post = new Post(['description' => $request->description]);
+
         $post->deal()->associate($deal);
 
         return $request->user()->posts()->save($post);
@@ -120,6 +123,20 @@ class PostRepository extends Repository
                 'url' => $asset['file']->store('post-assets', 's3'),
                 'file_name' => $asset['file']->getClientOriginalName(),
             ]);
+        }
+    }
+
+    /**
+     * Create post video url for created post.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Post  $post
+     * @return void
+     */
+    private function videos(Request $request, Post $post)
+    {
+        foreach ($request->videos as $video) {
+            $post->assets()->create($video);
         }
     }
 }

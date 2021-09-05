@@ -22,10 +22,10 @@ class AssetResource extends JsonResource
             'title' => $this->title,
             'description' => $this->whenHasValue('description'),
             'small_description' => $this->whenHasValue('small_description'),
-            'file_name' => $this->file_name,
-            'mime_type' => $this->mime_type,
-            'extension' => $this->extension,
-            'size' => $this->size,
+            'file_name' => $this->whenHasValue('file_name'),
+            'mime_type' => $this->whenHasValue('mime_type'),
+            'extension' => $this->whenHasValue('extension'),
+            'size' => $this->whenHasValue('size'),
             'url' => $this->whenHasFile('url'),
         ];
     }

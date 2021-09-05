@@ -23,7 +23,7 @@ class CreateResourcesTable extends Migration
             $table->string('mime_type');
             $table->string('extension');
             $table->integer('size')->default(0);
-            $table->string('url');
+            $table->text('url');
             $table->timestamps();
         });
     }

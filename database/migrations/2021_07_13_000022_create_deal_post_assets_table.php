@@ -21,7 +21,7 @@ class CreateDealPostAssetsTable extends Migration
             $table->string('mime_type')->nullable();
             $table->string('extension')->nullable();
             $table->integer('size')->default(0);
-            $table->string('url');
+            $table->text('url');
 
             $table->foreignId('post_id')
                 ->constrained('deal_posts')
