@@ -113,7 +113,7 @@ Route::prefix('contents/categories')->name('contents.categories.')->group(functi
     Route::get('{dropdown}', [ContentCategoryController::class, 'show'])->name('show');
 });
 Route::apiResource('contents', ContentController::class)->only('index', 'show');
-Route::apiResource('content-creators.contents', ContentCreatorContentController::class)->only('index');
+Route::apiResource('content-creators.contents', ContentCreatorContentController::class)->only('index', 'store');
 
 // Brand routes
 Route::prefix('brands/categories')->name('brands.categories.')->group(function () {

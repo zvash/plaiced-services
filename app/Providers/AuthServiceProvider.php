@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
 use App\Http\Controllers\Api\Likes\BrandLikeController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Api\Posts\DealPostController;
 use App\Http\Controllers\Api\Products\DealProductController;
 use App\Http\Controllers\Api\Surveys\DealSurveyController;
 use App\Http\Controllers\Api\Timelines\DealTimelineController;
+use App\Policies\Controllers\Contents\ContentCreatorContentControllerPolicy;
 use App\Policies\Controllers\Follows\AdvertiserFollowControllerPolicy;
 use App\Policies\Controllers\Follows\ContentCreatorFollowControllerPolicy;
 use App\Policies\Controllers\Likes\BrandLikeControllerPolicy;
@@ -48,6 +50,7 @@ class AuthServiceProvider extends ServiceProvider
         BrandLikeController::class => BrandLikeControllerPolicy::class,
         ContentCreatorFollowController::class => ContentCreatorFollowControllerPolicy::class,
         AdvertiserFollowController::class => AdvertiserFollowControllerPolicy::class,
+        ContentCreatorContentController::class => ContentCreatorContentControllerPolicy::class,
     ];
 
     /**

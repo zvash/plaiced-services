@@ -45,9 +45,15 @@ class PostRepository extends Repository
     public function create(Request $request, Deal $deal)
     {
         $callback = function (Request $request, Deal $deal) {
-            $this->assets($request, $post = $this->post($request, $deal));
+            [$relations,] = collect($request->validated())->partition(
+                fn ($attribute, $key) => in_array($key, ['assets', 'videos'])
+            );
 
-            $this->videos($request, $post);
+            $post = $this->post($request, $deal);
+
+            $relations->each(
+                fn ($relation, $key) => $this->{$key}($request, $relation, $post)
+            );
 
             return [$post, $deal->addPostTimeline($post)];
         };
@@ -101,16 +107,17 @@ class PostRepository extends Repository
      * Create post assets for created post.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  array  $assets
      * @param  \App\Models\Post  $post
      * @return void
      */
-    private function assets(Request $request, Post $post)
+    private function assets(Request $request, array $assets, Post $post)
     {
         if (! $request->hasFile('assets.*.file')) {
             return;
         }
 
-        foreach ($request->assets as $asset) {
+        foreach ($assets as $asset) {
             if (! $asset['file']->isValid()) {
                 continue;
             }
@@ -120,7 +127,7 @@ class PostRepository extends Repository
                 'size' => $asset['file']->getSize(),
                 'extension' => $asset['file']->extension(),
                 'mime_type' => $asset['file']->getClientMimeType(),
-                'url' => $asset['file']->store('post-assets', 's3'),
+                'url' => $asset['file']->store('posts/assets', 's3'),
                 'file_name' => $asset['file']->getClientOriginalName(),
             ]);
         }
@@ -130,13 +137,12 @@ class PostRepository extends Repository
      * Create post video url for created post.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  array  $videos
      * @param  \App\Models\Post  $post
      * @return void
      */
-    private function videos(Request $request, Post $post)
+    private function videos(Request $request, array $videos, Post $post)
     {
-        foreach ($request->videos as $video) {
-            $post->assets()->create($video);
-        }
+        $post->assets()->createMany($videos);
     }
 }
