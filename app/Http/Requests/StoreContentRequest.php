@@ -37,6 +37,7 @@ class StoreContentRequest extends FormRequest
             'socials.*' => 'required|active_url',
 
             // Dropdown parameters
+            'viewership' => 'required|integer|exists:dropdowns,id',
             'genre' => 'required|integer|exists:dropdowns,id',
             'category' => 'required|integer|exists:dropdowns,id',
             'subcategory' => 'required|integer|exists:dropdowns,id',

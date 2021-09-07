@@ -39,6 +39,11 @@ class CreateContentsTable extends Migration
                 $table->json($column);
             });
 
+            $table->foreignId('viewership')
+                ->constrained('dropdowns')
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
             $table->foreignId('genre')
                 ->constrained('dropdowns')
                 ->cascadeOnDelete()
