@@ -16,7 +16,7 @@ class StoreDealPostRequest extends FormRequest
         return [
             'description' => 'required|string',
             'assets' => 'sometimes|required|array|max:10',
-            'assets.*.file' => 'required|file|mimes:jpg,jpeg,png,pdf,zip|max:1024',
+            'assets.*.file' => 'required|file|mimes:jpg,jpeg,png,pdf,doc,docx,ppt,pptx,xls,xlsx|max:1024',
             'assets.*.title' => 'required|string|max:255',
             'videos' => 'sometimes|required|array|max:5',
             'videos.*.url' => 'required|active_url',
