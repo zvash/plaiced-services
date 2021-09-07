@@ -27,6 +27,9 @@ class StoreContentRequest extends FormRequest
             'shipping_contact_name' => 'required|string|max:255',
             'shipping_contact_telephone' => 'required|string|max:30',
             'country_id' => 'required|integer|exists:countries,id',
+            'talents' => 'required|array',
+            'talents.*.type' => 'required|integer|exists:dropdowns,id',
+            'talents.*.title' => 'required|string|max:255',
             'assets' => 'sometimes|required|array|max:10',
             'assets.*.file' => 'required|file|mimes:jpg,jpeg,png|max:1024',
             'assets.*.title' => 'required|string|max:255',
@@ -37,7 +40,7 @@ class StoreContentRequest extends FormRequest
             'socials.*' => 'required|active_url',
 
             // Dropdown parameters
-            'viewership' => 'required|integer|exists:dropdowns,id',
+            'viewership' => 'sometimes|nullable|integer|exists:dropdowns,id',
             'genre' => 'required|integer|exists:dropdowns,id',
             'category' => 'required|integer|exists:dropdowns,id',
             'subcategory' => 'required|integer|exists:dropdowns,id',

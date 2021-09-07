@@ -125,6 +125,16 @@ class Content extends Model
     }
 
     /**
+     * Get the viewership that owns the content.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function viewership()
+    {
+        return $this->dropdown('viewership');
+    }
+
+    /**
      * Get the category that owns the content.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

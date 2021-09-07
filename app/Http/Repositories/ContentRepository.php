@@ -6,6 +6,7 @@ use App\Http\Repositories\Abstraction\Repository;
 use App\Models\Content;
 use App\Models\ContentCreator;
 use App\Models\Social;
+use App\Models\Talent;
 use Illuminate\Database\DatabaseManager as Database;
 use Illuminate\Filesystem\FilesystemManager as Storage;
 use Illuminate\Http\Request;
@@ -47,7 +48,12 @@ class ContentRepository extends Repository
     {
         $callback = function (Request $request, ContentCreator $contentCreator) {
             [$relations, $attributes] = collect($request->validated())->partition(
-                fn ($attribute, $key) => in_array($key, ['socials', 'assets', 'videos'])
+                fn ($attribute, $key) => in_array($key, [
+                    'socials',
+                    'assets',
+                    'videos',
+                    'talents',
+                ])
             );
 
             $attributes = $attributes->merge([
@@ -131,5 +137,22 @@ class ContentRepository extends Repository
         })->values();
 
         $content->socials()->createMany($socials);
+    }
+
+    /**
+     * Create talents for created content.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array  $talents
+     * @param  \App\Models\Content  $content
+     * @return void
+     */
+    private function talents(Request $request, array $talents, Content $content)
+    {
+        foreach ($talents as $talent) {
+            Talent::create(['title' => $talent['title']])
+                ->contents()
+                ->attach($content->id, ['type' => (int) $talent['type']]);
+        }
     }
 }

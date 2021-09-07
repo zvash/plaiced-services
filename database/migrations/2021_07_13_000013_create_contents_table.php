@@ -40,6 +40,7 @@ class CreateContentsTable extends Migration
             });
 
             $table->foreignId('viewership')
+                ->nullable()
                 ->constrained('dropdowns')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
