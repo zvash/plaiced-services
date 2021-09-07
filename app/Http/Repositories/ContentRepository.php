@@ -66,7 +66,13 @@ class ContentRepository extends Repository
                 fn ($relation, $key) => $this->{$key}($request, $relation, $content)
             );
 
-            return $content;
+            return $content->load([
+                'viewership',
+                'genre',
+                'category',
+                'subcategory',
+                'childSubcategory',
+            ]);
         };
 
         return $this->transaction($callback, ...func_get_args());

@@ -118,8 +118,10 @@ trait HasJsonResource
      */
     protected function whenLoadedDropDown(string $relation)
     {
-        return $this->whenLoaded(
-            $relation, fn () => new DropdownResource($this->getRelation($relation))
+        return new DropdownResource(
+            $this->whenLoaded(
+                $relation, fn () => $this->getRelation($relation)
+            ) ?? new MissingValue
         );
     }
 

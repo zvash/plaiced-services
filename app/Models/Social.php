@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
 
 class Social extends Model
 {
+    use HasUuid;
+
     /**
      * Social types.
      *
@@ -33,6 +36,29 @@ class Social extends Model
     protected $casts = [
         'type' => 'integer',
     ];
+
+    /**
+     * Get social type by name.
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        switch ($this->type) {
+            case self::TYPE_WEBSITE:
+                return 'website';
+            case self::TYPE_FACEBOOK:
+                return 'facebook';
+            case self::TYPE_INSTAGRAM:
+                return 'instagram';
+            case self::TYPE_TWITTER:
+                return 'twitter';
+            case self::TYPE_LINKEDIN:
+                return 'linkedin';
+            default:
+                return 'unknown';
+        }
+    }
 
     /**
      * Get the parent sociable model (content, brand, content creator or advertiser).

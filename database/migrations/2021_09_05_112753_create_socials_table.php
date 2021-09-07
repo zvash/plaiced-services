@@ -15,6 +15,7 @@ class CreateSocialsTable extends Migration
     {
         Schema::create('socials', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uuid');
             $table->text('url');
 
             $table->unsignedTinyInteger('type')
