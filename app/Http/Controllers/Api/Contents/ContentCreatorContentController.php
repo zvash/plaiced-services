@@ -21,6 +21,7 @@ class ContentCreatorContentController extends Controller
     /**
      * Content creator content controller constructor.
      *
+     * @param  \App\Http\Repositories\ContentRepository  $repository
      * @return void
      */
     public function __construct(Repository $repository)

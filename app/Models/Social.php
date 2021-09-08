@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Social extends Model
 {
-    use HasUuid;
+    use HasUuid, SoftDeletes;
 
     /**
      * Social types.

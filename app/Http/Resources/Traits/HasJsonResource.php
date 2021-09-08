@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Traits;
 
 use App\Http\Resources\DropdownResource;
+use App\Models\Dropdown;
 use Carbon\CarbonInterface;
 use Closure;
 use Illuminate\Http\Resources\MissingValue;
@@ -116,13 +117,28 @@ trait HasJsonResource
      * @param  string  $relation
      * @return \Illuminate\Http\Resources\MissingValue|mixed
      */
-    protected function whenLoadedDropDown(string $relation)
+    protected function whenLoadedDropdown(string $relation)
     {
         return new DropdownResource(
             $this->whenLoaded(
                 $relation, fn () => $this->getRelation($relation)
             ) ?? new MissingValue
         );
+    }
+
+    /**
+     * Load all items in collection as dropdown.
+     *
+     * @param  string  $relation
+     * @return \Illuminate\Http\Resources\MissingValue|mixed
+     */
+    public function loadDropdownCollection(string $field)
+    {
+        $collection = $this->{$field}
+            ->map(fn ($item) => new DropdownResource(Dropdown::find($item)))
+            ->reject(fn ($resource) => is_null($resource->resource));
+
+        return $this->when($collection->isNotEmpty(), $collection);
     }
 
     /**

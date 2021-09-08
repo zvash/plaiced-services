@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\Api\Posts\DealPostController;
 use App\Http\Controllers\Api\Products\DealProductController;
 use App\Http\Controllers\Api\Surveys\DealSurveyController;
 use App\Http\Controllers\Api\Timelines\DealTimelineController;
+use App\Policies\Controllers\Contents\ContentControllerPolicy;
 use App\Policies\Controllers\Contents\ContentCreatorContentControllerPolicy;
 use App\Policies\Controllers\Follows\AdvertiserFollowControllerPolicy;
 use App\Policies\Controllers\Follows\ContentCreatorFollowControllerPolicy;
@@ -38,18 +40,19 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        ContentController::class => ContentControllerPolicy::class,
         PaymentController::class => PaymentControllerPolicy::class,
         DealPostController::class => DealPostControllerPolicy::class,
+        BrandLikeController::class => BrandLikeControllerPolicy::class,
         DealSurveyController::class => DealSurveyControllerPolicy::class,
+        ContentLikeController::class => ContentLikeControllerPolicy::class,
         DealProductController::class => DealProductControllerPolicy::class,
         DealPaymentController::class => DealPaymentControllerPolicy::class,
         DealTimelineController::class => DealTimelineControllerPolicy::class,
         BrandPaymentController::class => BrandPaymentControllerPolicy::class,
         ContentPaymentController::class => ContentPaymentControllerPolicy::class,
-        ContentLikeController::class => ContentLikeControllerPolicy::class,
-        BrandLikeController::class => BrandLikeControllerPolicy::class,
-        ContentCreatorFollowController::class => ContentCreatorFollowControllerPolicy::class,
         AdvertiserFollowController::class => AdvertiserFollowControllerPolicy::class,
+        ContentCreatorFollowController::class => ContentCreatorFollowControllerPolicy::class,
         ContentCreatorContentController::class => ContentCreatorContentControllerPolicy::class,
     ];
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\Contents;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\ContentRepository as Repository;
+use App\Http\Resources\ContentResource;
 use App\Http\Resources\Summaries\ContentSummaryResource;
 use App\Models\Content;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,13 +13,23 @@ use Illuminate\Http\Request;
 class ContentController extends Controller
 {
     /**
+     * Content repository.
+     *
+     * @var \App\Http\Repositories\ContentRepository
+     */
+    protected $repository;
+
+    /**
      * Content controller constructor.
      *
+     * @param  \App\Http\Repositories\ContentRepository  $repository
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('auth:api');
+
+        $this->repository = $repository;
     }
 
     /**
@@ -43,6 +55,32 @@ class ContentController extends Controller
      */
     public function show(Content $content)
     {
-        return new ContentSummaryResource($content);
+        $content->load([
+            'viewership',
+            'genre',
+            'category',
+            'subcategory',
+            'childSubcategory',
+        ]);
+
+        return new ContentResource($content);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Content  $content
+     * @return \Illuminate\Http\Response
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
+     */
+    public function destroy(Content $content)
+    {
+        $this->authorize('delete', [$this, $content]);
+
+        $this->repository->delete($content);
+
+        return response()->noContent();
     }
 }

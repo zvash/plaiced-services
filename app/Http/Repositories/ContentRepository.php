@@ -79,6 +79,27 @@ class ContentRepository extends Repository
     }
 
     /**
+     * Delete a content.
+     *
+     * @param  \App\Models\Content  $content
+     * @return void
+     *
+     * @throws \Throwable
+     */
+    public function delete(Content $content)
+    {
+        $callback = function (Content $content) {
+            $content->socials()->delete();
+            $content->assets()->delete();
+            $content->deals()->delete();
+
+            $content->delete();
+        };
+
+        $this->transaction($callback, $content);
+    }
+
+    /**
      * Create assets for created content.
      *
      * @param  \Illuminate\Http\Request  $request

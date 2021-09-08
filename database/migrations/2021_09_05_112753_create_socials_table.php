@@ -30,6 +30,7 @@ class CreateSocialsTable extends Migration
 
             $table->morphs('sociable');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

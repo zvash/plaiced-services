@@ -24,6 +24,7 @@ class CreateMediaAssetsTable extends Migration
             $table->text('url');
             $table->morphs('assetable');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
