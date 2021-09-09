@@ -2,6 +2,7 @@
     {
         "id": 1,
         "title": "Google",
+        "description": "Google LLC is an American multinational technology company that specializes in Internet-related services and products.",
         "category":  177,
         "subcategory":  189,
         "advertiser_id":  1
@@ -9,6 +10,7 @@
     {
         "id": 2,
         "title": "Coca-Cola",
+        "description":  "The Coca-Cola Company is an American multinational beverage corporation incorporated under Delaware's General Corporation Law and headquartered in Atlanta, Georgia.",
         "category":  177,
         "subcategory":  181,
         "advertiser_id":  2
@@ -16,6 +18,7 @@
     {
         "id": 3,
         "title": "Tesla",
+        "description":  "Tesla, Inc. is an American electric vehicle and clean energy company based in Palo Alto, California, United States.",
         "category":  177,
         "subcategory":  183,
         "advertiser_id":  3
@@ -23,6 +26,7 @@
     {
         "id": 4,
         "title": "Amazon",
+        "description":  "Amazon.com, Inc. is an American multinational conglomerate which focuses on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
         "category":  177,
         "subcategory":  186,
         "advertiser_id":  4

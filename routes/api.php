@@ -120,8 +120,8 @@ Route::prefix('brands/categories')->name('brands.categories.')->group(function (
     Route::get('/', [BrandCategoryController::class, 'index'])->name('index');
     Route::get('{dropdown}', [BrandCategoryController::class, 'show'])->name('show');
 });
-Route::apiResource('brands', BrandController::class)->only('index', 'show');
-Route::apiResource('advertisers.brands', AdvertiserBrandController::class)->only('index');
+Route::apiResource('brands', BrandController::class)->only('index', 'show', 'destroy');
+Route::apiResource('advertisers.brands', AdvertiserBrandController::class)->only('index', 'store');
 
 // Dropdown group routes
 Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)->only('index', 'store');

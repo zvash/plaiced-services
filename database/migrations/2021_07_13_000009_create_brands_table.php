@@ -17,10 +17,10 @@ class CreateBrandsTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('title');
+            $table->text('description');
             $table->boolean('featured')->default(false)->index();
             $table->text('general_comment')->nullable();
             $table->text('avatar')->nullable();
-            $table->unsignedTinyInteger('placement')->nullable(); // Todo: What is this ?
 
             $this->columns()->each(function (string $column) use ($table) {
                 $table->json($column);

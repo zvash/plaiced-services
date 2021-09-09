@@ -55,15 +55,15 @@ class ContentController extends Controller
      */
     public function show(Content $content)
     {
-        $content->load([
-            'viewership',
-            'genre',
-            'category',
-            'subcategory',
-            'childSubcategory',
-        ]);
-
-        return new ContentResource($content);
+        return new ContentResource(
+            $content->load([
+                'viewership',
+                'genre',
+                'category',
+                'subcategory',
+                'childSubcategory',
+            ])
+        );
     }
 
     /**

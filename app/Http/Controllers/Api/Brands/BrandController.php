@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api\Brands;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\BrandRepository as Repository;
+use App\Http\Resources\BrandResource;
 use App\Http\Resources\Summaries\BrandSummaryResource;
 use App\Models\Brand;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,13 +13,23 @@ use Illuminate\Http\Request;
 class BrandController extends Controller
 {
     /**
+     * Brand repository.
+     *
+     * @var \App\Http\Repositories\BrandRepository
+     */
+    protected $repository;
+
+    /**
      * Brand controller constructor.
      *
+     * @param  \App\Http\Repositories\BrandRepository  $repository
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('auth:api');
+
+        $this->repository = $repository;
     }
 
     /**
@@ -43,6 +55,26 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        return new BrandSummaryResource($brand);
+        return new BrandResource(
+            $brand->load(['category', 'subcategory'])
+        );
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Brand  $brand
+     * @return \Illuminate\Http\Response
+     *
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
+     */
+    public function destroy(Brand $brand)
+    {
+        $this->authorize('delete', [$this, $brand]);
+
+        $this->repository->delete($brand);
+
+        return response()->noContent();
     }
 }
