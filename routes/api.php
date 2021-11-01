@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\Brands\AdvertiserBrandController;
 use App\Http\Controllers\Api\Brands\BrandCategoryController;
 use App\Http\Controllers\Api\Brands\BrandController;
 use App\Http\Controllers\Api\CommunityNews\CommunityNewsController;
+use App\Http\Controllers\Api\ContentCreators\ContentCreatorController;
 use App\Http\Controllers\Api\Contents\ContentCategoryController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
@@ -106,6 +107,9 @@ Route::apiResource('content-creators.follows', ContentCreatorFollowController::c
 Route::apiResource('advertisers.follows', AdvertiserFollowController::class)->only('index', 'store');
 Route::apiResource('users.follows', UserFollowController::class)->only('index');
 Route::apiResource('follows', FollowController::class)->only('index');
+
+// Content creator routes
+Route::apiResource('content-creators', ContentCreatorController::class)->only('index', 'show');
 
 // Content routes
 Route::prefix('contents/categories')->name('contents.categories.')->group(function () {
