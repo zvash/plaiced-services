@@ -3,21 +3,30 @@
 namespace App\Http\Controllers\Api\Payments;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\PaymentRepository as Repository;
 use App\Http\Requests\StoreDealPaymentRequest as Request;
 use App\Http\Resources\PaymentResource;
 use App\Models\Deal;
-use App\Models\Payment;
 
 class DealPaymentController extends Controller
 {
+    /**
+     * Payment repository.
+     *
+     * @var \App\Http\Repositories\PaymentRepository
+     */
+    protected $repository;
+
     /**
      * Deal payment controller constructor.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('auth:api');
+
+        $this->repository = $repository;
     }
 
     /**
@@ -48,11 +57,8 @@ class DealPaymentController extends Controller
     {
         $this->authorize('create', [$this, $deal]);
 
-        $payment = new Payment($request->validated());
-        $payment->deal()->associate($deal);
-
         $resource = new PaymentResource(
-            $payment = $request->user()->payments()->save($payment)
+            $payment = $this->repository->create($request, $deal)
         );
 
         return $resource->withLocation('payments.show', [$payment]);

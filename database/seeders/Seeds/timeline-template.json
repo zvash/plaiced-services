@@ -10,7 +10,7 @@
         "icon": null
     },
     {
-        "event_name": "DealPayment:Update",
+        "event_name": "DealPayment:Create",
         "template": "A payment was recorded on :date, and the deal is now active.",
         "icon": null
     },
