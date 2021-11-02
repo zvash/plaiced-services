@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Api\ContentCreators;
+namespace App\Http\Controllers\Api\Advertisers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\IndexSortRequest;
-use App\Http\Resources\Summaries\ContentCreatorSummaryResource;
-use App\Models\ContentCreator;
+use App\Http\Resources\Summaries\AdvertiserSummaryResource;
+use App\Models\Advertiser;
 
-class ContentCreatorController extends Controller
+class AdvertiserController extends Controller
 {
     /**
-     * Content creator controller constructor.
+     * Advertiser controller constructor.
      *
      * @return void
      */
@@ -29,8 +29,8 @@ class ContentCreatorController extends Controller
     {
         $attributes = $request->validated();
 
-        return ContentCreatorSummaryResource::collection(
-            ContentCreator::wherePrivate(false)
+        return AdvertiserSummaryResource::collection(
+            Advertiser::wherePrivate(false)
                 ->orderBy($attributes['sort_by'], $attributes['sort_type'])
                 ->paginate(15)
         );
@@ -39,11 +39,11 @@ class ContentCreatorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ContentCreator  $contentCreator
+     * @param  \App\Models\Advertiser  $advertiser
      * @return \Illuminate\Http\Resources\Json\JsonResource
      */
-    public function show(ContentCreator $contentCreator)
+    public function show(Advertiser $advertiser)
     {
-        return new ContentCreatorSummaryResource($contentCreator);
+        return new AdvertiserSummaryResource($advertiser);
     }
 }

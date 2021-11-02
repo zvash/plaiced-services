@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Advertisers\AdvertiserController;
 use App\Http\Controllers\Api\Blogs\BlogController;
 use App\Http\Controllers\Api\Brands\AdvertiserBrandController;
 use App\Http\Controllers\Api\Brands\BrandCategoryController;
@@ -108,9 +109,6 @@ Route::apiResource('advertisers.follows', AdvertiserFollowController::class)->on
 Route::apiResource('users.follows', UserFollowController::class)->only('index');
 Route::apiResource('follows', FollowController::class)->only('index');
 
-// Content creator routes
-Route::apiResource('content-creators', ContentCreatorController::class)->only('index', 'show');
-
 // Content routes
 Route::prefix('contents/categories')->name('contents.categories.')->group(function () {
     Route::get('/', [ContentCategoryController::class, 'index'])->name('index');
@@ -129,3 +127,9 @@ Route::apiResource('advertisers.brands', AdvertiserBrandController::class)->only
 
 // Dropdown group routes
 Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)->only('index', 'store');
+
+// Content creator routes
+Route::apiResource('content-creators', ContentCreatorController::class)->only('index', 'show');
+
+// Advertiser routes
+Route::apiResource('advertisers', AdvertiserController::class)->only('index', 'show');
