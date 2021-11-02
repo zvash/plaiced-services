@@ -18,8 +18,6 @@ class DealSurveyControllerPolicy
      * @param  \App\Http\Controllers\Controller  $controller
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Auth\Access\Response|bool
-     *
-     * @throws \App\Exceptions\UserException
      */
     public function create(User $user, Controller $controller, Deal $deal)
     {

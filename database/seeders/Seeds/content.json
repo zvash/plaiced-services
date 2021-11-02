@@ -26,7 +26,7 @@
         "category":  37,
         "subcategory":  47,
         "child_subcategory":  91,
-        "content_creator_id":  3,
+        "content_creator_id":  1,
         "country_id": 236
     },
     {
@@ -36,7 +36,7 @@
         "category":  38,
         "subcategory":  47,
         "child_subcategory":  98,
-        "content_creator_id":  4,
+        "content_creator_id":  2,
         "country_id": 236
     }
 ]

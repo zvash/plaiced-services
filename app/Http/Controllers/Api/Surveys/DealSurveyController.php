@@ -37,8 +37,6 @@ class DealSurveyController extends Controller
      * @param \Illuminate\Http\Request  $request
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     *
-     * @throws \App\Exceptions\UserException
      */
     public function index(Request $request, Deal $deal)
     {
@@ -54,7 +52,6 @@ class DealSurveyController extends Controller
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Http\Resources\Json\JsonResource
      *
-     * @throws \App\Exceptions\UserException
      * @throws \Illuminate\Auth\Access\AuthorizationException
      * @throws \Throwable
      */

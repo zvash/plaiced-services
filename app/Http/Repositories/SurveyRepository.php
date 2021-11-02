@@ -2,15 +2,11 @@
 
 namespace App\Http\Repositories;
 
-use App\Exceptions\UserException;
 use App\Http\Repositories\Abstraction\Repository;
 use App\Models\Abstraction\SurveyProvider;
-use App\Models\Advertiser;
 use App\Models\AdvertiserSurvey;
-use App\Models\ContentCreator;
 use App\Models\ContentCreatorSurvey;
 use App\Models\Deal;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
@@ -23,15 +19,14 @@ class SurveyRepository extends Repository
      * @param  \App\Models\Deal $deal
      * @return \App\Models\Abstraction\SurveyProvider
      *
-     * @throws \App\Exceptions\UserException
      * @throws \Throwable
      */
     public function create(Request $request, Deal $deal)
     {
         $callback = function (Request $request, Deal $deal) {
-            $survey = $this->survey($request->validated(), $request->user(), $deal);
+            $survey = $this->survey($request, $deal);
 
-            $this->rating($survey);
+            $this->rating($survey)->timeline($survey);
 
             return $survey;
         };
@@ -42,27 +37,17 @@ class SurveyRepository extends Repository
     /**
      * Create survey base on user class.
      *
-     * @param  array  $attributes
-     * @param  \App\Models\User  $user
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Deal  $deal
      * @return \App\Models\Abstraction\SurveyProvider
-     *
-     * @throws \App\Exceptions\UserException
      */
-    private function survey(array $attributes, User $user, Deal $deal)
+    private function survey(Request $request, Deal $deal)
     {
-        switch ($user->class) {
-            case Advertiser::class:
-                $survey = new ContentCreatorSurvey($attributes);
-                break;
+        $user = $request->user();
 
-            case ContentCreator::class:
-                $survey = new AdvertiserSurvey($attributes);
-                break;
-
-            default:
-                throw new UserException('Invalid user class.');
-        }
+        $survey = $user->isAdvertiser()
+            ? new ContentCreatorSurvey($request->validated())
+            : new AdvertiserSurvey($request->validated());
 
         $survey->user()->associate($user);
         $survey->deal()->associate($deal);
@@ -74,7 +59,7 @@ class SurveyRepository extends Repository
      * Update rating and rating_count on owner model.
      *
      * @param  \App\Models\Abstraction\SurveyProvider  $survey
-     * @return int
+     * @return $this
      */
     private function rating(SurveyProvider $survey)
     {
@@ -86,7 +71,28 @@ class SurveyRepository extends Repository
             ->whereHas($relation, $callback)
             ->avg('other_party_rating') ?: 0;
 
-        return $owner->increment('rating_count', 1, compact('rating'));
+        $owner->increment('rating_count', 1, compact('rating'));
+
+        return $this;
+    }
+
+    /**
+     * Add timeline for created survey.
+     *
+     * @param  \App\Models\Abstraction\SurveyProvider  $survey
+     * @return $this
+     */
+    private function timeline(SurveyProvider $survey)
+    {
+        $deal = $survey->deal;
+
+        $title = $survey instanceof AdvertiserSurvey
+            ? $deal->content->contentCreator->title
+            : $deal->brand->advertiser->title;
+
+        $deal->addTimeline('DealSurvey:Create', compact('title'));
+
+        return $this;
     }
 
     /**

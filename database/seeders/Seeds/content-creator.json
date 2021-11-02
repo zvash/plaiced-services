@@ -1,22 +1,6 @@
 [
     {
         "id": 1,
-        "title": "Initial D",
-        "website": "https://initiald.com",
-        "user_id": 2,
-        "country_id": 236,
-        "type": 1
-    },
-    {
-        "id": 2,
-        "title": "Sony Pictures",
-        "website": "https://sony.com",
-        "user_id": 4,
-        "country_id": 236,
-        "type": 7
-    },
-    {
-        "id": 3,
         "title": "Netflix",
         "website": "https://netflix.com",
         "user_id": 2,
@@ -24,7 +8,7 @@
         "type": 23
     },
     {
-        "id": 4,
+        "id": 2,
         "title": "Warner Bros",
         "website": "https://www.warnerbros.com",
         "user_id": 4,

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Exceptions\UserException;
 use App\Models\Pivots\UserWishlist;
 use App\Models\Traits\HasUuid;
 use Illuminate\Database\Eloquent\Builder;
@@ -182,25 +181,34 @@ class User extends Authenticatable
      *
      * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Database\Eloquent\Builder
-     *
-     * @throws \App\Exceptions\UserException
      */
     public function hasSurvey(Deal $deal)
     {
-        switch ($this->class) {
-            case Advertiser::class:
-                $builder = $this->contentCreatorSurveys();
-                break;
-
-            case ContentCreator::class:
-                $builder = $this->advertiserSurveys();
-                break;
-
-            default:
-                throw new UserException('Invalid user class.');
-        }
+        $builder = $this->isAdvertiser()
+            ? $this->contentCreatorSurveys()
+            : $this->advertiserSurveys();
 
         return $builder->whereDealId($deal->id);
+    }
+
+    /**
+     * Check user is an advertiser.
+     *
+     * @return bool
+     */
+    public function isAdvertiser()
+    {
+        return $this->class === Advertiser::class;
+    }
+
+    /**
+     * Check user is a content creator.
+     *
+     * @return bool
+     */
+    public function isContentCreator()
+    {
+        return $this->class === ContentCreator::class;
     }
 
     /**
