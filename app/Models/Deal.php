@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\HasUuid;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -219,6 +220,36 @@ class Deal extends Model
     }
 
     /**
+     * Get all the deals related to specific advertiser.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
+     * @param  \App\Models\Advertiser  $advertiser
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByAdvertiser(Builder $builder, Advertiser $advertiser)
+    {
+        return $builder->whereHas(
+            'brand.advertiser',
+            fn (Builder $query) => $query->whereKey($advertiser->id)
+        );
+    }
+
+    /**
+     * Get all the deals related to specific content creator.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
+     * @param  \App\Models\ContentCreator  $contentCreator
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByContentCreator(Builder $builder, ContentCreator $contentCreator)
+    {
+        return $builder->whereHas(
+            'content.contentCreator',
+            fn (Builder $query) => $query->whereKey($contentCreator->id)
+        );
+    }
+
+    /**
      * Check authorization specific user for a deal.
      *
      * @param  \App\Models\User  $user
@@ -269,5 +300,22 @@ class Deal extends Model
         $timeline->model()->associate($post);
 
         return $this->timelines()->save($timeline);
+    }
+
+    /**
+     * Get all the statuses.
+     *
+     * @return array
+     */
+    public static function getStatuses()
+    {
+        return [
+            self::STATUS_PENDING,
+            self::STATUS_WAITING_FOR_PAYMENT,
+            self::STATUS_ACTIVE,
+            self::STATUS_FINISHED,
+            self::STATUS_REJECTED,
+            self::STATUS_RETRACTED
+        ];
     }
 }

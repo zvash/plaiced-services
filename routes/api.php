@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Advertisers\AdvertiserController;
+use App\Http\Controllers\Api\Deals\AdvertiserDealController;
 use App\Http\Controllers\Api\Blogs\BlogController;
 use App\Http\Controllers\Api\Brands\AdvertiserBrandController;
 use App\Http\Controllers\Api\Brands\BrandCategoryController;
@@ -127,6 +128,9 @@ Route::apiResource('advertisers.brands', AdvertiserBrandController::class)->only
 
 // Dropdown group routes
 Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)->only('index', 'store');
+
+// Deal routes
+Route::apiResource('advertisers.deals', AdvertiserDealController::class)->only('index');
 
 // Content creator routes
 Route::apiResource('content-creators', ContentCreatorController::class)->only('index', 'show');
