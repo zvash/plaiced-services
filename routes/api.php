@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\ContentCreators\ContentCreatorController;
 use App\Http\Controllers\Api\Contents\ContentCategoryController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
+use App\Http\Controllers\Api\Deals\ContentCreatorDealController;
 use App\Http\Controllers\Api\DropdownGroups\DropdownGroupController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
@@ -131,6 +132,7 @@ Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)-
 
 // Deal routes
 Route::apiResource('advertisers.deals', AdvertiserDealController::class)->only('index');
+Route::apiResource('content-creators.deals', ContentCreatorDealController::class)->only('index');
 
 // Content creator routes
 Route::apiResource('content-creators', ContentCreatorController::class)->only('index', 'show');

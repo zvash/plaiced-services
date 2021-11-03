@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Brands\AdvertiserBrandController;
 use App\Http\Controllers\Api\Brands\BrandController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
+use App\Http\Controllers\Api\Deals\ContentCreatorDealController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
 use App\Http\Controllers\Api\Likes\BrandLikeController;
@@ -24,6 +25,7 @@ use App\Policies\Controllers\Brands\AdvertiserBrandControllerPolicy;
 use App\Policies\Controllers\Brands\BrandControllerPolicy;
 use App\Policies\Controllers\Contents\ContentControllerPolicy;
 use App\Policies\Controllers\Contents\ContentCreatorContentControllerPolicy;
+use App\Policies\Controllers\Deals\ContentCreatorDealControllerPolicy;
 use App\Policies\Controllers\Follows\AdvertiserFollowControllerPolicy;
 use App\Policies\Controllers\Follows\ContentCreatorFollowControllerPolicy;
 use App\Policies\Controllers\Likes\BrandLikeControllerPolicy;
@@ -61,6 +63,7 @@ class AuthServiceProvider extends ServiceProvider
         ContentPaymentController::class => ContentPaymentControllerPolicy::class,
         AdvertiserBrandController::class => AdvertiserBrandControllerPolicy::class,
         AdvertiserFollowController::class => AdvertiserFollowControllerPolicy::class,
+        ContentCreatorDealController::class => ContentCreatorDealControllerPolicy::class,
         ContentCreatorFollowController::class => ContentCreatorFollowControllerPolicy::class,
         ContentCreatorContentController::class => ContentCreatorContentControllerPolicy::class,
     ];
