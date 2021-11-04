@@ -12,7 +12,7 @@ class DealCoordinateAddedValueControllerPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the user can request coordinate added value.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller

@@ -7,12 +7,12 @@ use App\Models\Deal;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DealMediaAccountabilityControllerPolicy
+class DealCancelControllerPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can request media accountability.
+     * Determine whether the user can cancel the deal.
      *
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller
@@ -21,9 +21,7 @@ class DealMediaAccountabilityControllerPolicy
      */
     public function perform(User $user, Controller $controller, Deal $deal)
     {
-        return $user->isAdvertiser()
-            && $deal->isActive()
-            && $deal->authorize($user)
-            && is_null($deal->media_accountability);
+        return ($deal->isPending() || $deal->isWatingForPayment())
+            && $deal->owner->user->is($user);
     }
 }

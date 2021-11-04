@@ -10,9 +10,12 @@ use App\Http\Controllers\Api\ContentCreators\ContentCreatorController;
 use App\Http\Controllers\Api\Contents\ContentCategoryController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
+use App\Http\Controllers\Api\Deals\DealAcceptController;
+use App\Http\Controllers\Api\Deals\DealCancelController;
 use App\Http\Controllers\Api\Deals\DealController;
 use App\Http\Controllers\Api\Deals\DealCoordinateAddedValueController;
 use App\Http\Controllers\Api\Deals\DealMediaAccountabilityController;
+use App\Http\Controllers\Api\Deals\DealRejectController;
 use App\Http\Controllers\Api\DropdownGroups\DropdownGroupController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
@@ -133,8 +136,11 @@ Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)-
 
 // Deal routes
 Route::prefix('deals/{deal}')->name('deals.')->group(function () {
-    Route::patch('coordinate-added-value', DealCoordinateAddedValueController::class)->name('coordinate');
-    Route::patch('media-accountability', DealMediaAccountabilityController::class)->name('coordinate');
+    Route::patch('accept', DealAcceptController::class)->name('accept');
+    Route::patch('reject', DealRejectController::class)->name('reject');
+    Route::patch('cancel', DealCancelController::class)->name('cancel');
+    Route::patch('coordinate', DealCoordinateAddedValueController::class)->name('coordinate');
+    Route::patch('accountability', DealMediaAccountabilityController::class)->name('accountability');
 });
 Route::apiResource('deals', DealController::class);
 

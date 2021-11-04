@@ -6,9 +6,12 @@ use App\Http\Controllers\Api\Brands\AdvertiserBrandController;
 use App\Http\Controllers\Api\Brands\BrandController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
+use App\Http\Controllers\Api\Deals\DealAcceptController;
+use App\Http\Controllers\Api\Deals\DealCancelController;
 use App\Http\Controllers\Api\Deals\DealController;
 use App\Http\Controllers\Api\Deals\DealCoordinateAddedValueController;
 use App\Http\Controllers\Api\Deals\DealMediaAccountabilityController;
+use App\Http\Controllers\Api\Deals\DealRejectController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
 use App\Http\Controllers\Api\Likes\BrandLikeController;
@@ -25,9 +28,12 @@ use App\Policies\Controllers\Brands\AdvertiserBrandControllerPolicy;
 use App\Policies\Controllers\Brands\BrandControllerPolicy;
 use App\Policies\Controllers\Contents\ContentControllerPolicy;
 use App\Policies\Controllers\Contents\ContentCreatorContentControllerPolicy;
+use App\Policies\Controllers\Deals\DealAcceptControllerPolicy;
+use App\Policies\Controllers\Deals\DealCancelControllerPolicy;
 use App\Policies\Controllers\Deals\DealControllerPolicy;
 use App\Policies\Controllers\Deals\DealCoordinateAddedValueControllerPolicy;
 use App\Policies\Controllers\Deals\DealMediaAccountabilityControllerPolicy;
+use App\Policies\Controllers\Deals\DealRejectControllerPolicy;
 use App\Policies\Controllers\Follows\AdvertiserFollowControllerPolicy;
 use App\Policies\Controllers\Follows\ContentCreatorFollowControllerPolicy;
 use App\Policies\Controllers\Likes\BrandLikeControllerPolicy;
@@ -50,25 +56,47 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        // Deals
         DealController::class => DealControllerPolicy::class,
-        BrandController::class => BrandControllerPolicy::class,
-        ContentController::class => ContentControllerPolicy::class,
-        PaymentController::class => PaymentControllerPolicy::class,
-        DealPostController::class => DealPostControllerPolicy::class,
-        BrandLikeController::class => BrandLikeControllerPolicy::class,
-        DealSurveyController::class => DealSurveyControllerPolicy::class,
-        ContentLikeController::class => ContentLikeControllerPolicy::class,
-        DealProductController::class => DealProductControllerPolicy::class,
-        DealPaymentController::class => DealPaymentControllerPolicy::class,
-        DealTimelineController::class => DealTimelineControllerPolicy::class,
-        BrandPaymentController::class => BrandPaymentControllerPolicy::class,
-        ContentPaymentController::class => ContentPaymentControllerPolicy::class,
-        AdvertiserBrandController::class => AdvertiserBrandControllerPolicy::class,
-        AdvertiserFollowController::class => AdvertiserFollowControllerPolicy::class,
-        ContentCreatorFollowController::class => ContentCreatorFollowControllerPolicy::class,
-        ContentCreatorContentController::class => ContentCreatorContentControllerPolicy::class,
+        DealAcceptController::class => DealAcceptControllerPolicy::class,
+        DealCancelController::class => DealCancelControllerPolicy::class,
+        DealRejectController::class => DealRejectControllerPolicy::class,
         DealMediaAccountabilityController::class => DealMediaAccountabilityControllerPolicy::class,
         DealCoordinateAddedValueController::class => DealCoordinateAddedValueControllerPolicy::class,
+
+        // Brands
+        BrandController::class => BrandControllerPolicy::class,
+        AdvertiserBrandController::class => AdvertiserBrandControllerPolicy::class,
+
+        // Contents
+        ContentController::class => ContentControllerPolicy::class,
+        ContentCreatorContentController::class => ContentCreatorContentControllerPolicy::class,
+
+        // Payments
+        PaymentController::class => PaymentControllerPolicy::class,
+        DealPaymentController::class => DealPaymentControllerPolicy::class,
+        BrandPaymentController::class => BrandPaymentControllerPolicy::class,
+        ContentPaymentController::class => ContentPaymentControllerPolicy::class,
+
+        // Posts
+        DealPostController::class => DealPostControllerPolicy::class,
+
+        // Products
+        DealProductController::class => DealProductControllerPolicy::class,
+
+        // Likes
+        BrandLikeController::class => BrandLikeControllerPolicy::class,
+        ContentLikeController::class => ContentLikeControllerPolicy::class,
+
+        // Follows
+        AdvertiserFollowController::class => AdvertiserFollowControllerPolicy::class,
+        ContentCreatorFollowController::class => ContentCreatorFollowControllerPolicy::class,
+
+        // Surveys
+        DealSurveyController::class => DealSurveyControllerPolicy::class,
+
+        // Timelines
+        DealTimelineController::class => DealTimelineControllerPolicy::class,
     ];
 
     /**

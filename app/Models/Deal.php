@@ -325,9 +325,7 @@ class Deal extends Model
      */
     public function coordinateAddedValue(?int $status)
     {
-        $this->fill(['coordinate_added_value' => $status])->save();
-
-        return $this;
+        return tap($this->fill(['coordinate_added_value' => $status]))->save();
     }
 
     /**
@@ -337,9 +335,7 @@ class Deal extends Model
      */
     public function mediaAccountability(?int $status)
     {
-        $this->fill(['media_accountability' => $status])->save();
-
-        return $this;
+        return tap($this->fill(['media_accountability' => $status]))->save();
     }
 
     /**
@@ -353,6 +349,16 @@ class Deal extends Model
     }
 
     /**
+     * Change deal status to pending.
+     *
+     * @return $this
+     */
+    public function pending()
+    {
+        return tap($this->fill(['status' => self::STATUS_PENDING]))->save();
+    }
+
+    /**
      * Check deal is waiting for payment.
      *
      * @return bool
@@ -360,6 +366,16 @@ class Deal extends Model
     public function isWatingForPayment()
     {
         return $this->status === self::STATUS_WAITING_FOR_PAYMENT;
+    }
+
+    /**
+     * Change deal status to waiting for payment.
+     *
+     * @return $this
+     */
+    public function waitingForPayment()
+    {
+        return tap($this->fill(['status' => self::STATUS_WAITING_FOR_PAYMENT]))->save();
     }
 
     /**
@@ -373,6 +389,16 @@ class Deal extends Model
     }
 
     /**
+     * Change deal status to active.
+     *
+     * @return $this
+     */
+    public function active()
+    {
+        return tap($this->fill(['status' => self::STATUS_ACTIVE]))->save();
+    }
+
+    /**
      * Check deal is finished.
      *
      * @return bool
@@ -380,6 +406,16 @@ class Deal extends Model
     public function isFinished()
     {
         return $this->status === self::STATUS_FINISHED;
+    }
+
+    /**
+     * Change deal status to finished.
+     *
+     * @return $this
+     */
+    public function finished()
+    {
+        return tap($this->fill(['status' => self::STATUS_FINISHED]))->save();
     }
 
     /**
@@ -393,6 +429,16 @@ class Deal extends Model
     }
 
     /**
+     * Change deal status to rejected.
+     *
+     * @return $this
+     */
+    public function rejected()
+    {
+        return tap($this->fill(['status' => self::STATUS_REJECTED]))->save();
+    }
+
+    /**
      * Check deal is retracted.
      *
      * @return bool
@@ -400,6 +446,16 @@ class Deal extends Model
     public function isRetracted()
     {
         return $this->status === self::STATUS_RETRACTED;
+    }
+
+    /**
+     * Change deal status to retracted.
+     *
+     * @return $this
+     */
+    public function retracted()
+    {
+        return tap($this->fill(['status' => self::STATUS_RETRACTED]))->save();
     }
 
     /**
