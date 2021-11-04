@@ -3,11 +3,11 @@
 namespace App\Policies\Controllers\Deals;
 
 use App\Http\Controllers\Controller;
-use App\Models\Advertiser;
+use App\Models\Deal;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class AdvertiserDealControllerPolicy
+class DealControllerPolicy
 {
     use HandlesAuthorization;
 
@@ -16,11 +16,11 @@ class AdvertiserDealControllerPolicy
      *
      * @param  \App\Models\User  $user
      * @param  \App\Http\Controllers\Controller  $controller
-     * @param  \App\Models\Advertiser  $advertiser
+     * @param  \App\Models\Deal  $deal
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user, Controller $controller, Advertiser $advertiser)
+    public function view(User $user, Controller $controller, Deal $deal)
     {
-        return $user->class === Advertiser::class && $advertiser->user->is($user);
+        return $deal->authorize($user);
     }
 }

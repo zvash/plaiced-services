@@ -220,6 +220,22 @@ class Deal extends Model
     }
 
     /**
+     * Get all the deals for specific user.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $builder
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByUser(Builder $builder, User $user)
+    {
+        if ($user->isAdvertiser()) {
+            return $builder->byAdvertiser($user->advertiser);
+        }
+
+        return $builder->byContentCreator($user->contentCreator);
+    }
+
+    /**
      * Get all the deals related to specific advertiser.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $builder

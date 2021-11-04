@@ -2,12 +2,11 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Api\Deals\AdvertiserDealController;
 use App\Http\Controllers\Api\Brands\AdvertiserBrandController;
 use App\Http\Controllers\Api\Brands\BrandController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
-use App\Http\Controllers\Api\Deals\ContentCreatorDealController;
+use App\Http\Controllers\Api\Deals\DealController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
 use App\Http\Controllers\Api\Likes\BrandLikeController;
@@ -20,12 +19,11 @@ use App\Http\Controllers\Api\Posts\DealPostController;
 use App\Http\Controllers\Api\Products\DealProductController;
 use App\Http\Controllers\Api\Surveys\DealSurveyController;
 use App\Http\Controllers\Api\Timelines\DealTimelineController;
-use App\Policies\Controllers\Deals\AdvertiserDealControllerPolicy;
 use App\Policies\Controllers\Brands\AdvertiserBrandControllerPolicy;
 use App\Policies\Controllers\Brands\BrandControllerPolicy;
 use App\Policies\Controllers\Contents\ContentControllerPolicy;
 use App\Policies\Controllers\Contents\ContentCreatorContentControllerPolicy;
-use App\Policies\Controllers\Deals\ContentCreatorDealControllerPolicy;
+use App\Policies\Controllers\Deals\DealControllerPolicy;
 use App\Policies\Controllers\Follows\AdvertiserFollowControllerPolicy;
 use App\Policies\Controllers\Follows\ContentCreatorFollowControllerPolicy;
 use App\Policies\Controllers\Likes\BrandLikeControllerPolicy;
@@ -48,6 +46,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        DealController::class => DealControllerPolicy::class,
         BrandController::class => BrandControllerPolicy::class,
         ContentController::class => ContentControllerPolicy::class,
         PaymentController::class => PaymentControllerPolicy::class,
@@ -59,11 +58,9 @@ class AuthServiceProvider extends ServiceProvider
         DealPaymentController::class => DealPaymentControllerPolicy::class,
         DealTimelineController::class => DealTimelineControllerPolicy::class,
         BrandPaymentController::class => BrandPaymentControllerPolicy::class,
-        AdvertiserDealController::class => AdvertiserDealControllerPolicy::class,
         ContentPaymentController::class => ContentPaymentControllerPolicy::class,
         AdvertiserBrandController::class => AdvertiserBrandControllerPolicy::class,
         AdvertiserFollowController::class => AdvertiserFollowControllerPolicy::class,
-        ContentCreatorDealController::class => ContentCreatorDealControllerPolicy::class,
         ContentCreatorFollowController::class => ContentCreatorFollowControllerPolicy::class,
         ContentCreatorContentController::class => ContentCreatorContentControllerPolicy::class,
     ];

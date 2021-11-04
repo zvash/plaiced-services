@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\Advertisers\AdvertiserController;
-use App\Http\Controllers\Api\Deals\AdvertiserDealController;
 use App\Http\Controllers\Api\Blogs\BlogController;
 use App\Http\Controllers\Api\Brands\AdvertiserBrandController;
 use App\Http\Controllers\Api\Brands\BrandCategoryController;
@@ -11,7 +10,7 @@ use App\Http\Controllers\Api\ContentCreators\ContentCreatorController;
 use App\Http\Controllers\Api\Contents\ContentCategoryController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
-use App\Http\Controllers\Api\Deals\ContentCreatorDealController;
+use App\Http\Controllers\Api\Deals\DealController;
 use App\Http\Controllers\Api\DropdownGroups\DropdownGroupController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
@@ -131,8 +130,7 @@ Route::apiResource('advertisers.brands', AdvertiserBrandController::class)->only
 Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)->only('index', 'store');
 
 // Deal routes
-Route::apiResource('advertisers.deals', AdvertiserDealController::class)->only('index');
-Route::apiResource('content-creators.deals', ContentCreatorDealController::class)->only('index');
+Route::apiResource('deals', DealController::class);
 
 // Content creator routes
 Route::apiResource('content-creators', ContentCreatorController::class)->only('index', 'show');

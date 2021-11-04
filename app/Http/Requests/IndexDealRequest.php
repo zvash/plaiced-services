@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Models\Deal;
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexStatusRequest extends FormRequest
+class IndexDealRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
