@@ -21,6 +21,6 @@ class ContentCreatorContentControllerPolicy
      */
     public function create(User $user, Controller $controller, ContentCreator $contentCreator)
     {
-        return $user->class === ContentCreator::class && $contentCreator->user->is($user);
+        return $user->isContentCreator() && $contentCreator->user->is($user);
     }
 }

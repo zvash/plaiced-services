@@ -3,7 +3,6 @@
 namespace App\Policies\Controllers\Likes;
 
 use App\Http\Controllers\Controller;
-use App\Models\Advertiser;
 use App\Models\Content;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -22,7 +21,7 @@ class ContentLikeControllerPolicy
      */
     public function viewAny(User $user, Controller $controller, Content $content)
     {
-        return $content->contentCreator->user->is($user) || $user->class === Advertiser::class;
+        return $user->isAdvertiser() || $content->contentCreator->user->is($user);
     }
 
     /**
@@ -35,7 +34,7 @@ class ContentLikeControllerPolicy
      */
     public function create(User $user, Controller $controller, Content $content)
     {
-        return $user->class === Advertiser::class && ! $user->liked($content);
+        return $user->isAdvertiser() && ! $user->liked($content);
     }
 
     /**
@@ -48,6 +47,6 @@ class ContentLikeControllerPolicy
      */
     public function delete(User $user, Controller $controller, Content $content)
     {
-        return $user->class === Advertiser::class && $user->liked($content);
+        return $user->isAdvertiser() && $user->liked($content);
     }
 }

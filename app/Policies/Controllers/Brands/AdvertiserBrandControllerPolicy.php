@@ -21,6 +21,6 @@ class AdvertiserBrandControllerPolicy
      */
     public function create(User $user, Controller $controller, Advertiser $advertiser)
     {
-        return $user->class === Advertiser::class && $advertiser->user->is($user);
+        return $user->isAdvertiser() && $advertiser->user->is($user);
     }
 }

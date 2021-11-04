@@ -4,7 +4,6 @@ namespace App\Policies\Controllers\Likes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use App\Models\ContentCreator;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -22,7 +21,7 @@ class BrandLikeControllerPolicy
      */
     public function viewAny(User $user, Controller $controller, Brand $brand)
     {
-        return $brand->advertiser->user->is($user) || $user->class === ContentCreator::class;
+        return $user->isContentCreator() || $brand->advertiser->user->is($user);
     }
 
     /**
@@ -35,7 +34,7 @@ class BrandLikeControllerPolicy
      */
     public function create(User $user, Controller $controller, Brand $brand)
     {
-        return $user->class === ContentCreator::class && ! $user->liked($brand);
+        return $user->isContentCreator() && ! $user->liked($brand);
     }
 
     /**
@@ -48,6 +47,6 @@ class BrandLikeControllerPolicy
      */
     public function delete(User $user, Controller $controller, Brand $brand)
     {
-        return $user->class === ContentCreator::class && $user->liked($brand);
+        return $user->isContentCreator() && $user->liked($brand);
     }
 }

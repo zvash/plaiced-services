@@ -3,7 +3,6 @@
 namespace App\Policies\Controllers\Follows;
 
 use App\Http\Controllers\Controller;
-use App\Models\Advertiser;
 use App\Models\ContentCreator;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -22,7 +21,7 @@ class ContentCreatorFollowControllerPolicy
      */
     public function viewAny(User $user, Controller $controller, ContentCreator $contentCreator)
     {
-        return $contentCreator->user->is($user) || $user->class === Advertiser::class;
+        return $user->isAdvertiser() || $contentCreator->user->is($user);
     }
 
     /**
@@ -35,7 +34,7 @@ class ContentCreatorFollowControllerPolicy
      */
     public function create(User $user, Controller $controller, ContentCreator $contentCreator)
     {
-        return $user->class === Advertiser::class && ! $user->followed($contentCreator);
+        return $user->isAdvertiser() && ! $user->followed($contentCreator);
     }
 
     /**
@@ -48,6 +47,6 @@ class ContentCreatorFollowControllerPolicy
      */
     public function delete(User $user, Controller $controller, ContentCreator $contentCreator)
     {
-        return $user->class === Advertiser::class && $user->followed($contentCreator);
+        return $user->isAdvertiser() && $user->followed($contentCreator);
     }
 }

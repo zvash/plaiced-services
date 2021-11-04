@@ -198,7 +198,8 @@ class User extends Authenticatable
      */
     public function isAdvertiser()
     {
-        return $this->class === Advertiser::class;
+        return $this->class === Advertiser::class
+            && ! is_null($this->advertiser);
     }
 
     /**
@@ -208,7 +209,8 @@ class User extends Authenticatable
      */
     public function isContentCreator()
     {
-        return $this->class === ContentCreator::class;
+        return $this->class === ContentCreator::class
+            && ! is_null($this->contentCreator);
     }
 
     /**
