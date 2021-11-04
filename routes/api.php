@@ -11,6 +11,8 @@ use App\Http\Controllers\Api\Contents\ContentCategoryController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
 use App\Http\Controllers\Api\Deals\DealController;
+use App\Http\Controllers\Api\Deals\DealCoordinateAddedValueController;
+use App\Http\Controllers\Api\Deals\DealMediaAccountabilityController;
 use App\Http\Controllers\Api\DropdownGroups\DropdownGroupController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
@@ -130,6 +132,10 @@ Route::apiResource('advertisers.brands', AdvertiserBrandController::class)->only
 Route::apiResource('dropdown-groups.dropdowns', DropdownGroupController::class)->only('index', 'store');
 
 // Deal routes
+Route::prefix('deals/{deal}')->name('deals.')->group(function () {
+    Route::patch('coordinate-added-value', DealCoordinateAddedValueController::class)->name('coordinate');
+    Route::patch('media-accountability', DealMediaAccountabilityController::class)->name('coordinate');
+});
 Route::apiResource('deals', DealController::class);
 
 // Content creator routes

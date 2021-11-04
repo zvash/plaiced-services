@@ -319,6 +319,90 @@ class Deal extends Model
     }
 
     /**
+     * Change coordinate added value status on deal.
+     *
+     * @return $this
+     */
+    public function coordinateAddedValue(?int $status)
+    {
+        $this->fill(['coordinate_added_value' => $status])->save();
+
+        return $this;
+    }
+
+    /**
+     * Change media accountability status on deal.
+     *
+     * @return $this
+     */
+    public function mediaAccountability(?int $status)
+    {
+        $this->fill(['media_accountability' => $status])->save();
+
+        return $this;
+    }
+
+    /**
+     * Check deal is pending.
+     *
+     * @return bool
+     */
+    public function isPending()
+    {
+        return $this->status === self::STATUS_PENDING;
+    }
+
+    /**
+     * Check deal is waiting for payment.
+     *
+     * @return bool
+     */
+    public function isWatingForPayment()
+    {
+        return $this->status === self::STATUS_WAITING_FOR_PAYMENT;
+    }
+
+    /**
+     * Check deal is active.
+     *
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->status === self::STATUS_ACTIVE;
+    }
+
+    /**
+     * Check deal is finished.
+     *
+     * @return bool
+     */
+    public function isFinished()
+    {
+        return $this->status === self::STATUS_FINISHED;
+    }
+
+    /**
+     * Check deal is rejected.
+     *
+     * @return bool
+     */
+    public function isRejected()
+    {
+        return $this->status === self::STATUS_REJECTED;
+    }
+
+    /**
+     * Check deal is retracted.
+     *
+     * @return bool
+     */
+    public function isRetracted()
+    {
+        return $this->status === self::STATUS_RETRACTED;
+    }
+
+    /**
      * Get all the statuses.
      *
      * @return array
