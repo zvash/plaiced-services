@@ -88,13 +88,14 @@ class Deal extends Model
         'type' => 'integer',
         'status' => 'integer',
         'is_public' => 'boolean',
+        'flexible_date' => 'boolean',
         'ownership_type' => 'integer',
         'arrival_speed' => 'collection',
         'advertiser_gets' => 'collection',
-        'when_needed' => 'datetime:Y-m-d',
         'media_accountability' => 'integer',
         'exposure_expectations' => 'integer',
         'coordinate_added_value' => 'integer',
+        'shipping_submitted_at' => 'datetime:Y-m-d H:i:s',
     ];
 
     /**
@@ -104,8 +105,10 @@ class Deal extends Model
      */
     protected $attributes = [
         'is_public' => true,
+        'flexible_date' => false,
         'type' => self::TYPE_BARTER,
         'status' => self::STATUS_PENDING,
+        'ownership_type' => self::OWNERSHIP_TYPE_KEEP,
         'exposure_expectations' => self::EXPOSURE_EXPECTATIONS_MANDATORY,
     ];
 
@@ -167,6 +170,16 @@ class Deal extends Model
     public function contentCreatorSurvey()
     {
         return $this->hasOne(ContentCreatorSurvey::class);
+    }
+
+    /**
+     * Get the submitter that owns the deal.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function submittedBy()
+    {
+        return $this->belongsTo(User::class, 'shipping_submitted_by');
     }
 
     /**

@@ -24,6 +24,7 @@ class CreateDealsTable extends Migration
             $table->json('arrival_speed')->nullable();
             $table->text('arrival_speed_brief')->nullable();
             $table->boolean('is_public')->default(true)->index();
+            $table->boolean('flexible_date')->default(false);
 
             $table->unsignedTinyInteger('coordinate_added_value')
                 ->nullable()
@@ -51,6 +52,22 @@ class CreateDealsTable extends Migration
                     2: paid
                 ');
 
+            $table->unsignedTinyInteger('ownership_type')
+                ->index()
+                ->default(1)
+                ->comment('
+                    1: keep,
+                    2: loan
+                ');
+
+            $table->unsignedTinyInteger('exposure_expectations')
+                ->index()
+                ->default(1)
+                ->comment('
+                    1: mandatory,
+                    2: flexible
+                ');
+
             $table->unsignedTinyInteger('status')
                 ->default(1)
                 ->index()
@@ -65,8 +82,17 @@ class CreateDealsTable extends Migration
 
             $table->string('shipping_contact_name')->nullable();
             $table->string('shipping_contact_telephone', 30)->nullable();
-            $table->string('shipping_code')->nullable();
+            $table->string('shipping_tracking_code')->nullable();
             $table->string('shipping_url')->nullable();
+            $table->string('shipping_company')->nullable();
+            $table->dateTime('shipping_submitted_at')->nullable();
+
+            $table->foreignId('shipping_submitted_by')
+                ->nullable()
+                ->constrained('users')
+                ->nullOnDelete()
+                ->cascadeOnUpdate();
+
             $table->text('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
@@ -90,23 +116,6 @@ class CreateDealsTable extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->unsignedTinyInteger('ownership_type')
-                ->nullable()
-                ->index()
-                ->comment('
-                    1: keep,
-                    2: loan
-                ');
-
-            $table->unsignedTinyInteger('exposure_expectations')
-                ->index()
-                ->default(1)
-                ->comment('
-                    1: mandatory,
-                    2: flexible
-                ');
-
-            $table->date('when_needed')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
