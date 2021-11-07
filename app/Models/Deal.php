@@ -336,7 +336,7 @@ class Deal extends Model
      *
      * @return $this
      */
-    public function coordinateAddedValue(?int $status)
+    public function contentCoordination(?int $status)
     {
         return tap($this->fill(['coordinate_added_value' => $status]))->save();
     }

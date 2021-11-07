@@ -19,6 +19,7 @@ class DealShippingController extends Controller
     /**
      * Deal shipping controller constructor.
      *
+     * @param  \App\Http\Repositories\DealRepository  $repository
      * @return void
      */
     public function __construct(Repository $repository)
