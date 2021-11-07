@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\Deals\DealController;
 use App\Http\Controllers\Api\Deals\DealCoordinateAddedValueController;
 use App\Http\Controllers\Api\Deals\DealMediaAccountabilityController;
 use App\Http\Controllers\Api\Deals\DealRejectController;
+use App\Http\Controllers\Api\Deals\DealShippingController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
 use App\Http\Controllers\Api\Likes\BrandLikeController;
@@ -34,6 +35,7 @@ use App\Policies\Controllers\Deals\DealControllerPolicy;
 use App\Policies\Controllers\Deals\DealCoordinateAddedValueControllerPolicy;
 use App\Policies\Controllers\Deals\DealMediaAccountabilityControllerPolicy;
 use App\Policies\Controllers\Deals\DealRejectControllerPolicy;
+use App\Policies\Controllers\Deals\DealShippingControllerPolicy;
 use App\Policies\Controllers\Follows\AdvertiserFollowControllerPolicy;
 use App\Policies\Controllers\Follows\ContentCreatorFollowControllerPolicy;
 use App\Policies\Controllers\Likes\BrandLikeControllerPolicy;
@@ -61,6 +63,7 @@ class AuthServiceProvider extends ServiceProvider
         DealAcceptController::class => DealAcceptControllerPolicy::class,
         DealCancelController::class => DealCancelControllerPolicy::class,
         DealRejectController::class => DealRejectControllerPolicy::class,
+        DealShippingController::class => DealShippingControllerPolicy::class,
         DealMediaAccountabilityController::class => DealMediaAccountabilityControllerPolicy::class,
         DealCoordinateAddedValueController::class => DealCoordinateAddedValueControllerPolicy::class,
 

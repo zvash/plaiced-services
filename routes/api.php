@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\Deals\DealController;
 use App\Http\Controllers\Api\Deals\DealCoordinateAddedValueController;
 use App\Http\Controllers\Api\Deals\DealMediaAccountabilityController;
 use App\Http\Controllers\Api\Deals\DealRejectController;
+use App\Http\Controllers\Api\Deals\DealShippingController;
 use App\Http\Controllers\Api\DropdownGroups\DropdownGroupController;
 use App\Http\Controllers\Api\Follows\AdvertiserFollowController;
 use App\Http\Controllers\Api\Follows\ContentCreatorFollowController;
@@ -141,6 +142,7 @@ Route::prefix('deals/{deal}')->name('deals.')->group(function () {
     Route::patch('cancel', DealCancelController::class)->name('cancel');
     Route::patch('coordinate', DealCoordinateAddedValueController::class)->name('coordinate');
     Route::patch('accountability', DealMediaAccountabilityController::class)->name('accountability');
+    Route::patch('shipping', DealShippingController::class)->name('shipping');
 });
 Route::apiResource('deals', DealController::class);
 
