@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api\Contents;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\ContentRepository as Repository;
-use App\Http\Requests\StoreContentRequest as Request;
+use App\Http\Requests\StoreContentRequest;
 use App\Http\Resources\ContentResource;
 use App\Http\Resources\Summaries\ContentSummaryResource;
 use App\Models\ContentCreator;
+use Illuminate\Http\Request;
 
 class ContentCreatorContentController extends Controller
 {
@@ -34,13 +35,18 @@ class ContentCreatorContentController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\ContentCreator  $contentCreator
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(ContentCreator $contentCreator)
+    public function index(Request $request, ContentCreator $contentCreator)
     {
+        $query = $contentCreator->contents()->latest();
+
         return ContentSummaryResource::collection(
-            $contentCreator->contents()->latest()->paginate(15)
+            $request->has('no-pagination')
+                ? $query->get()
+                : $query->paginate(15)
         );
     }
 
@@ -53,7 +59,7 @@ class ContentCreatorContentController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, ContentCreator $contentCreator)
+    public function store(StoreContentRequest $request, ContentCreator $contentCreator)
     {
         $this->authorize('create', [$this, $contentCreator]);
 

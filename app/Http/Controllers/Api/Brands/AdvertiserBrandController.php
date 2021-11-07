@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Api\Brands;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\BrandRepository as Repository;
-use App\Http\Requests\StoreBrandRequest as Request;
+use App\Http\Requests\StoreBrandRequest;
 use App\Http\Resources\BrandResource;
 use App\Http\Resources\Summaries\BrandSummaryResource;
 use App\Models\Advertiser;
+use Illuminate\Http\Request;
 
 class AdvertiserBrandController extends Controller
 {
@@ -34,13 +35,18 @@ class AdvertiserBrandController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Advertiser  $advertiser
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index(Advertiser $advertiser)
+    public function index(Request $request, Advertiser $advertiser)
     {
+        $query = $advertiser->brands()->latest();
+
         return BrandSummaryResource::collection(
-            $advertiser->brands()->latest()->paginate(15)
+            $request->has('no-pagination')
+                ? $query->get()
+                : $query->paginate(15)
         );
     }
 
@@ -53,7 +59,7 @@ class AdvertiserBrandController extends Controller
      *
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Request $request, Advertiser $advertiser)
+    public function store(StoreBrandRequest $request, Advertiser $advertiser)
     {
         $this->authorize('create', [$this, $advertiser]);
 
