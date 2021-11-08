@@ -21,7 +21,7 @@ class CreateDealsTable extends Migration
             $table->text('content_creator_gets')->nullable();
             $table->json('advertiser_gets');
             $table->text('advertiser_benefits')->nullable();
-            $table->json('arrival_speed')->nullable();
+            $table->json('arrival_speed');
             $table->text('arrival_speed_brief')->nullable();
             $table->boolean('is_public')->default(true)->index();
             $table->boolean('flexible_date')->default(false);

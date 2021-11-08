@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api\Deals;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\DealRepository as Repository;
 use App\Http\Requests\IndexDealRequest;
+use App\Http\Requests\StoreDealRequest;
 use App\Http\Resources\DealResource;
 use App\Http\Resources\Summaries\DealSummaryResource;
 use App\Models\Deal;
@@ -12,13 +14,23 @@ use Illuminate\Http\Request;
 class DealController extends Controller
 {
     /**
+     * Deal repository.
+     *
+     * @var \App\Http\Repositories\DealRepository
+     */
+    protected $repository;
+
+    /**
      * Deal controller constructor.
      *
+     * @param  \App\Http\Repositories\DealRepository  $repository
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('auth:api');
+
+        $this->repository = $repository;
     }
 
     /**
@@ -42,12 +54,18 @@ class DealController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\StoreDealRequest  $request
+     * @return \Illuminate\Http\Resources\Json\JsonResource
+     *
+     * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(StoreDealRequest $request)
     {
-        // TODO: Implement Store request for deal
+        $resource = new DealResource(
+            $deal = $this->repository->create($request)
+        );
+
+        return $resource->withLocation('deals.show', [$deal]);
     }
 
     /**
