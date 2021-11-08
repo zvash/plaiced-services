@@ -44,7 +44,11 @@ use App\Http\Controllers\Api\Surveys\ContentCreatorSurveyController;
 use App\Http\Controllers\Api\Surveys\ContentSurveyController;
 use App\Http\Controllers\Api\Surveys\DealSurveyController;
 use App\Http\Controllers\Api\Timelines\DealTimelineController;
+use App\Http\Controllers\Api\Users\UserController;
+use App\Http\Controllers\Api\Users\UserPasswordController;
+use App\Http\Controllers\Api\Users\UserVerificationController;
 use App\Http\Controllers\Api\Wishlists\WishlistController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,6 +61,23 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//User verify email
+Route::get('/email/verify/{id}/{hash}', [UserVerificationController::class, 'verify'])
+    ->middleware(['auth', 'signed'])
+    ->name('verification.verify');
+
+//User routes
+Route::prefix('users')->name('users.')->group(function () {
+    Route::post('/', [UserController::class, 'store'])->name('store');
+    Route::put('/', [UserController::class, 'update'])->name('update');
+    Route::get('/me', [UserController::class, 'show'])->name('read');
+
+    Route::put('/password', [UserPasswordController::class, 'update'])->name('change-password');
+
+    Route::post('/verify/resend', [UserVerificationController::class, 'resend'])
+        ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+});
 
 // Notification routes
 Route::prefix('notifications')->name('notifications.')->group(function () {
