@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\ContentCreators\ContentCreatorController;
 use App\Http\Controllers\Api\Contents\ContentCategoryController;
 use App\Http\Controllers\Api\Contents\ContentController;
 use App\Http\Controllers\Api\Contents\ContentCreatorContentController;
+use App\Http\Controllers\Api\Countries\CountryController;
 use App\Http\Controllers\Api\Deals\DealAcceptController;
 use App\Http\Controllers\Api\Deals\DealCancelController;
 use App\Http\Controllers\Api\Deals\DealController;
@@ -64,6 +65,7 @@ Route::prefix('notifications')->name('notifications.')->group(function () {
 });
 
 // Website routes
+Route::apiResource('countries', CountryController::class)->only('index');
 Route::apiResource('blogs', BlogController::class)->only('index', 'show');
 Route::apiResource('pages', PageController::class)->only('index', 'show');
 Route::apiResource('spotlights', SpotlightController::class)->only('index');
