@@ -7,13 +7,17 @@ use App\Http\Repositories\UserRepository as Repository;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
+use App\Traits\Passport\PassportToken;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Laravel\Passport\Client;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
+    use PassportToken;
+
     /**
      * User repository.
      *
@@ -30,7 +34,7 @@ class UserController extends Controller
     public function __construct(Repository $repository)
     {
         $this->middleware('auth:api')->except('store');
-        $this->middleware('client:*')->only('store');
+        //$this->middleware('client:*')->only('store');
 
         $this->repository = $repository;
     }
@@ -39,7 +43,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @return JsonResource
      */
     public function show(Request $request)
     {
@@ -49,36 +53,24 @@ class UserController extends Controller
     /**
      * Register a new user.
      *
-     * @param  \App\Http\Requests\StoreUserRequest  $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param StoreUserRequest $request
+     * @return Response
      *
      * @throws \Throwable
      */
     public function store(StoreUserRequest $request)
     {
-        event(new Registered($this->repository->create($request)));
-
+        $user = $this->repository->create($request);
+        event(new Registered($user));
         $client = Client::wherePasswordClient(true)->first();
-
-        $request->request->add([
-            'grant_type' => 'password',
-            'client_id' => $client->id,
-            'client_secret' => $client->secret,
-            'username' => $request->email,
-            'password' => $request->password,
-            'scope' => null,
-        ]);
-
-        return Route::dispatch(
-            Request::create('oauth/token', 'POST')
-        );
+        return $this->logUserInWithoutPassword($user);
     }
 
     /**
      * Update the authenticated user.
      *
-     * @param  \App\Http\Requests\UpdateUserRequest  $request
-     * @return \Illuminate\Http\Resources\Json\JsonResource
+     * @param UpdateUserRequest $request
+     * @return UserResource
      *
      * @throws \Throwable
      */

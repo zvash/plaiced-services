@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Api\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 
 class UserVerificationController extends Controller
 {
@@ -23,14 +28,23 @@ class UserVerificationController extends Controller
     /**
      * Verify user email.
      *
-     * @param  \Illuminate\Foundation\Auth\EmailVerificationRequest  $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function verify(EmailVerificationRequest $request)
+    public function verify(Request $request)
     {
-        $request->fulfill();
+        $user = User::find($request->route('id'));
 
-        // TODO: Redirect to success or verified page.
+        if ($user->hasVerifiedEmail()) {
+            // TODO: Redirect to already verified page.
+            return response(['message' => 'Already verified.']);
+        }
+
+        if ($user->markEmailAsVerified()) {
+            event(new Verified($user));
+        }
+
+        // TODO: Redirect to success page.
         return response(['message' => 'verified.']);
     }
 

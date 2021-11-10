@@ -108,6 +108,7 @@ class UserRepository extends Repository
                     'first_name',
                     'last_name',
                     'email',
+                    'company_position',
                     'password',
                     'class',
                     'find_us',
@@ -116,10 +117,10 @@ class UserRepository extends Repository
                 ])
             );
 
-            $user = User::create($userAttributes);
+            $user = User::create($userAttributes->all());
 
             /** @var \Illuminate\Database\Eloquent\Model $relation */
-            $relation = new $userAttributes['class']($relationAttributes);
+            $relation = new $userAttributes['class']($relationAttributes->all());
             $relation->user()->associate($user);
             $relation->save();
 

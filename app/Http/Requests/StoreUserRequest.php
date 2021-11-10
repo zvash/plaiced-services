@@ -25,6 +25,7 @@ class StoreUserRequest extends FormRequest
             'find_us' => 'sometimes|nullable|string',
             'avatar' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|dimensions:ratio=1/1,max_width=500,max_height=500|max:1024',
             'title' => 'required|string',
+            'company_position' => 'required|string',
             'small_description' => 'required',
             'description' => 'required',
             'website' => 'sometimes|nullable|url',
@@ -34,8 +35,8 @@ class StoreUserRequest extends FormRequest
             'city' => 'sometimes|nullable',
             'state' => 'sometimes|nullable',
             'postal_code' => 'sometimes|nullable|max:30',
-            'country_id' => 'sometimes|integer|exists:countries,id',
-            'type' => 'required|integer|exists:dropdowns,id',
+            'country_id' => 'sometimes|exists:countries,id',
+            'type' => 'required|exists:dropdowns,id',
         ];
     }
 
