@@ -9,24 +9,41 @@ use Illuminate\Http\Request;
 class UserVerificationController extends Controller
 {
     /**
-     * @param EmailVerificationRequest $request
-     * @return string
+     * User verification controller constructor.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:api')->only('resend');
+        $this->middleware('signed')->only('verify');
+        $this->middleware('throttle:6,1');
+    }
+
+    /**
+     * Verify user email.
+     *
+     * @param  \Illuminate\Foundation\Auth\EmailVerificationRequest  $request
+     * @return \Illuminate\Http\Response
      */
     public function verify(EmailVerificationRequest $request)
     {
         $request->fulfill();
-        return 'verified';
+
+        // TODO: Redirect to success or verified page.
+        return response(['message' => 'verified.']);
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * Resend verification email.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
     public function resend(Request $request)
     {
         $request->user()->sendEmailVerificationNotification();
-        return response([
-            'message' => 'Verification link sent!'
-        ], 200);
+
+        return response()->noContent();
     }
 }

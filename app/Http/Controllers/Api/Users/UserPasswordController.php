@@ -3,32 +3,44 @@
 namespace App\Http\Controllers\Api\Users;
 
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\UserRepository;
-use App\Http\Requests\ChangeUserPasswordRequest;
+use App\Http\Repositories\UserRepository as Repository;
+use App\Http\Requests\UpdateUserPasswordRequest as Request;
 use App\Http\Resources\UserResource;
-use Illuminate\Http\Request;
 
 class UserPasswordController extends Controller
 {
     /**
-     * UserPassword controller constructor.
+     * User repository.
      *
+     * @var \App\Http\Repositories\UserRepository
+     */
+    protected $repository;
+
+    /**
+     * User password controller constructor.
+     *
+     * @param  \App\Http\Repositories\UserRepository  $repository
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('auth:api');
+
+        $this->repository = $repository;
     }
 
     /**
-     * @param ChangeUserPasswordRequest $request
-     * @param UserRepository $repository
-     * @return UserResource
+     * Update the password of authenticated user.
+     *
+     * @param  \App\Http\Requests\UpdateUserPasswordRequest  $request
+     * @return \Illuminate\Http\Resources\Json\JsonResource
+     *
      * @throws \Throwable
      */
-    public function update(ChangeUserPasswordRequest $request, UserRepository $repository)
+    public function update(Request $request)
     {
-        $user = $repository->changePassword($request);
-        return new UserResource($user);
+        return new UserResource(
+            $this->repository->changePassword($request)
+        );
     }
 }

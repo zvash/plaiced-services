@@ -48,7 +48,6 @@ use App\Http\Controllers\Api\Users\UserController;
 use App\Http\Controllers\Api\Users\UserPasswordController;
 use App\Http\Controllers\Api\Users\UserVerificationController;
 use App\Http\Controllers\Api\Wishlists\WishlistController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,21 +61,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//User verify email
-Route::get('/email/verify/{id}/{hash}', [UserVerificationController::class, 'verify'])
-    ->middleware(['auth', 'signed'])
-    ->name('verification.verify');
+Route::get('email/verify/{id}/{hash}', [UserVerificationController::class, 'verify'])->name('verification.verify');
 
-//User routes
+// User routes
 Route::prefix('users')->name('users.')->group(function () {
     Route::post('/', [UserController::class, 'store'])->name('store');
     Route::put('/', [UserController::class, 'update'])->name('update');
-    Route::get('/me', [UserController::class, 'show'])->name('read');
+    Route::get('me', [UserController::class, 'show'])->name('show');
 
-    Route::put('/password', [UserPasswordController::class, 'update'])->name('change-password');
-
-    Route::post('/verify/resend', [UserVerificationController::class, 'resend'])
-        ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+    Route::put('password', [UserPasswordController::class, 'update'])->name('change-password');
+    Route::post('verify/resend', [UserVerificationController::class, 'resend'])->name('verification.send');
 });
 
 // Notification routes

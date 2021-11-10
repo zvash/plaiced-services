@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api\Users;
 
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\UserRepository;
+use App\Http\Repositories\UserRepository as Repository;
 use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserProfileRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -15,20 +15,30 @@ use Laravel\Passport\Client;
 class UserController extends Controller
 {
     /**
+     * User repository.
+     *
+     * @var \App\Http\Repositories\UserRepository
+     */
+    protected $repository;
+
+    /**
      * User controller constructor.
      *
+     * @param  \App\Http\Repositories\UserRepository  $repository
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('auth:api')->except(['store']);
+
+        $this->repository = $repository;
     }
 
     /**
      * Display the specified resource.
      *
-     * @param Request $request
-     * @return UserResource
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
     public function show(Request $request)
     {
@@ -36,46 +46,45 @@ class UserController extends Controller
     }
 
     /**
-     * Register a new user
+     * Register a new user.
      *
-     * @param StoreUserRequest $request
-     * @param UserRepository $repository
-     * @return
+     * @param  \App\Http\Requests\StoreUserRequest  $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @throws \Throwable
      */
-    public function store(StoreUserRequest $request, UserRepository $repository)
+    public function store(StoreUserRequest $request)
     {
-        $user = $repository->create($request);
-        event(new Registered($user));
+        event(new Registered($this->repository->create($request)));
 
-        $client = Client::where('password_client', 1)->first();
+        $client = Client::wherePasswordClient(true)->first();
+
         $request->request->add([
-            'grant_type'    => 'password',
-            'client_id'     => $client->id,
+            'grant_type' => 'password',
+            'client_id' => $client->id,
             'client_secret' => $client->secret,
-            'username'      => $request->email,
-            'password'      => $request->password,
-            'scope'         => null,
+            'username' => $request->email,
+            'password' => $request->password,
+            'scope' => null,
         ]);
 
-        $token = Request::create(
-            'oauth/token',
-            'POST'
+        return Route::dispatch(
+            Request::create('oauth/token', 'POST')
         );
-        return Route::dispatch($token);
     }
 
     /**
-     * Update the authenticated user
+     * Update the authenticated user.
      *
-     * @param UpdateUserProfileRequest $request
-     * @param UserRepository $repository
-     * @return UserResource
+     * @param  \App\Http\Requests\UpdateUserRequest  $request
+     * @return \Illuminate\Http\Resources\Json\JsonResource
+     *
      * @throws \Throwable
      */
-    public function update(UpdateUserProfileRequest $request, UserRepository $repository)
+    public function update(UpdateUserRequest $request)
     {
-        $user = $repository->updateProfile($request);
-        return new UserResource($user);
+        return new UserResource(
+            $this->repository->update($request)
+        );
     }
 }
