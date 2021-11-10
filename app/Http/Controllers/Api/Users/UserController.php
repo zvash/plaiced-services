@@ -29,7 +29,8 @@ class UserController extends Controller
      */
     public function __construct(Repository $repository)
     {
-        $this->middleware('auth:api')->except(['store']);
+        $this->middleware('auth:api')->except('store');
+        $this->middleware('client:*')->only('store');
 
         $this->repository = $repository;
     }
