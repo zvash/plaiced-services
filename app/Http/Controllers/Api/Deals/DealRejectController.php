@@ -3,18 +3,29 @@
 namespace App\Http\Controllers\Api\Deals;
 
 use App\Http\Controllers\Controller;
+use App\Http\Repositories\DealRepository as Repository;
 use App\Models\Deal;
 
 class DealRejectController extends Controller
 {
     /**
+     * Deal repository.
+     *
+     * @var \App\Http\Repositories\DealRepository
+     */
+    protected $repository;
+
+    /**
      * Deal reject controller constructor.
      *
+     * @param  \App\Http\Repositories\DealRepository  $repository
      * @return void
      */
-    public function __construct()
+    public function __construct(Repository $repository)
     {
         $this->middleware('auth:api');
+
+        $this->repository = $repository;
     }
 
     /**
@@ -29,7 +40,7 @@ class DealRejectController extends Controller
     {
         $this->authorize('perform', [$this, $deal]);
 
-        $deal->rejected();
+        $this->repository->reject($deal);
 
         return response()->noContent();
     }

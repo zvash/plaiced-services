@@ -63,7 +63,13 @@ class DealRepository extends Repository
     public function update(Request $request, Deal $deal)
     {
         $callback = function (Request $request, Deal $deal) {
-            return tap($deal->fill($request->validated()))->save();
+            $deal = $deal->fill($request->validated());
+
+            if ($deal->isDirty()) {
+                $deal->addTimeline('Deal:Update', $deal->findChanges());
+            }
+
+            return tap($deal)->save();
         };
 
         return $this->transaction($callback, ...func_get_args());
@@ -127,6 +133,57 @@ class DealRepository extends Repository
         $callback = fn (Deal $deal) => tap($deal)
             ->addTimeline('Deal:ContentCoordination')
             ->contentCoordination(Deal::COORDINATE_ADDED_VALUE_PENDING);
+
+        return $this->transaction($callback, ...func_get_args());
+    }
+
+    /**
+     * Accept the deal.
+     *
+     * @param  \App\Models\Deal  $deal
+     * @return \App\Models\Deal
+     *
+     * @throws \Throwable
+     */
+    public function accept(Deal $deal)
+    {
+        $callback = fn (Deal $deal) => tap($deal)
+            ->addTimeline('Deal:Accept')
+            ->waitingForPayment();
+
+        return $this->transaction($callback, ...func_get_args());
+    }
+
+    /**
+     * Reject the deal.
+     *
+     * @param  \App\Models\Deal  $deal
+     * @return \App\Models\Deal
+     *
+     * @throws \Throwable
+     */
+    public function reject(Deal $deal)
+    {
+        $callback = fn (Deal $deal) => tap($deal)
+            ->addTimeline('Deal:Reject')
+            ->rejected();
+
+        return $this->transaction($callback, ...func_get_args());
+    }
+
+    /**
+     * Cancel the deal.
+     *
+     * @param  \App\Models\Deal  $deal
+     * @return \App\Models\Deal
+     *
+     * @throws \Throwable
+     */
+    public function cancel(Deal $deal)
+    {
+        $callback = fn (Deal $deal) => tap($deal)
+            ->addTimeline('Deal:Cancel')
+            ->rejected();
 
         return $this->transaction($callback, ...func_get_args());
     }

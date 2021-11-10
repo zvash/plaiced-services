@@ -322,6 +322,34 @@ class Deal extends Model
     }
 
     /**
+     * Find changes and original.
+     *
+     * @return array
+     */
+    public function findChanges()
+    {
+        if ($this->isClean()) {
+            return [];
+        }
+
+        $this->mergeCasts([
+            'synopsis' => 'string',
+            'viewership_metrics' => 'string',
+            'content_creator_gets' => 'string',
+            'advertiser_benefits' => 'string',
+            'arrival_speed_brief' => 'string',
+        ]);
+
+        $changes = collect($this->getDirty())
+            ->map(fn ($value, $key) => $this->castAttribute($key, $value))
+            ->all();
+
+        $original = array_intersect_key($this->getOriginal(), $changes);
+
+        return compact('original', 'changes');
+    }
+
+    /**
      * Change coordinate added value status on deal.
      *
      * @return $this

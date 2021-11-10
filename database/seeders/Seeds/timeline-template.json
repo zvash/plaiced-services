@@ -45,6 +45,21 @@
         "icon": null
     },
     {
+        "event_name": "Deal:Accept",
+        "template": "The deal has been accepted.",
+        "icon": null
+    },
+    {
+        "event_name": "Deal:Reject",
+        "template": "The deal has been rejected.",
+        "icon": null
+    },
+    {
+        "event_name": "Deal:Cancel",
+        "template": "The deal has been cancelled.",
+        "icon": null
+    },
+    {
         "event_name": "DealSurvey:Create",
         "template": ":title has filled out the survey.",
         "icon": null

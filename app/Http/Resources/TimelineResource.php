@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use App\Http\Resources\Traits\HasJsonResource;
 use App\Models\Post;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class TimelineResource extends JsonResource
 {
@@ -37,6 +38,10 @@ class TimelineResource extends JsonResource
     {
         if ($this->model instanceof Post) {
             return $this->model->description;
+        }
+
+        if (! Str::contains($this->model->template, ':')) {
+            return $this->model->template;
         }
 
         $parameters = $this->parameters->map(
