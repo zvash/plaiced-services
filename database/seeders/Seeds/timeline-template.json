@@ -5,8 +5,8 @@
         "icon": null
     },
     {
-        "event_name": "DealHistory:Create",
-        "template": "A change was made in the deal from :original to :changes.",
+        "event_name": "Deal:Update",
+        "template": "A change was made in the deal.",
         "icon": null
     },
     {
