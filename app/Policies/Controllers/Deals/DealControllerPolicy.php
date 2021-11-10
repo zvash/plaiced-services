@@ -23,4 +23,18 @@ class DealControllerPolicy
     {
         return $deal->authorize($user);
     }
+
+    /**
+     * Determine whether the user can update a model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Http\Controllers\Controller  $controller
+     * @param  \App\Models\Deal  $deal
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function update(User $user, Controller $controller, Deal $deal)
+    {
+        return $deal->isPending()
+            && $deal->owner->user->is($user);
+    }
 }

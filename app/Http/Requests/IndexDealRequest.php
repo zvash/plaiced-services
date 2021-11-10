@@ -2,11 +2,13 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Deal;
+use App\Http\Requests\Traits\DealConstants;
 use Illuminate\Foundation\Http\FormRequest;
 
 class IndexDealRequest extends FormRequest
 {
+    use DealConstants;
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -15,7 +17,7 @@ class IndexDealRequest extends FormRequest
     public function rules()
     {
         return [
-            'status' => 'sometimes|required|integer|in:'.implode(',', Deal::getStatuses()),
+            'status' => 'sometimes|required|integer|'.$this->getStatuses(),
         ];
     }
 }

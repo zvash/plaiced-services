@@ -6,10 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Repositories\DealRepository as Repository;
 use App\Http\Requests\IndexDealRequest;
 use App\Http\Requests\StoreDealRequest;
+use App\Http\Requests\UpdateDealRequest;
 use App\Http\Resources\DealResource;
 use App\Http\Resources\Summaries\DealSummaryResource;
 use App\Models\Deal;
-use Illuminate\Http\Request;
 
 class DealController extends Controller
 {
@@ -86,23 +86,19 @@ class DealController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\UpdateDealRequest  $request
      * @param  \App\Models\Deal  $deal
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Deal $deal)
-    {
-        // TODO: Implement update request for deal
-    }
-
-    /**
-     * Remove the specified resource from storage.
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      *
-     * @param  \App\Models\Deal  $deal
-     * @return \Illuminate\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Throwable
      */
-    public function destroy(Deal $deal)
+    public function update(UpdateDealRequest $request, Deal $deal)
     {
-        // TODO: Implement destroy request for deal
+        $this->authorize('update', [$this, $deal]);
+
+        return new DealResource(
+            $this->repository->update($request, $deal)
+        );
     }
 }

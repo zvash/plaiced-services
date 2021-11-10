@@ -22,7 +22,6 @@ class DealShippingControllerPolicy
     public function perform(User $user, Controller $controller, Deal $deal)
     {
         return $deal->isActive()
-            && $deal->authorize($user)
             && $deal->brand->advertiser->user->is($user);
     }
 }

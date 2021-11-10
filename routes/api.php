@@ -146,7 +146,7 @@ Route::prefix('deals/{deal}')->name('deals.')->group(function () {
     Route::patch('accountability', DealMediaAccountabilityController::class)->name('accountability');
     Route::patch('shipping', DealShippingController::class)->name('shipping');
 });
-Route::apiResource('deals', DealController::class);
+Route::apiResource('deals', DealController::class)->except('destroy');
 
 // Content creator routes
 Route::apiResource('content-creators', ContentCreatorController::class)->only('index', 'show');

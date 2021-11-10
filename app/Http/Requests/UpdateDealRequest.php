@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Http\Requests\Traits\DealConstants;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreDealRequest extends FormRequest
+class UpdateDealRequest extends FormRequest
 {
     use DealConstants;
 
@@ -17,11 +17,13 @@ class StoreDealRequest extends FormRequest
     public function rules()
     {
         return [
-            'content_id' => 'required|uuid|exists:contents,uuid',
-            'brand_id' => 'required|uuid|exists:brands,uuid',
+            'synopsis' => 'sometimes|required|string',
+            'viewership_metrics' => 'sometimes|required|string',
+            'content_creator_gets' => 'sometimes|required|string',
+            'advertiser_benefits' => 'sometimes|required|string',
+            'arrival_speed_brief' => 'sometimes|required|string',
             'ownership_type' => 'required|integer|'.$this->getOwnershipType(),
             'exposure_expectations' => 'required|integer|'.$this->getExposureExpectations(),
-            'content_creator_gets' => 'sometimes|required|string',
             'flexible_date' => 'required|boolean',
 
             // Dropdown parameters

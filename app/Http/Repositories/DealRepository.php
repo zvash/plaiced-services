@@ -52,6 +52,24 @@ class DealRepository extends Repository
     }
 
     /**
+     * Update a deal.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Deal  $deal
+     * @return \App\Models\Deal
+     *
+     * @throws \Throwable
+     */
+    public function update(Request $request, Deal $deal)
+    {
+        $callback = function (Request $request, Deal $deal) {
+            return tap($deal->fill($request->validated()))->save();
+        };
+
+        return $this->transaction($callback, ...func_get_args());
+    }
+
+    /**
      * Update deal shipping information.
      *
      * @param  \Illuminate\Http\Request  $request
