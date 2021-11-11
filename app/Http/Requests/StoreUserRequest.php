@@ -24,6 +24,7 @@ class StoreUserRequest extends FormRequest
             'class' => 'required|in:'.ContentCreator::class.','.Advertiser::class.',content-creator,advertiser',
             'find_us' => 'sometimes|nullable|string',
             'avatar' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|dimensions:ratio=1/1,max_width=500,max_height=500|max:1024',
+            'relation_avatar' => 'sometimes|nullable|file|mimes:jpg,jpeg,png|dimensions:ratio=1/1,max_width=500,max_height=500|max:1024',
             'title' => 'required|string',
             'company_position' => 'required|string',
             'small_description' => 'required',

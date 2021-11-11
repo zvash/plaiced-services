@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\DatabaseManager as Database;
 use Illuminate\Filesystem\FilesystemManager as Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UserRepository extends Repository
 {
@@ -70,7 +71,7 @@ class UserRepository extends Repository
                 'ip' => $request->ip(),
             ]);
 
-            if ($this->hasAvatar($request)) {
+            if ($this->hasFile($request, 'avatar')) {
                 $attributes['avatar'] = $request->file('avatar')->store('users/avatars', 's3');
             }
 
@@ -99,8 +100,13 @@ class UserRepository extends Repository
 
             $attributes['password'] = bcrypt($attributes['password']);
 
-            if ($this->hasAvatar($request)) {
+            if ($this->hasFile($request, 'avatar')) {
                 $attributes['avatar'] = $request->file('avatar')->store('users/avatars', 's3');
+            }
+
+            if ($this->hasFile($request, 'relation_avatar')) {
+                $path = Str::snake(Str::plural(preg_replace('/.*\\\\/', '', $attributes['class']))).'/avatars';
+                $attributes['relation_avatar'] = $request->file('relation_avatar')->store($path, 's3');
             }
 
             [$userAttributes, $relationAttributes] = collect($attributes)->partition(
@@ -119,6 +125,9 @@ class UserRepository extends Repository
 
             $user = User::create($userAttributes->all());
 
+            if ($relationAttributes->has('relation_avatar')) {
+                $relationAttributes->put('avatar', $relationAttributes->get('relation_avatar'))->pull('relation_avatar');
+            }
             /** @var \Illuminate\Database\Eloquent\Model $relation */
             $relation = new $userAttributes['class']($relationAttributes->all());
             $relation->user()->associate($user);
@@ -133,12 +142,13 @@ class UserRepository extends Repository
     /**
      * Check request has avatar file.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     * @param string $key
      * @return bool
      */
-    protected function hasAvatar(Request $request)
+    protected function hasFile(Request $request, string $key)
     {
-        return $request->hasFile('avatar')
-            && $request->file('avatar')->isValid();
+        return $request->hasFile($key)
+            && $request->file($key)->isValid();
     }
 }
