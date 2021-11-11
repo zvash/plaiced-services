@@ -25,7 +25,7 @@ class Brand extends Model
      */
     protected $casts = [
         'featured' => 'boolean',
-        'placement' => 'integer',
+        'keywords' => 'collection',
         'locations' => 'collection',
         'demographic_age' => 'collection',
         'demographic_gender' => 'collection',

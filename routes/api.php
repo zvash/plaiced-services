@@ -36,6 +36,7 @@ use App\Http\Controllers\Api\Payments\PaymentController;
 use App\Http\Controllers\Api\Posts\DealPostController;
 use App\Http\Controllers\Api\Products\DealProductController;
 use App\Http\Controllers\Api\Resources\ResourceController;
+use App\Http\Controllers\Api\Searches\SearchController;
 use App\Http\Controllers\Api\Sections\SectionController;
 use App\Http\Controllers\Api\Spotlights\SpotlightController;
 use App\Http\Controllers\Api\Surveys\AdvertiserSurveyController;
@@ -168,3 +169,6 @@ Route::apiResource('content-creators', ContentCreatorController::class)->only('i
 
 // Advertiser routes
 Route::apiResource('advertisers', AdvertiserController::class)->only('index', 'show');
+
+// Search routes
+Route::get('search', SearchController::class)->name('search');

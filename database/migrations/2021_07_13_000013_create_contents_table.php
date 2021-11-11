@@ -22,6 +22,7 @@ class CreateContentsTable extends Migration
             $table->text('viewership_metrics')->nullable();
             $table->text('general_comment')->nullable();
             $table->string('avatar')->nullable();
+            $table->json('keywords')->nullable();
             $table->string('shipping_contact_name')->nullable();
             $table->string('shipping_contact_telephone', 30)->nullable();
             $table->text('address')->nullable();

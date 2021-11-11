@@ -23,6 +23,7 @@ use App\Http\Controllers\Api\Payments\DealPaymentController;
 use App\Http\Controllers\Api\Payments\PaymentController;
 use App\Http\Controllers\Api\Posts\DealPostController;
 use App\Http\Controllers\Api\Products\DealProductController;
+use App\Http\Controllers\Api\Searches\SearchController;
 use App\Http\Controllers\Api\Surveys\DealSurveyController;
 use App\Http\Controllers\Api\Timelines\DealTimelineController;
 use App\Policies\Controllers\Brands\AdvertiserBrandControllerPolicy;
@@ -46,6 +47,7 @@ use App\Policies\Controllers\Payments\DealPaymentControllerPolicy;
 use App\Policies\Controllers\Payments\PaymentControllerPolicy;
 use App\Policies\Controllers\Posts\DealPostControllerPolicy;
 use App\Policies\Controllers\Products\DealProductControllerPolicy;
+use App\Policies\Controllers\Searches\SearchControllerPolicy;
 use App\Policies\Controllers\Surveys\DealSurveyControllerPolicy;
 use App\Policies\Controllers\Timelines\DealTimelineControllerPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -100,6 +102,9 @@ class AuthServiceProvider extends ServiceProvider
 
         // Timelines
         DealTimelineController::class => DealTimelineControllerPolicy::class,
+
+        // Searches
+        SearchController::class => SearchControllerPolicy::class,
     ];
 
     /**
