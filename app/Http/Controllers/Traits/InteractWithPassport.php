@@ -1,10 +1,8 @@
 <?php
 
-
-namespace App\Traits\Passport;
+namespace App\Http\Controllers\Traits;
 
 use App\Models\User;
-use DateTime;
 use DateTimeImmutable;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Events\Dispatcher;
@@ -19,43 +17,43 @@ use Laravel\Passport\Passport;
 use Laravel\Passport\TokenRepository;
 use League\OAuth2\Server\CryptKey;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
+use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\Exception\OAuthServerException;
 use League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException;
 use League\OAuth2\Server\ResponseTypes\BearerTokenResponse;
 
-
-/**
- * Trait PassportToken
- *
- * @package App\Traits
- */
-trait PassportToken
+trait InteractWithPassport
 {
     /**
      * Generate a new unique identifier.
      *
-     * @param int $length
-     *
-     * @throws OAuthServerException
-     *
+     * @param  int  $length
      * @return string
+     *
+     * @throws \League\OAuth2\Server\Exception\OAuthServerException
      */
     private function generateUniqueIdentifier($length = 40)
     {
         try {
             return bin2hex(random_bytes($length));
-            // @codeCoverageIgnoreStart
         } catch (\TypeError $e) {
             throw OAuthServerException::serverError('An unexpected error has occurred');
         } catch (\Error $e) {
             throw OAuthServerException::serverError('An unexpected error has occurred');
         } catch (\Exception $e) {
-            // If you get this message, the CSPRNG failed hard.
             throw OAuthServerException::serverError('Could not generate a random string');
         }
-        // @codeCoverageIgnoreEnd
     }
 
+    /**
+     * Generate a new refresh Token.
+     *
+     * @param  \League\OAuth2\Server\Entities\AccessTokenEntityInterface  $accessToken
+     * @return \Laravel\Passport\Bridge\RefreshToken
+     *
+     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     * @throws \League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException
+     */
     private function issueRefreshToken(AccessTokenEntityInterface $accessToken)
     {
         $maxGenerationAttempts = 10;
@@ -79,12 +77,22 @@ trait PassportToken
         }
     }
 
+    /**
+     * Create passport token by user.
+     *
+     * @param  \App\Models\User  $user
+     * @return array
+     *
+     * @throws \League\OAuth2\Server\Exception\OAuthServerException
+     * @throws \League\OAuth2\Server\Exception\UniqueTokenIdentifierConstraintViolationException
+     */
     protected function createPassportTokenByUser(User $user)
     {
         $passportClient = ClientModel::where('password_client', 1)->first();
         $clientModelRepository = new ClientModelRepository();
         $clientRepository = new ClientRepository($clientModelRepository);
         $client = $clientRepository->getClientEntity($passportClient->id);
+
         $accessToken = new AccessToken($user->id, [], $client);
         $accessToken->setIdentifier($this->generateUniqueIdentifier());
         $accessToken->setClient(new Client($passportClient->id, null, null));
@@ -100,15 +108,22 @@ trait PassportToken
         ];
     }
 
-    protected function sendBearerTokenResponse($accessToken, $refreshToken)
+    /**
+     * Send bearer token response.
+     *
+     * @param  \League\OAuth2\Server\Entities\AccessTokenEntityInterface  $accessToken
+     * @param  \League\OAuth2\Server\Entities\RefreshTokenEntityInterface  $refreshToken
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    protected function sendBearerTokenResponse(AccessTokenEntityInterface $accessToken, RefreshTokenEntityInterface $refreshToken)
     {
         $privateKey = new CryptKey('file://'.Passport::keyPath('oauth-private.key'));
         $response = new BearerTokenResponse();
+
         $accessToken->setPrivateKey($privateKey);
+
         $response->setAccessToken($accessToken);
         $response->setRefreshToken($refreshToken);
-
-
         $response->setPrivateKey($privateKey);
         $response->setEncryptionKey(app('encrypter')->getKey());
 
@@ -116,29 +131,32 @@ trait PassportToken
     }
 
     /**
-     * @param \App\Models\User $user
-     * @param bool $output default = true
-     * @return array | \League\OAuth2\Server\ResponseTypes\BearerTokenResponse
+     * Get bearer token by user.
+     *
+     * @param  \App\Models\User  $user
+     * @param  bool  $output
+     * @return array|\League\OAuth2\Server\ResponseTypes\BearerTokenResponse
      */
-    protected function getBearerTokenByUser(User $user, $output = true)
+    protected function getBearerTokenByUser(User $user, bool $output = true)
     {
         $passportToken = $this->createPassportTokenByUser($user);
         $bearerToken = $this->sendBearerTokenResponse($passportToken['access_token'], $passportToken['refresh_token']);
 
         if (! $output) {
-            $bearerToken = json_decode($bearerToken->getBody()->__toString(), true);
+            return json_decode($bearerToken->getBody()->__toString(), true);
         }
 
         return $bearerToken;
     }
 
     /**
-     * @param User $user
-     * @return array|BearerTokenResponse
+     * Login user without password.
+     *
+     * @param  \App\Models\User  $user
+     * @return array|\League\OAuth2\Server\ResponseTypes\BearerTokenResponse
      */
     protected function logUserInWithoutPassword(User $user)
     {
-        $response = $this->getBearerTokenByUser($user, false);
-        return $response;
+        return $this->getBearerTokenByUser($user, false);
     }
 }

@@ -7,16 +7,13 @@ use App\Http\Repositories\UserRepository as Repository;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Http\Resources\UserResource;
-use App\Traits\Passport\PassportToken;
+use App\Http\Controllers\Traits\InteractWithPassport;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
-use Laravel\Passport\Client;
-use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
-    use PassportToken;
+    use InteractWithPassport;
 
     /**
      * User repository.
@@ -34,7 +31,7 @@ class UserController extends Controller
     public function __construct(Repository $repository)
     {
         $this->middleware('auth:api')->except('store');
-        //$this->middleware('client:*')->only('store');
+        $this->middleware('client:*')->only('store');
 
         $this->repository = $repository;
     }
@@ -43,7 +40,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return JsonResource
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      */
     public function show(Request $request)
     {
@@ -53,24 +50,25 @@ class UserController extends Controller
     /**
      * Register a new user.
      *
-     * @param StoreUserRequest $request
-     * @return Response
+     * @param \App\Http\Requests\StoreUserRequest $request
+     * @return \Psr\Http\Message\ResponseInterface
      *
      * @throws \Throwable
      */
     public function store(StoreUserRequest $request)
     {
         $user = $this->repository->create($request);
+
         event(new Registered($user));
-        $client = Client::wherePasswordClient(true)->first();
+
         return $this->logUserInWithoutPassword($user);
     }
 
     /**
      * Update the authenticated user.
      *
-     * @param UpdateUserRequest $request
-     * @return UserResource
+     * @param  \App\Http\Requests\UpdateUserRequest  $request
+     * @return \Illuminate\Http\Resources\Json\JsonResource
      *
      * @throws \Throwable
      */
